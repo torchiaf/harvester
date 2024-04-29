@@ -1,8 +1,6 @@
 // Don't forget to create a VueJS page called index.vue in the /pages folder!!!
 import Dashboard from '../pages/index.vue';
-
-const BLANK_CLUSTER = '_';
-const PRODUCT_NAME = 'harvester';
+import { PRODUCT_NAME, BLANK_CLUSTER } from '../config/harvester';
 
 const routes = [
   {
