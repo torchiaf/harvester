@@ -3,7 +3,12 @@ import { PRODUCT_NAME, BLANK_CLUSTER, LOGO as logo } from './config/harvester';
 import { HCI } from './config/types';
 
 export function init($plugin: IPlugin, store: any) {
-  const { product } = $plugin.DSL(store, PRODUCT_NAME);
+  const {
+    basicType,
+    configureType,
+    product,
+    virtualType,
+  } = $plugin.DSL(store, PRODUCT_NAME);
 
   const isSingleProduct = process.env.rancherEnv === PRODUCT_NAME;
 
@@ -43,4 +48,15 @@ export function init($plugin: IPlugin, store: any) {
       }
     }
   });
+
+  basicType([HCI.DASHBOARD]);
+  virtualType({
+    labelKey: 'harvester.dashboard.label',
+    name:     HCI.DASHBOARD,
+    route:    {
+      name:      `${ PRODUCT_NAME }-c-cluster`,
+      path:      `/${ PRODUCT_NAME }/c/:cluster`
+    }
+  });
+  configureType(HCI.DASHBOARD, { showListMasthead: false });
 }
