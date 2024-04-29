@@ -1,8 +1,6 @@
 <script>
 
-export default {
-  name: 'Dashboard',
-};
+export default { name: 'HarvesterDashboard' };
 </script>
 
 <template>
