@@ -55,7 +55,7 @@ harvester:
     cloneVM:
       title: Clone VM
       name: New VM Name
-      type: clone volume data
+      type: Clone volume data
       action:
         create: Create
         clone: Clone
@@ -181,12 +181,14 @@ harvester:
     volumeSnapshotCounts: Snapshot Counts
     networkState: Network State
     storageClass: Storage Class
+    restore: Restore
   tab:
     volume: Volumes
     network: Networks
     advanced: Advanced Options
     accessCredentials: Access Credentials
     pciDevices: PCI Devices
+    vGpuDevices: VGPU Devices
     vmScheduling: VM Scheduling
     instanceLabel: Instance Labels
   fields:
@@ -283,6 +285,8 @@ harvester:
     image:
       ruleTip: 'The URL you have entered ends in an extension that we do not support. We only accept image files that end in .img, .iso, .qcow, .qcow2, .raw.'
       ruleFileTip: 'The file you have chosen ends in an extension that we do not support. We only accept image files that end in .img, .iso, .qcow, .qcow2, .raw.'
+    hash:
+      sha512: 'Invalid SHA512 checksum.'
 
   dashboard:
     label: Dashboard
@@ -344,6 +348,7 @@ harvester:
       manufacturer: Manufacturer
       serialNumber: Serial Number
       model: Model
+      etcd: Witness Node
     enableMaintenance:
       title: Enable Maintenance Mode
       protip: The operation will migrate all virtual machines on this node to other nodes.
@@ -699,6 +704,8 @@ harvester:
         =1 {1 image is uploading, please do not refresh or close the page.}
         other {{count} images are uploading, please do not refresh or close the page.}
         }
+    checksum: Checksum
+    checksumTip: Validate the image using the SHA512 checksum, if specified.
 
   vmTemplate:
     label: Templates
@@ -779,7 +786,22 @@ harvester:
       createNew: Create new
       replaceExisting: Replace existing
       virtualMachineName: Virtual Machine Name
+      keepMacAddress: Keep MAC Address
     matchTarget: The current backup target does not match the existing one.
+    progress: 
+      details: Volume details
+      tooltip:
+        starting: Backup initiating
+        progress: Backup in progress
+        complete: Backup completed
+
+  restore:
+    progress:
+      details: Volume details
+      tooltip:
+        starting: Restore initiating
+        progress: Restore in progress
+        complete: Restore completed
 
   network:
     label: VM Networks
@@ -851,6 +873,8 @@ harvester:
       tip: 'IP Range should be in IPV4 format. <code>Number of IPs Required = Number of Nodes * 4 + Number of Disks * 2 + Number of Images to Download/Upload </code>. See <a href="https://docs.harvesterhci.io/v1.2/advanced/storagenetwork#configuration-example" target="_blank">doc</a> for more details.'
     vmForceDeletionPolicy:
       period: Period
+    autoRotateRKE2Certs:
+      expiringInHours: Expiring in
     httpProxy:
       warning: 'WARNING: <br/> If you configure "http-proxy" and "https-proxy", you must also put Harvester node&apos;s CIDR into "no-proxy", otherwise the Harvester cluster will be broken.'
     supportBundleImage:
@@ -1094,6 +1118,7 @@ harvester:
       'cattle-monitoring-system/rancher-monitoring': rancher-monitoring is an addon to collect Harvester cluster and VM metrics, view them on the embedded dashboard, and send alert(s) to remote servers.
       'vm-import-controller': vm-import-controller is an addon to help migrate VM workloads from other source clusters to an existing Harvester cluster.
       'pcidevices-controller': pcidevices-controller is an addon to help discover PCI devices for nodes in your cluster and allow users to prepare devices for PCI Passthrough, for use with Harvester VM and guest Clusters.
+      'nvidia-driver-toolkit': 'nvidia-driver-toolkit is an addon to enable vGPU devices and assign them to Harvester VMs.'
       'rancher-logging': rancher-logging is an addon to collect versatile logs, events and audits from the Harvester cluster and route them to many kinds of servers based on flows.
       'rancher-monitoring': rancher-monitoring is an addon to collect Harvester cluster and VM metrics, view them on the embedded dashboard, and send alert(s) to remote servers.
       'rancher-vcluster': rancher-vcluster deploys a vcluster with rancher installed.
@@ -1109,8 +1134,18 @@ harvester:
       rancherVersion: Rancher Version
       password: Bootstrap Password
     switchFailed: "{action} {name} failed!"
-      
-
+    nvidiaDriverToolkit:
+      titles:
+        basic: Controller
+        image: Image
+        driver: Driver
+      image:
+        tag: Image Tag
+        repository: Image Repository
+      driver:
+        location: Driver Location
+      parsingSpecError:
+        The field 'spec.valuesContent' has invalid format.
 
   loadBalancer:
     label: Load Balancers
@@ -1153,6 +1188,9 @@ harvester:
           }
     backendServers:
       label: Backend Servers
+    healthCheck:
+      warning:
+        portInUse: Warning, Backend Port {port} is in use in Health Check settings; in case of updating the port, update the Health Check settings accordingly.
 
   ipPool:
     label: IP Pools
@@ -1214,6 +1252,38 @@ harvester:
     vfAddresses: Virtual Functions Addresses
     showMore: Show More
     parentSriov: Filter By Parent SR-IOV
+
+  sriovgpu:
+    label: SR-IOV GPU Devices
+    nodeName: Node
+    numVFs: Number Of Virtual Functions
+    vfAddresses: Virtual Functions Addresses
+    vGpuDevices: vGPU Devices
+    showMore: Show More
+    parentSriov: Filter By Parent SR-IOV GPU
+    noPermission: Please contact system admin to add Harvester addons first
+    goSetting:
+      prefix: The nvidia-driver-toolkit addon is not enabled, click
+      middle: here
+      suffix: to enable it to manage your SR-IOV GPU devices.
+
+  vgpu:
+    label: vGPU Devices
+    noPermission: Please contact system admin to add Harvester addons first
+    goSetting:
+      prefix: The nvidia-driver-toolkit addon is not enabled, click
+      middle: here
+      suffix: to enable it to manage your vGPU devices.
+    enableGroup: Enable Group
+    disableGroup: Disable Group
+    enable:
+      title: Select vGPU
+      type: Type
+    available: Available Devices
+    compatibleNodes: Compatible Nodes
+    impossibleSelection: 'There are no hosts with all of the selected devices.'
+    howToUseDevice: 'Use the table below to enable vGPU devices you want to use in this VM.'
+    deviceInTheSameHost: 'You can only select devices on the same host.'
 
   harvesterVlanConfigMigrateDialog:
     targetClusterNetwork: 
@@ -1278,6 +1348,7 @@ advancedSettings:
     'harv-additional-ca': 'Custom CA root certificates for TLS validation.'
     'harv-overcommit-config': 'Resource overcommit configuration.'
     'harv-support-bundle-timeout': 'Support Bundle timeout config in minutes, use 0 to disable the timeout.'
+    'harv-support-bundle-expiration': 'Support Bundle expiration config in minutes.'
     'harv-vm-force-reset-policy': Config the force-reset action when a VM is stuck on a node that is down.
     'harv-ssl-parameters': Custom SSL Parameters for TLS validation.
     'harv-storage-network': 'Longhorn storage-network setting.'
@@ -1287,6 +1358,7 @@ advancedSettings:
     'harv-release-download-url': This setting allows you to configure the <code>upgrade release download</code> URL address. Harvester will get the ISO URL and checksum value from the (<code>$URL</code>/<code>$VERSION</code>/version.yaml) file hosted by the configured URL.
     'harv-default-vm-termination-grace-period-seconds': Config the VM termination grace period for VM stop.
     'harv-ntp-servers': Configure NTP server. You can configure multiple IPv4 addresses or host addresses.
+    'harv-auto-rotate-rke2-certs': The certificate rotation mechanism relies on Rancher. Harvester will automatically update certificates generation to trigger rotation.
 
 typeLabel:
   kubevirt.io.virtualmachine: |-
@@ -1409,6 +1481,19 @@ typeLabel:
       one { SR-IOV Network Device }
       other { SR-IOV Network Devices }
     }
+
+  devices.harvesterhci.io.sriovgpudevice: |-
+    {count, plural,
+      one { SR-IOV GPU Device }
+      other { SR-IOV GPU Devices }
+    }
+
+  devices.harvesterhci.io.vgpudevice: |-
+    {count, plural,
+      one { vGPU Device }
+      other { vGPU Devices }
+    }
+
   harvesterhci.io.secret: |-
     {count, plural,
       one { Secret }
