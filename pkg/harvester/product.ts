@@ -1,6 +1,6 @@
 import { IPlugin } from '@shell/core/types';
 import { PRODUCT_NAME, BLANK_CLUSTER, LOGO as logo } from './config/harvester';
-import { HCI } from './config/types';
+import { HCI } from './types';
 
 export function init($plugin: IPlugin, store: any) {
   const {
