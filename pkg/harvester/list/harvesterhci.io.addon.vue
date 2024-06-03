@@ -3,8 +3,8 @@ import Loading from '@shell/components/Loading';
 import ResourceTable from '@shell/components/ResourceTable';
 
 import { allHash } from '@shell/utils/promise';
-import { HCI } from '../types';
 import { STATE, NAME } from '@shell/config/table-headers';
+import { HCI } from '../types';
 
 export default {
   name: 'ListHarvesterAddons',

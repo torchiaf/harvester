@@ -2,8 +2,8 @@ import SteveModel from '@shell/plugins/steve/steve-class';
 import { escapeHtml } from '@shell/utils/string';
 import { colorForState } from '@shell/plugins/dashboard-store/resource-class';
 import { NODE } from '@shell/config/types';
-import { HCI } from '../types';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
+import { HCI } from '../types';
 
 /**
  * Class representing SR-IOV Device resource.

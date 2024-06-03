@@ -14,13 +14,13 @@ import metricPoller from '@shell/mixins/metric-poller';
 import {
   METRIC, NODE, LONGHORN, POD, EVENT
 } from '@shell/config/types';
-import { HCI } from '../../types';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import { allHash } from '@shell/utils/promise';
 import { formatSi } from '@shell/utils/units';
 import { findBy } from '@shell/utils/array';
 import { clone } from '@shell/utils/object';
 import { escapeHtml } from '@shell/utils/string';
+import { HCI } from '../../types';
 
 import Basic from './HarvesterHostBasic';
 import Instance from './VirtualMachineInstance';

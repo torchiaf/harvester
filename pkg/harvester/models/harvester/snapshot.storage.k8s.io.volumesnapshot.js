@@ -1,8 +1,8 @@
 import { clone } from '@shell/utils/object';
+import { PVC } from '@shell/config/types';
 import { HCI } from '../../types';
 import HarvesterResource from '../harvester';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
-import { PVC } from '@shell/config/types';
 
 export default class HciSnapshot extends HarvesterResource {
   get availableActions() {

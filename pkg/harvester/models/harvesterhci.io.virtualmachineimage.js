@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import { HCI } from '../types';
 import {
   DESCRIPTION,
   ANNOTATIONS_TO_IGNORE_REGEX,
@@ -10,8 +9,9 @@ import { formatSi } from '@shell/utils/units';
 import { ucFirst } from '@shell/utils/string';
 import { stateDisplay, colorForState } from '@shell/plugins/dashboard-store/resource-class';
 import { _CLONE } from '@shell/config/query-params';
-import HarvesterResource from './harvester';
+import { HCI } from '../types';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../config/harvester';
+import HarvesterResource from './harvester';
 
 function isReady() {
   function getStatusConditionOfType(type, defaultValue = []) {

@@ -4,10 +4,10 @@ import ResourceTable from '@shell/components/ResourceTable';
 
 import { allHash } from '@shell/utils/promise';
 import { SCHEMA, STORAGE_CLASS } from '@shell/config/types';
-import { HCI } from '../types';
 import {
   STATE, AGE, NAME, STORAGE_CLASS_PROVISIONER, STORAGE_CLASS_DEFAULT
 } from '@shell/config/table-headers';
+import { HCI } from '../types';
 
 const schema = {
   id:         HCI.STORAGE,

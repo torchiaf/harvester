@@ -9,14 +9,14 @@ import LabeledSelect from '@shell/components/form/LabeledSelect';
 import ModalWithCard from '@shell/components/ModalWithCard';
 
 import { PVC, STORAGE_CLASS } from '@shell/config/types';
-import { HCI } from '../../../types';
 import { clone } from '@shell/utils/object';
 import { removeObject } from '@shell/utils/array';
 import { randomStr } from '@shell/utils/string';
-import { SOURCE_TYPE } from '../../../config/harvester-map';
 import { _VIEW, _EDIT, _CREATE } from '@shell/config/query-params';
-import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../../config/harvester';
 import { PLUGIN_DEVELOPER, DEV } from '@shell/store/prefs';
+import { SOURCE_TYPE } from '../../../config/harvester-map';
+import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../../config/harvester';
+import { HCI } from '../../../types';
 
 export default {
   components: {
@@ -143,7 +143,7 @@ export default {
               query: { mode: _EDIT }
             };
 
-            V.pvc = this.pvcs.find((pvc) => pvc.metadata.name === V.realName);
+            V.pvc = this.pvcs.find(pvc => pvc.metadata.name === V.realName);
           }
 
           return V;
@@ -174,7 +174,7 @@ export default {
 
       if (type === SOURCE_TYPE.NEW) {
         const inStore = this.$store.getters['currentProduct'].inStore;
-        const defaultStorage = this.$store.getters[`${ inStore }/all`](STORAGE_CLASS).find( (O) => O.isDefault);
+        const defaultStorage = this.$store.getters[`${ inStore }/all`](STORAGE_CLASS).find( O => O.isDefault);
 
         neu.storageClassName = defaultStorage?.metadata?.name || 'longhorn';
       }
@@ -189,7 +189,7 @@ export default {
 
       while (hasName) {
         name = `disk-${ this.nameIdx }`;
-        hasName = this.rows.find((O) => O.name === name);
+        hasName = this.rows.find(O => O.name === name);
         this.nameIdx++;
       }
 
@@ -253,7 +253,7 @@ export default {
     },
 
     getImageDisplayName(id) {
-      return this.$store.getters['harvester/all'](HCI.IMAGE).find((image) => image.id === id)?.spec?.displayName;
+      return this.$store.getters['harvester/all'](HCI.IMAGE).find(image => image.id === id)?.spec?.displayName;
     }
   },
 };

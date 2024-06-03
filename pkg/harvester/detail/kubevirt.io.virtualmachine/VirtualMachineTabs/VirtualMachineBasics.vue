@@ -1,10 +1,10 @@
 <script>
-import HarvesterIpAddress from '../../../formatters/HarvesterIpAddress';
-import VMConsoleBar from '../../../components/VMConsoleBar';
 import LabelValue from '@shell/components/LabelValue';
 import InputOrDisplay from '@shell/components/InputOrDisplay';
-import { HCI } from '../../../types';
 import CreateEditView from '@shell/mixins/create-edit-view';
+import HarvesterIpAddress from '../../../formatters/HarvesterIpAddress';
+import VMConsoleBar from '../../../components/VMConsoleBar';
+import { HCI } from '../../../types';
 
 const UNDEFINED = 'n/a';
 

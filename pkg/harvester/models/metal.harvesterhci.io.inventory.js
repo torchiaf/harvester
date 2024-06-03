@@ -1,5 +1,5 @@
-import HarvesterResource from './harvester';
 import { set } from '@shell/utils/object';
+import HarvesterResource from './harvester';
 
 export default class HciInventory extends HarvesterResource {
   applyDefaults() {

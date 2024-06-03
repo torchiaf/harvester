@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
-import HarvesterEditVMImage from '../vmImage.vue';
 import { _CREATE } from '@shell/config/query-params';
+import HarvesterEditVMImage from '../vmImage.vue';
 
 describe('component: HarvesterEditVMImage', () => {
   it('should display all the inputs', () => {

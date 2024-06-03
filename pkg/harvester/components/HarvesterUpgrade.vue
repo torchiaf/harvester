@@ -1,11 +1,11 @@
 <script>
 import { mapGetters } from 'vuex';
-import { HCI } from '../types';
 import { allHash } from '@shell/utils/promise';
 import { Checkbox } from '@components/Form/Checkbox';
 import ModalWithCard from '@shell/components/ModalWithCard';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 import { Banner } from '@components/Banner';
+import { HCI } from '../types';
 import UpgradeInfo from './UpgradeInfo';
 export default {
   name: 'HarvesterUpgrade',
@@ -45,7 +45,7 @@ export default {
     versionOptions() {
       const versions = this.$store.getters['harvester/all'](HCI.VERSION);
 
-      return versions.map((V) => V.metadata.name);
+      return versions.map(V => V.metadata.name);
     },
 
     currentVersion() {
@@ -69,7 +69,7 @@ export default {
         let upgradeMessage = [];
         const list = neu || [];
 
-        const currentResource = list.find( (O) => !!O.isLatestUpgrade);
+        const currentResource = list.find( O => !!O.isLatestUpgrade);
 
         upgradeMessage = currentResource ? currentResource.upgradeMessage : [];
 

@@ -1,6 +1,4 @@
 <script>
-import { HCI } from '../types';
-import { ADD_ONS } from '../config/harvester-map';
 import { NODE } from '@shell/config/types';
 import { STATE, AGE, SIMPLE_NAME } from '@shell/config/table-headers';
 import { allHash } from '@shell/utils/promise';
@@ -8,6 +6,8 @@ import Banner from '@components/Banner/Banner.vue';
 import Loading from '@shell/components/Loading';
 import MessageLink from '@shell/components/MessageLink';
 import ResourceTable from '@shell/components/ResourceTable';
+import { ADD_ONS } from '../config/harvester-map';
+import { HCI } from '../types';
 
 export default {
   name: 'ListSriovGpuDevices',

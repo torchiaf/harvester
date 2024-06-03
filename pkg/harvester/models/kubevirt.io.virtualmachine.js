@@ -4,17 +4,17 @@ import { omitBy, pickBy } from 'lodash';
 
 import { colorForState } from '@shell/plugins/dashboard-store/resource-class';
 import { POD, NODE, PVC } from '@shell/config/types';
-import { HCI } from '../types';
 import { findBy } from '@shell/utils/array';
 import { parseSi } from '@shell/utils/units';
 import { get, set } from '@shell/utils/object';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import { _CLONE } from '@shell/config/query-params';
-import HarvesterResource from './harvester';
 import { matchesSomeRegex } from '@shell/utils/string';
 import { LABELS_TO_IGNORE_REGEX } from '@shell/config/labels-annotations';
-import { BACKUP_TYPE } from '../config/types';
 import { parseVolumeClaimTemplates } from '@pkg/utils/vm';
+import { BACKUP_TYPE } from '../config/types';
+import { HCI } from '../types';
+import HarvesterResource from './harvester';
 
 export const OFF = 'Off';
 

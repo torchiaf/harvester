@@ -2,10 +2,10 @@
 import { STATE, AGE, NAME } from '@shell/config/table-headers';
 import SortableTable from '@shell/components/SortableTable';
 import Loading from '@shell/components/Loading';
-import HarvesterVmState from '../../formatters/HarvesterVmState';
 import { allHash } from '@shell/utils/promise';
-import { HCI } from '../../types';
 import { HOSTNAME } from '@shell/config/labels-annotations';
+import HarvesterVmState from '../../formatters/HarvesterVmState';
+import { HCI } from '../../types';
 
 export default {
   name: 'InstanceNode',

@@ -1,14 +1,14 @@
 <script>
 import InfoBox from '@shell/components/InfoBox';
-import Base from './base';
 
 import { NETWORK_ATTACHMENT } from '@shell/config/types';
-import { HCI as HCI_ANNOTATIONS } from '../../../config/labels-annotations';
 import { sortBy } from '@shell/utils/sort';
 import { clone } from '@shell/utils/object';
 import { randomStr } from '@shell/utils/string';
 import { removeObject } from '@shell/utils/array';
 import { _VIEW } from '@shell/config/query-params';
+import { HCI as HCI_ANNOTATIONS } from '../../../config/labels-annotations';
+import Base from './base';
 
 export default {
   components: { InfoBox, Base },

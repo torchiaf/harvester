@@ -2,8 +2,8 @@
 import Vue from 'vue';
 import { Location } from 'vue-router';
 import ExplorerProjectsNamespaces from '@shell/components/ExplorerProjectsNamespaces.vue';
-import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../../config/harvester';
 import { MANAGEMENT, NAMESPACE } from '@shell/config/types';
+import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../../config/harvester';
 interface Data {
   createProjectLocation: Location,
   createNamespaceLocation: Location

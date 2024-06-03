@@ -6,9 +6,9 @@ import CreateEditView from '@shell/mixins/create-edit-view';
 import { NETWORK_ATTACHMENT, CAPI } from '@shell/config/types';
 import { allHash } from '@shell/utils/promise';
 import CruResource from '@shell/components/CruResource';
+import { HCI } from '@pkg/harvester/types';
 import Range from './Range';
 import Selector from './Selector';
-import { HCI } from '@pkg/harvester/types';
 
 export default {
   name: 'HarvesterIPPool',

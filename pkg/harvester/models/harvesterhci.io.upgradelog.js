@@ -1,7 +1,7 @@
 import { get } from '@shell/utils/object';
-import { HCI } from '../types';
 import Parse from 'url-parse';
 import { findBy } from '@shell/utils/array';
+import { HCI } from '../types';
 import HarvesterResource from './harvester';
 
 export default class HciUpgradeLog extends HarvesterResource {

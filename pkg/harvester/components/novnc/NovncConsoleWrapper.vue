@@ -4,10 +4,10 @@ import { escapeHtml } from '@shell/utils/string';
 import { allHash } from '@shell/utils/promise';
 import KeyTable from '@novnc/novnc/core/input/keysym';
 import * as KeyboardUtil from '@novnc/novnc/core/input/util';
+import { HCI } from '../../types';
 import NovncConsole from './NovncConsole';
 import NovncConsoleItem from './NovncConsoleItem';
 import NovncConsoleCustomKeys from './NovncConsoleCustomKeys';
-import { HCI } from '../../types';
 
 const PREFERED_SHORTCUT_KEYS = 'prefered-shortcut-keys';
 

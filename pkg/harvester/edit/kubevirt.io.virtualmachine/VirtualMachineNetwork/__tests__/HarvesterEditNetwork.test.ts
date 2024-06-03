@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
-import HarvesterEditNetwork from '../base.vue';
 import { _EDIT } from '@shell/config/query-params';
+import HarvesterEditNetwork from '../base.vue';
 
 describe('component: HarvesterEditNetwork', () => {
   // eslint-disable-next-line jest/no-commented-out-tests

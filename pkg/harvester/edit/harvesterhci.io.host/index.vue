@@ -10,7 +10,6 @@ import ButtonDropdown from '@shell/components/ButtonDropdown';
 import CreateEditView from '@shell/mixins/create-edit-view';
 import { HCI as HCI_LABELS_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import { LONGHORN, SECRET } from '@shell/config/types';
-import { HCI } from '../../types';
 import { allHash } from '@shell/utils/promise';
 import { formatSi } from '@shell/utils/units';
 import { findBy } from '@shell/utils/array';
@@ -25,10 +24,11 @@ import { PRODUCT_NAME as HARVESTER_PRODUCT } from '@pkg/harvester/config/harvest
 import { _EDIT } from '@shell/config/query-params';
 import { sortBy } from '@shell/utils/sort';
 import { Banner } from '@components/Banner';
-import HarvesterDisk from './HarvesterDisk';
-import HarvesterKsmtuned from './HarvesterKsmtuned';
-import HarvesterSeeder from './HarvesterSeeder';
+import { HCI } from '../../types';
 import Tags from '../../components/DiskTags';
+import HarvesterDisk from './HarvesterDisk';
+import HarvesterSeeder from './HarvesterSeeder';
+import HarvesterKsmtuned from './HarvesterKsmtuned';
 
 export const LONGHORN_SYSTEM = 'longhorn-system';
 

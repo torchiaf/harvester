@@ -5,9 +5,9 @@ import { STATE, NAME, AGE } from '@shell/config/table-headers';
 import {
   CAPI, METRIC, NODE, SCHEMA, LONGHORN, POD
 } from '@shell/config/types';
-import { HCI } from '../types';
 import { allHash } from '@shell/utils/promise';
 import metricPoller from '@shell/mixins/metric-poller';
+import { HCI } from '../types';
 
 const schema = {
   id:         HCI.HOST,

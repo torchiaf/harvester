@@ -1,6 +1,6 @@
 import { clone } from '@shell/utils/object';
-import { HCI } from '../../types';
 import StorageClass from '@shell/models/storage.k8s.io.storageclass';
+import { HCI } from '../../types';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
 
 export default class HciStorageClass extends StorageClass {

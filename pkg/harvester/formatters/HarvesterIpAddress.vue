@@ -1,11 +1,11 @@
 <script>
-import { OFF } from '../models/kubevirt.io.virtualmachine';
 import { get } from '@shell/utils/object';
 import { isIpv4 } from '@shell/utils/string';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
+import CopyToClipboardText from '@shell/components/CopyToClipboardText';
 import { HCI } from '../types';
 import { MANAGEMENT_NETWORK } from '../mixins/harvester-vm';
-import CopyToClipboardText from '@shell/components/CopyToClipboardText';
+import { OFF } from '../models/kubevirt.io.virtualmachine';
 
 export default {
   components: { CopyToClipboardText },

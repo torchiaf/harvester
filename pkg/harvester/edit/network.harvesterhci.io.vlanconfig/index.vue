@@ -17,10 +17,10 @@ import CreateEditView from '@shell/mixins/create-edit-view';
 import { NODE } from '@shell/config/types';
 import { set, clone } from '@shell/utils/object';
 import { uniq, findBy } from '@shell/utils/array';
-import { HCI } from '../../types';
 import { allHash } from '@shell/utils/promise';
 import { HOSTNAME } from '@shell/config/labels-annotations';
 import { matching } from '@shell/utils/selector';
+import { HCI } from '../../types';
 
 import NodeSelector from './NodeSelector';
 

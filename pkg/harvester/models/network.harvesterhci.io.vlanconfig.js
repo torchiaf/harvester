@@ -1,12 +1,12 @@
 import { isEmpty } from 'lodash';
 
 import { set, clone } from '@shell/utils/object';
-import HarvesterResource from './harvester';
-import { HCI } from '../types';
 import { insertAt } from '@shell/utils/array';
 import { HOSTNAME } from '@shell/config/labels-annotations';
 import { matching } from '@shell/utils/selector';
 import { NODE } from '@shell/config/types';
+import { HCI } from '../types';
+import HarvesterResource from './harvester';
 
 const NOT_READY = 'Not Ready';
 

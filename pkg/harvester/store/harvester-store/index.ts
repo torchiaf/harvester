@@ -6,7 +6,6 @@ import getters from './getters';
 import mutations from './mutations';
 import actions from './actions';
 
-
 const harvesterFactory = (): CoreStoreSpecifics => {
   const steveFactory = SteveFactory();
 

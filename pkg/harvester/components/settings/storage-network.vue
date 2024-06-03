@@ -7,9 +7,9 @@ import { isValidCIDR } from '@shell/utils/validators/cidr';
 import { _EDIT } from '@shell/config/query-params';
 import { Banner } from '@components/Banner';
 import Tip from '@shell/components/Tip';
-import { HCI } from '../../types';
 import { allHash } from '@shell/utils/promise';
 import { NODE } from '@shell/config/types';
+import { HCI } from '../../types';
 
 export default {
   name: 'HarvesterEditStorageNetwork',

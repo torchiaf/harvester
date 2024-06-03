@@ -1,13 +1,13 @@
 <script>
 import { _EDIT } from '@shell/config/query-params';
 import { allHash } from '@shell/utils/promise';
-import { HCI } from '../../../types';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 import Banner from '@components/Banner/Banner.vue';
-import VGpuDeviceList from './VGpuDeviceList';
 
 import remove from 'lodash/remove';
 import { get, set } from '@shell/utils/object';
+import { HCI } from '../../../types';
+import VGpuDeviceList from './VGpuDeviceList';
 
 export default {
   name:       'VirtualMachinedevices',

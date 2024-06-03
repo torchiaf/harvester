@@ -1,6 +1,6 @@
 import { clone } from '@shell/utils/object';
-import { HCI } from '../../types';
 import LogOutput from '@shell/models/logging.banzaicloud.io.output';
+import { HCI } from '../../types';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
 import { FLOW_TYPE } from '../../config/harvester-map';
 

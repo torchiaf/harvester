@@ -10,15 +10,15 @@ import NameNsDescription from '@shell/components/form/NameNsDescription';
 
 import { allHash } from '@shell/utils/promise';
 import { get } from '@shell/utils/object';
-import { HCI, VOLUME_SNAPSHOT } from '../types';
 import { STORAGE_CLASS, LONGHORN, PV } from '@shell/config/types';
 import { sortBy } from '@shell/utils/sort';
 import { saferDump } from '@shell/utils/create-yaml';
-import { InterfaceOption, VOLUME_DATA_SOURCE_KIND } from '../config/harvester-map';
 import { _CREATE } from '@shell/config/query-params';
 import CreateEditView from '@shell/mixins/create-edit-view';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import { STATE, NAME, AGE, NAMESPACE } from '@shell/config/table-headers';
+import { InterfaceOption, VOLUME_DATA_SOURCE_KIND } from '../config/harvester-map';
+import { HCI, VOLUME_SNAPSHOT } from '../types';
 
 export default {
   name: 'HarvesterVolume',

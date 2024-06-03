@@ -1,6 +1,5 @@
 import pickBy from 'lodash/pickBy';
 import { CAPI, LONGHORN, POD, NODE } from '@shell/config/types';
-import { HCI } from '../../types';
 import { CAPI as CAPI_ANNOTATIONS } from '@shell/config/labels-annotations.js';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import { clone } from '@shell/utils/object';
@@ -11,11 +10,12 @@ import {
   STATES_ENUM,
 } from '@shell/plugins/dashboard-store/resource-class';
 import { parseSi } from '@shell/utils/units';
+import { findBy, isArray } from '@shell/utils/array';
+import { ucFirst } from '@shell/utils/string';
 import HarvesterResource from '../harvester';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
-import { findBy, isArray } from '@shell/utils/array';
 
-import { ucFirst } from '@shell/utils/string';
+import { HCI } from '../../types';
 
 const ALLOW_SYSTEM_LABEL_KEYS = [
   'topology.kubernetes.io/zone',

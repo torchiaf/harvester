@@ -2,8 +2,8 @@
 import ResourceTable from '@shell/components/ResourceTable';
 import Loading from '@shell/components/Loading';
 import { SCHEMA, PVC } from '@shell/config/types';
-import { VOLUME_SNAPSHOT, HCI } from '../types';
 import { allHash } from '@shell/utils/promise';
+import { VOLUME_SNAPSHOT, HCI } from '../types';
 
 const schema = {
   id:         HCI.SNAPSHOT,

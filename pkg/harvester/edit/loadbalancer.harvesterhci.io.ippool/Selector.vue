@@ -3,10 +3,10 @@ import debounce from 'lodash/debounce';
 
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 import { LabeledInput } from '@components/Form/LabeledInput';
-import Priority from './Priority';
 
 import { NETWORK_ATTACHMENT } from '@shell/config/types';
 import { _EDIT } from '@shell/config/query-params';
+import Priority from './Priority';
 
 export default {
   components: {

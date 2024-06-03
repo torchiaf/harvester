@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
-import HarvesterEditContainer from '../container.vue';
 import { _EDIT } from '@shell/config/query-params';
+import HarvesterEditContainer from '../container.vue';
 
 describe('component: HarvesterEditContainer', () => {
   it('should display all the inputs', () => {

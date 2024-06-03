@@ -1,7 +1,7 @@
-import HarvesterResource from './harvester';
-import { HCI as HCI_ANNOTATIONS } from '../config/labels-annotations';
 import jsyaml from 'js-yaml';
 import startCase from 'lodash/startCase';
+import { HCI as HCI_ANNOTATIONS } from '../config/labels-annotations';
+import HarvesterResource from './harvester';
 
 export default class HciAddonConfig extends HarvesterResource {
   get availableActions() {

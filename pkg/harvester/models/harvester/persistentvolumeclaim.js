@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import { _CLONE } from '@shell/config/query-params';
 import pick from 'lodash/pick';
-import { HCI, VOLUME_SNAPSHOT } from '../../types';
 import { PV, LONGHORN } from '@shell/config/types';
 import { DESCRIPTION } from '@shell/config/labels-annotations';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import { findBy } from '@shell/utils/array';
 import { get, clone } from '@shell/utils/object';
 import { colorForState } from '@shell/plugins/dashboard-store/resource-class';
+import { HCI, VOLUME_SNAPSHOT } from '../../types';
 import HarvesterResource from '../harvester';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
 

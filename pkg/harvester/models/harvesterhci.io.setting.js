@@ -1,8 +1,8 @@
 import { findBy } from '@shell/utils/array';
 import { HCI } from '../types';
 import { HCI_ALLOWED_SETTINGS, HCI_SETTING } from '../config/settings';
-import HarvesterResource from './harvester';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../config/harvester';
+import HarvesterResource from './harvester';
 
 export default class HciSetting extends HarvesterResource {
   get _availableActions() {

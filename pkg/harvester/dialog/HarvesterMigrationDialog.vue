@@ -2,7 +2,6 @@
 import { mapGetters } from 'vuex';
 
 import { NODE } from '@shell/config/types';
-import { HCI } from '../types';
 import { exceptionToErrorsArray } from '@shell/utils/error';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 
@@ -10,6 +9,7 @@ import { Card } from '@components/Card';
 import { Banner } from '@components/Banner';
 import AsyncButton from '@shell/components/AsyncButton';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
+import { HCI } from '../types';
 
 export default {
   components: {

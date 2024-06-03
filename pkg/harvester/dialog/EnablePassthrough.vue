@@ -1,9 +1,9 @@
 <script>
-import { HCI } from '../types';
 import { mapGetters } from 'vuex';
 import { Card } from '@components/Card';
 import AsyncButton from '@shell/components/AsyncButton';
 import { escapeHtml } from '@shell/utils/string';
+import { HCI } from '../types';
 
 export default {
   name: 'HarvesterEnablePassthrough',

@@ -3,25 +3,25 @@ import { mapGetters } from 'vuex';
 import Tabbed from '@shell/components/Tabbed';
 import Tab from '@shell/components/Tabbed/Tab';
 import { EVENT, SERVICE, POD } from '@shell/config/types';
-import { HCI } from '../../types';
 import CreateEditView from '@shell/mixins/create-edit-view';
-import VM_MIXIN from '../../mixins/harvester-vm';
 import DashboardMetrics from '@shell/components/DashboardMetrics';
 import { allHash, setPromiseResult } from '@shell/utils/promise';
 import { allDashboardsExist } from '@shell/utils/grafana';
+import NodeScheduling from '@shell/components/form/NodeScheduling';
+import PodAffinity from '@shell/components/form/PodAffinity';
+import KeyValue from '@shell/components/form/KeyValue';
+import Labels from '@shell/components/form/Labels';
+import { HCI } from '../../types';
+import VM_MIXIN from '../../mixins/harvester-vm';
 
 import CloudConfig from '../../edit/kubevirt.io.virtualmachine/VirtualMachineCloudConfig';
 import Volume from '../../edit/kubevirt.io.virtualmachine/VirtualMachineVolume';
 import Network from '../../edit/kubevirt.io.virtualmachine/VirtualMachineNetwork';
-import NodeScheduling from '@shell/components/form/NodeScheduling';
-import PodAffinity from '@shell/components/form/PodAffinity';
 import AccessCredentials from '../../edit/kubevirt.io.virtualmachine/VirtualMachineAccessCredentials';
 import Events from './VirtualMachineTabs/VirtualMachineEvents';
 import Migration from './VirtualMachineTabs/VirtualMachineMigration';
 import OverviewBasics from './VirtualMachineTabs/VirtualMachineBasics';
 import OverviewKeypairs from './VirtualMachineTabs/VirtualMachineKeypairs';
-import KeyValue from '@shell/components/form/KeyValue';
-import Labels from '@shell/components/form/Labels';
 
 const VM_METRICS_DETAIL_URL = '/api/v1/namespaces/cattle-monitoring-system/services/http:rancher-monitoring-grafana:80/proxy/d/harvester-vm-detail-1/vm-info-detail?orgId=1';
 

@@ -6,8 +6,8 @@ import { BadgeState } from '@components/BadgeState';
 import { _CREATE } from '@shell/config/query-params';
 import { findBy } from '@shell/utils/array';
 
-import LinkStatus from './LinkStatus';
 import { HCI } from '../../../types';
+import LinkStatus from './LinkStatus';
 
 export default {
   name: 'HarvesterHostNetwork',

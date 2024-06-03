@@ -13,18 +13,8 @@ import NameNsDescription from '@shell/components/form/NameNsDescription';
 import UnitInput from '@shell/components/form/UnitInput';
 import Labels from '@shell/components/form/Labels';
 
-import Reserved from './VirtualMachineReserved';
-import SSHKey from './VirtualMachineSSHKey';
-import Volume from './VirtualMachineVolume';
-import Network from './VirtualMachineNetwork';
-import CpuMemory from './VirtualMachineCpuMemory';
-import CloudConfig from './VirtualMachineCloudConfig';
 import NodeScheduling from '@shell/components/form/NodeScheduling';
 import PodAffinity from '@shell/components/form/PodAffinity';
-import AccessCredentials from './VirtualMachineAccessCredentials';
-import PciDevices from './VirtualMachinePciDevices/index';
-import VirtualMachineVGpuDevices from './VirtualMachineVGpuDevices/index';
-import RestartVMDialog from '../../dialog/RestartVMDialog';
 import KeyValue from '@shell/components/form/KeyValue';
 
 import { clear } from '@shell/utils/array';
@@ -40,6 +30,16 @@ import VM_MIXIN from '../../mixins/harvester-vm';
 import CreateEditView from '@shell/mixins/create-edit-view';
 
 import { parseVolumeClaimTemplates } from '@pkg/utils/vm';
+import RestartVMDialog from '../../dialog/RestartVMDialog';
+import VirtualMachineVGpuDevices from './VirtualMachineVGpuDevices/index';
+import PciDevices from './VirtualMachinePciDevices/index';
+import AccessCredentials from './VirtualMachineAccessCredentials';
+import CloudConfig from './VirtualMachineCloudConfig';
+import CpuMemory from './VirtualMachineCpuMemory';
+import Network from './VirtualMachineNetwork';
+import Volume from './VirtualMachineVolume';
+import SSHKey from './VirtualMachineSSHKey';
+import Reserved from './VirtualMachineReserved';
 
 export default {
   name: 'HarvesterEditVM',
@@ -128,7 +128,7 @@ export default {
     versionOptions() {
       const defaultVersion = this.curTemplateResource?.defaultVersion;
 
-      return this.versions.filter( (O) => O.templateId === this.templateId).map( (T) => {
+      return this.versions.filter( O => O.templateId === this.templateId).map( (T) => {
         const version = T.version;
 
         const label = defaultVersion === version ? `${ version } (${ this.t('generic.default') })` : version;
@@ -143,7 +143,7 @@ export default {
     },
 
     curTemplateResource() {
-      return this.templates.find( (O) => O.id === this.templateId);
+      return this.templates.find( O => O.id === this.templateId);
     },
 
     nameLabel() {
@@ -184,7 +184,7 @@ export default {
         if (id !== old && !this.templateVersionId) {
           const templates = await this.$store.dispatch('harvester/findAll', { type: HCI.VM_TEMPLATE });
 
-          this.templateVersionId = templates.find( (O) => O.id === id)?.spec?.defaultVersionId;
+          this.templateVersionId = templates.find( O => O.id === id)?.spec?.defaultVersionId;
         }
       },
       immediate: false
@@ -196,7 +196,7 @@ export default {
           return;
         }
         const versions = await this.$store.dispatch('harvester/findAll', { type: HCI.VM_VERSION });
-        const curVersion = versions.find( (V) => V.id === id);
+        const curVersion = versions.find( V => V.id === id);
         const cloneVersionVM = clone(curVersion.spec.vm);
 
         delete cloneVersionVM.spec?.template?.spec?.accessCredentials;
@@ -412,7 +412,7 @@ export default {
     hasAvailableVersion(templateId) {
       let hasAvailableVersion = false;
 
-      this.versions.filter( (O) => O.templateId === templateId).find( (T) => {
+      this.versions.filter( O => O.templateId === templateId).find( (T) => {
         if (T.isReady) {
           hasAvailableVersion = true;
         }

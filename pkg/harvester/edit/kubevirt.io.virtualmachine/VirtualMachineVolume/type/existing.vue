@@ -6,10 +6,10 @@ import InputOrDisplay from '@shell/components/InputOrDisplay';
 
 import { sortBy } from '@shell/utils/sort';
 import { PVC } from '@shell/config/types';
-import { HCI } from '../../../../types';
 import { _CREATE } from '@shell/config/query-params';
-import { VOLUME_TYPE, InterfaceOption } from '../../../../config/harvester-map';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
+import { HCI } from '../../../../types';
+import { VOLUME_TYPE, InterfaceOption } from '../../../../config/harvester-map';
 
 export default {
   name:       'HarvesterEditExisting',

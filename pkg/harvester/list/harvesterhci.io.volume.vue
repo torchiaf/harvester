@@ -1,12 +1,12 @@
 <script>
 import Loading from '@shell/components/Loading';
 import ResourceTable from '@shell/components/ResourceTable';
+import { PV, PVC, SCHEMA, LONGHORN } from '@shell/config/types';
+import { STATE, AGE, NAME, NAMESPACE } from '@shell/config/table-headers';
 import HarvesterVolumeState from '../formatters/HarvesterVolumeState';
 
 import { allSettled } from '../utils/promise';
-import { PV, PVC, SCHEMA, LONGHORN } from '@shell/config/types';
 import { HCI, VOLUME_SNAPSHOT } from '../types';
-import { STATE, AGE, NAME, NAMESPACE } from '@shell/config/table-headers';
 
 const schema = {
   id:         HCI.VOLUME,
@@ -50,7 +50,7 @@ export default {
 
     const pvcSchema = this.$store.getters[`${ inStore }/schemaFor`](PVC);
 
-    if (!pvcSchema?.collectionMethods.find((x) => x.toLowerCase() === 'post')) {
+    if (!pvcSchema?.collectionMethods.find(x => x.toLowerCase() === 'post')) {
       this.$store.dispatch('type-map/configureType', { match: HCI.VOLUME, isCreatable: false });
     }
 

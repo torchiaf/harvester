@@ -1,11 +1,11 @@
 <script>
 import ResourceTable from '@shell/components/ResourceTable';
-import FilterBySriov from '../../../components/FilterBySriov';
-import { HCI } from '../../../types';
 import { STATE, SIMPLE_NAME } from '@shell/config/table-headers';
 import { defaultTableSortGenerationFn } from '@shell/components/ResourceTable.vue';
 import { allHash } from '@shell/utils/promise';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
+import { HCI } from '../../../types';
+import FilterBySriov from '../../../components/FilterBySriov';
 
 export default {
   name: 'ListPciDevices',

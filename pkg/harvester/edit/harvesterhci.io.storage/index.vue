@@ -2,7 +2,6 @@
 import CreateEditView from '@shell/mixins/create-edit-view';
 import CruResource from '@shell/components/CruResource';
 import NameNsDescription from '@shell/components/form/NameNsDescription';
-import Tags from '../../components/DiskTags';
 import ArrayList from '@shell/components/form/ArrayList';
 import Tab from '@shell/components/Tabbed/Tab';
 import Tabbed from '@shell/components/Tabbed';
@@ -15,9 +14,10 @@ import Loading from '@shell/components/Loading';
 import { _CREATE, _VIEW } from '@shell/config/query-params';
 import { mapFeature, UNSUPPORTED_STORAGE_DRIVERS } from '@shell/store/features';
 import { STORAGE_CLASS, LONGHORN } from '@shell/config/types';
-import { CSI_DRIVER } from '../../types';
 import { allHash } from '@shell/utils/promise';
 import { clone } from '@shell/utils/object';
+import { CSI_DRIVER } from '../../types';
+import Tags from '../../components/DiskTags';
 
 const LONGHORN_DRIVER = 'driver.longhorn.io';
 

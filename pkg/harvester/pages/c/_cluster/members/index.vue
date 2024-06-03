@@ -1,7 +1,7 @@
 <script>
 import ExplorerMembers from '@shell/components/ExplorerMembers';
-import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../../../config/harvester';
 import { MANAGEMENT } from '@shell/config/types';
+import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../../../config/harvester';
 export default {
   components: { ExplorerMembers },
   computed:   {

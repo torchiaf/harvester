@@ -1,8 +1,8 @@
 <script>
 import ResourceTable from '@shell/components/ResourceTable';
 import { Banner } from '@components/Banner';
-import FilterLabel from '../components/FilterLabel';
 import { defaultTableSortGenerationFn } from '@shell/components/ResourceTable.vue';
+import FilterLabel from '../components/FilterLabel';
 
 export default {
   name: 'ListHarvesterImage',

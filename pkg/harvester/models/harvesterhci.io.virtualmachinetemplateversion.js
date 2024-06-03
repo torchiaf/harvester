@@ -1,17 +1,17 @@
 import Vue from 'vue';
 import { find, pickBy, omitBy } from 'lodash';
-import { HCI } from '../types';
 import {
   AS, MODE, _VIEW, _CONFIG, _UNFLAG, _EDIT
 } from '@shell/config/query-params';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
-import HarvesterResource from './harvester';
 import { findBy } from '@shell/utils/array';
 import { get, set } from '@shell/utils/object';
-import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../config/harvester';
 import { colorForState } from '@shell/plugins/dashboard-store/resource-class';
 import { LABELS_TO_IGNORE_REGEX } from '@shell/config/labels-annotations';
 import { matchesSomeRegex } from '@shell/utils/string';
+import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../config/harvester';
+import { HCI } from '../types';
+import HarvesterResource from './harvester';
 
 export default class HciVmTemplateVersion extends HarvesterResource {
   get availableActions() {

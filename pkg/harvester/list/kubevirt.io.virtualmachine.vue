@@ -1,16 +1,16 @@
 <script>
-import ConsoleBar from '../components/VMConsoleBar';
 import ResourceTable from '@shell/components/ResourceTable';
 import LinkDetail from '@shell/components/formatter/LinkDetail';
-import HarvesterVmState from '../formatters/HarvesterVmState';
 
 import { STATE, AGE, NAME, NAMESPACE } from '@shell/config/table-headers';
 import { NODE, POD } from '@shell/config/types';
-import { HCI } from '../types';
 
 import { allHash } from '@shell/utils/promise';
 import Loading from '@shell/components/Loading';
 import { clone } from '@shell/utils/object';
+import { HCI } from '../types';
+import HarvesterVmState from '../formatters/HarvesterVmState';
+import ConsoleBar from '../components/VMConsoleBar';
 
 export const VM_HEADERS = [
   STATE,

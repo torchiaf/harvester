@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
-import HarvesterEditVolume from '../volume.vue';
 import { _EDIT } from '@shell/config/query-params';
+import HarvesterEditVolume from '../volume.vue';
 
 describe('component: HarvesterEditVolume', () => {
   it('should display all the inputs', () => {

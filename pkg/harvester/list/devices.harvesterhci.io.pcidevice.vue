@@ -1,10 +1,10 @@
 <script>
-import { HCI } from '../types';
 import { SCHEMA } from '@shell/config/types';
 import { allHash } from '@shell/utils/promise';
 import Banner from '@components/Banner/Banner.vue';
 import Loading from '@shell/components/Loading';
 import MessageLink from '@shell/components/MessageLink';
+import { HCI } from '../types';
 import DeviceList from '../edit/kubevirt.io.virtualmachine/VirtualMachinePciDevices/DeviceList';
 import { ADD_ONS } from '../config/harvester-map';
 

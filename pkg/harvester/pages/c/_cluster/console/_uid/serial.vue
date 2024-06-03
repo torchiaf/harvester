@@ -1,7 +1,7 @@
 <script>
+import Loading from '@shell/components/Loading';
 import { HCI } from '../../../../../types';
 import SerialConsole from '../../../../../components/SerialConsole';
-import Loading from '@shell/components/Loading';
 
 export default {
   components: { SerialConsole, Loading },

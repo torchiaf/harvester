@@ -1,6 +1,6 @@
 <script>
-import { HCI } from '../types';
 import { BadgeState } from '@components/BadgeState';
+import { HCI } from '../types';
 
 export default {
   components: { BadgeState },

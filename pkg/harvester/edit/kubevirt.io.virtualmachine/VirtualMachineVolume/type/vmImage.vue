@@ -5,8 +5,8 @@ import { LabeledInput } from '@components/Form/LabeledInput';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 import InputOrDisplay from '@shell/components/InputOrDisplay';
 import { PVC } from '@shell/config/types';
-import { HCI } from '../../../../types';
 import { formatSi, parseSi } from '@shell/utils/units';
+import { HCI } from '../../../../types';
 import { VOLUME_TYPE, InterfaceOption } from '../../../../config/harvester-map';
 
 export default {

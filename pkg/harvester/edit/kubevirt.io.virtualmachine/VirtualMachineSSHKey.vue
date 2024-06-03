@@ -6,11 +6,11 @@ import { LabeledInput } from '@components/Form/LabeledInput';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 import ModalWithCard from '@shell/components/ModalWithCard';
 
-import { HCI } from '../../types';
 import { clone } from '@shell/utils/object';
 import { _VIEW } from '@shell/config/query-params';
 
 import { NAMESPACE } from '@shell/config/types';
+import { HCI } from '../../types';
 
 const _NEW = '_NEW';
 
@@ -81,7 +81,7 @@ export default {
     },
 
     isCreatable() {
-      if ( this.schema && !this.schema?.collectionMethods.find((x) => ['blocked-post', 'post'].includes(x.toLowerCase())) ) {
+      if ( this.schema && !this.schema?.collectionMethods.find(x => ['blocked-post', 'post'].includes(x.toLowerCase())) ) {
         return false;
       }
 
@@ -149,7 +149,7 @@ export default {
 
       const namespaces = await this.$store.dispatch('harvester/findAll', { type: NAMESPACE });
 
-      const exists = namespaces?.find((n) => n.name === this.namespace);
+      const exists = namespaces?.find(n => n.name === this.namespace);
 
       if (!exists) {
         const ns = await this.$store.dispatch('harvester/createNamespace', { name: this.namespace }, { root: true });

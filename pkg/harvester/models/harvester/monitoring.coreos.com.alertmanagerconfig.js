@@ -1,7 +1,7 @@
 import { clone, set } from '@shell/utils/object';
 import { _YAML, _CREATE, _VIEW, _CONFIG } from '@shell/config/query-params';
-import { HCI } from '../../types';
 import SteveModel from '@shell/plugins/steve/steve-class';
+import { HCI } from '../../types';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
 
 export default class HciAlertmanagerConfig extends SteveModel {

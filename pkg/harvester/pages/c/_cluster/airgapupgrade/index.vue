@@ -4,11 +4,11 @@ import { RadioGroup } from '@components/Form/Radio';
 import { Checkbox } from '@components/Form/Checkbox';
 import { LabeledInput } from '@components/Form/LabeledInput';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
+import { exceptionToErrorsArray } from '@shell/utils/error';
+import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import UpgradeInfo from '../../../../components/UpgradeInfo';
 
 import { HCI } from '../../../../types';
-import { exceptionToErrorsArray } from '@shell/utils/error';
-import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../../../config/harvester';
 
 const IMAGE_METHOD = {

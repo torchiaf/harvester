@@ -1,7 +1,7 @@
 import { clone } from '@shell/utils/object';
 import { HCI } from '../../types';
-import LogOutput from './logging.banzaicloud.io.output';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
+import LogOutput from './logging.banzaicloud.io.output';
 
 export default class HciClusteroutput extends LogOutput {
   get _detailLocation() {

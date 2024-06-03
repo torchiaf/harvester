@@ -15,7 +15,6 @@ import { REASON } from '@shell/config/table-headers';
 import {
   EVENT, METRIC, NODE, SERVICE, PVC, LONGHORN, POD, COUNT, NETWORK_ATTACHMENT
 } from '@shell/config/types';
-import { HCI } from '../types';
 import ResourceSummary, { resourceCounts, colorToCountName } from '@shell/components/ResourceSummary';
 import { colorForState } from '@shell/plugins/dashboard-store/resource-class';
 import HardwareResourceGauge from '@shell/components/HardwareResourceGauge';
@@ -25,6 +24,7 @@ import DashboardMetrics from '@shell/components/DashboardMetrics';
 import metricPoller from '@shell/mixins/metric-poller';
 import { allDashboardsExist } from '@shell/utils/grafana';
 import { isEmpty } from '@shell/utils/object';
+import { HCI } from '../types';
 import HarvesterUpgrade from '../components/HarvesterUpgrade';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../config/harvester';
 

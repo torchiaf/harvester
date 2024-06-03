@@ -1,7 +1,7 @@
-import { HCI } from '../types';
 import { clone } from '@shell/utils/object';
-import HarvesterResource from './harvester';
 import { NODE } from '@shell/config/types';
+import { HCI } from '../types';
+import HarvesterResource from './harvester';
 
 export default class HciClusterNetwork extends HarvesterResource {
   get doneOverride() {

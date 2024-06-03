@@ -1,9 +1,9 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
-import { HCI } from '../types';
 import { isEmpty } from '@shell/utils/object';
 import Parse from 'url-parse';
 import { resourceNames } from '@shell/utils/string';
+import { HCI } from '../types';
 
 export default {
   name: 'HarvesterPromptRemove',

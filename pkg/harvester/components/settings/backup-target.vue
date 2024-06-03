@@ -1,11 +1,11 @@
 <script>
 import Tip from '@shell/components/Tip';
-import { HCI_SETTING } from '../../config/settings';
 import Password from '@shell/components/form/Password';
 import MessageLink from '@shell/components/MessageLink';
 import CreateEditView from '@shell/mixins/create-edit-view';
 import { LabeledInput } from '@components/Form/LabeledInput';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
+import { HCI_SETTING } from '../../config/settings';
 
 export default {
   name: 'HarvesterEditBackupTarget',

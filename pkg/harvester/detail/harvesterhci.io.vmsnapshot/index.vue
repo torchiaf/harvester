@@ -5,9 +5,9 @@ import Loading from '@shell/components/Loading';
 import CruResource from '@shell/components/CruResource';
 import { Checkbox } from '@components/Form/Checkbox';
 import LabelValue from '@shell/components/LabelValue';
-import VM_MIXIN from '../../mixins/harvester-vm';
 import { allHash } from '@shell/utils/promise';
 import CreateEditView from '@shell/mixins/create-edit-view';
+import VM_MIXIN from '../../mixins/harvester-vm';
 import { HCI } from '../../types';
 import CpuMemory from '../../edit/kubevirt.io.virtualmachine/VirtualMachineCpuMemory';
 

@@ -2,7 +2,6 @@
 import { mapGetters } from 'vuex';
 
 import { randomStr } from '@shell/utils/string';
-import { HCI } from '../types';
 import { allHash } from '@shell/utils/promise';
 import { exceptionToErrorsArray } from '@shell/utils/error';
 
@@ -10,6 +9,7 @@ import { Card } from '@components/Card';
 import { Banner } from '@components/Banner';
 import AsyncButton from '@shell/components/AsyncButton';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
+import { HCI } from '../types';
 
 export default {
   name: 'HarvesterRestoreModal',

@@ -3,10 +3,10 @@ import Loading from '@shell/components/Loading';
 import Masthead from '@shell/components/ResourceList/Masthead';
 import ResourceTable from '@shell/components/ResourceTable';
 
-import { HCI } from '../types';
 import { SCHEMA } from '@shell/config/types';
 import { allHash } from '@shell/utils/promise';
 import { STATE, AGE, NAME, NAMESPACE } from '@shell/config/table-headers';
+import { HCI } from '../types';
 import { BACKUP_TYPE } from '../config/types';
 
 const schema = {
@@ -34,7 +34,7 @@ export default {
 
     const schema = this.$store.getters[`${ inStore }/schemaFor`](HCI.BACKUP);
 
-    if (!schema?.collectionMethods.find((x) => x.toLowerCase() === 'post')) {
+    if (!schema?.collectionMethods.find(x => x.toLowerCase() === 'post')) {
       this.$store.dispatch('type-map/configureType', { match: HCI.VM_SNAPSHOT, isCreatable: false });
     }
 
@@ -85,7 +85,7 @@ export default {
     },
 
     filteredRows() {
-      return this.rows.filter((R) => R.spec?.type !== BACKUP_TYPE.BACKUP);
+      return this.rows.filter(R => R.spec?.type !== BACKUP_TYPE.BACKUP);
     },
   },
 };

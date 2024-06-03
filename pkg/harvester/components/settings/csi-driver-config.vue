@@ -2,8 +2,8 @@
 import { _EDIT } from '@shell/config/query-params';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 import InfoBox from '@shell/components/InfoBox';
-import { CSI_DRIVER, VOLUME_SNAPSHOT_CLASS } from '../../types';
 import { allHash } from '@shell/utils/promise';
+import { CSI_DRIVER, VOLUME_SNAPSHOT_CLASS } from '../../types';
 
 const LONGHORN_DRIVER = 'driver.longhorn.io';
 

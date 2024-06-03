@@ -1,7 +1,7 @@
-import { HCI } from '../../types';
 import { clone } from '@shell/utils/object';
-import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
 import ManagementSetting from '@shell/models/management.cattle.io.setting';
+import { HCI } from '../../types';
+import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
 
 export default class HCIManagementSetting extends ManagementSetting {
   get detailLocation() {

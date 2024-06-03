@@ -1,7 +1,7 @@
 <script>
 import isString from 'lodash/isString';
-import { HCI } from '../../../types';
 import { allHash } from '@shell/utils/promise';
+import { HCI } from '../../../types';
 import impl from '../../../mixins/harvester-vm/impl';
 
 export default {

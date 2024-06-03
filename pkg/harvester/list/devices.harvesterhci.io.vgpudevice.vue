@@ -1,9 +1,9 @@
 <script>
-import { HCI } from '../types';
 import { allHash } from '@shell/utils/promise';
 import Banner from '@components/Banner/Banner.vue';
 import Loading from '@shell/components/Loading';
 import MessageLink from '@shell/components/MessageLink';
+import { HCI } from '../types';
 import VGpuDeviceList from '../edit/kubevirt.io.virtualmachine/VirtualMachineVGpuDevices/VGpuDeviceList';
 import { ADD_ONS } from '../config/harvester-map';
 

@@ -7,9 +7,9 @@ import CreateEditView from '@shell/mixins/create-edit-view';
 import { allHash } from '@shell/utils/promise';
 import { exceptionToErrorsArray } from '@shell/utils/error';
 import { NAMESPACE } from '@shell/config/types';
-import { HCI } from '../types';
 import { sortBy } from '@shell/utils/sort';
 import { clone } from '@shell/utils/object';
+import { HCI } from '../types';
 import { BACKUP_TYPE } from '../config/types';
 
 const createObject = {

@@ -6,10 +6,9 @@ import BadgeState from '@shell/components/formatter/BadgeStateFormatter';
 
 import { NAME, AGE, NAMESPACE, STATE } from '@shell/config/table-headers';
 import { NETWORK_ATTACHMENT, SCHEMA } from '@shell/config/types';
+import { allHash } from '@shell/utils/promise';
 import { HCI as HCI_ANNOTATIONS } from '../config/labels-annotations';
 import { HCI } from '../types';
-
-import { allHash } from '@shell/utils/promise';
 
 const schema = {
   id:         HCI.NETWORK_ATTACHMENT,
@@ -126,9 +125,9 @@ export default {
     },
 
     abnormalNetwork() {
-      const notReadyCrd = this.hostNetworks.filter( (O) => !O.isReady);
+      const notReadyCrd = this.hostNetworks.filter( O => !O.isReady);
 
-      return notReadyCrd.map( (O) => O.linkMessage);
+      return notReadyCrd.map( O => O.linkMessage);
     },
 
     filterRows() {

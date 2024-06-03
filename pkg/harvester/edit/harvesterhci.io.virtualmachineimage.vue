@@ -10,12 +10,12 @@ import Select from '@shell/components/form/Select';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 
 import CreateEditView from '@shell/mixins/create-edit-view';
-import { OS } from '../mixins/harvester-vm';
-import { VM_IMAGE_FILE_FORMAT } from '../validators/vm-image';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import { exceptionToErrorsArray } from '@shell/utils/error';
 import { allHash } from '@shell/utils/promise';
 import { STORAGE_CLASS } from '@shell/config/types';
+import { VM_IMAGE_FILE_FORMAT } from '../validators/vm-image';
+import { OS } from '../mixins/harvester-vm';
 import { HCI } from '../types';
 
 const DOWNLOAD = 'download';

@@ -1,13 +1,13 @@
 <script>
 import { NODE } from '@shell/config/types';
-import { HCI } from '../types';
 import { allHash } from '@shell/utils/promise';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import PercentageBar from '@shell/components/PercentageBar';
-import ProgressBarList from './HarvesterUpgradeProgressBarList';
 import BadgeStateFormatter from '@shell/components/formatter/BadgeStateFormatter';
-import { PRODUCT_NAME as HARVESTER } from '../config/harvester';
 import { mapGetters } from 'vuex';
+import { PRODUCT_NAME as HARVESTER } from '../config/harvester';
+import { HCI } from '../types';
+import ProgressBarList from './HarvesterUpgradeProgressBarList';
 
 export default {
   name:       'HarvesterUpgradeHeader',

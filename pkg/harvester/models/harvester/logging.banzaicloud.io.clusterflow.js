@@ -1,8 +1,8 @@
 import { clone } from '@shell/utils/object';
 import { LOGGING } from '@shell/config/types';
 import { HCI } from '../../types';
-import HarvesterFlow from './logging.banzaicloud.io.flow';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
+import HarvesterFlow from './logging.banzaicloud.io.flow';
 
 export default class HciClusterflow extends HarvesterFlow {
   get allOutputs() {

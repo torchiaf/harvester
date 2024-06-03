@@ -5,9 +5,9 @@ import ResourceTabs from '@shell/components/form/ResourceTabs';
 import { LabeledInput } from '@components/Form/LabeledInput';
 import NameNsDescription from '@shell/components/form/NameNsDescription';
 import { get } from '@shell/utils/object';
-import { HCI } from '../types';
 import CreateEditView from '@shell/mixins/create-edit-view';
 import { HCI as HCI_ANNOTATIONS } from '@shell/config/labels-annotations';
+import { HCI } from '../types';
 
 export default {
   name:       'HarvesterSnapshot',

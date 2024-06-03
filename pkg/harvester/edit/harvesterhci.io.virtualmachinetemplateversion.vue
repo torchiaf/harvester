@@ -12,22 +12,20 @@ import NodeScheduling from '@shell/components/form/NodeScheduling';
 import PodAffinity from '@shell/components/form/PodAffinity';
 import UnitInput from '@shell/components/form/UnitInput';
 
+import { randomStr } from '@shell/utils/string';
+import { _CONFIG, _EDIT, _VIEW } from '@shell/config/query-params';
+import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
+import CreateEditView from '@shell/mixins/create-edit-view';
+import { AFTER_SAVE_HOOKS } from '@shell/mixins/child-hook';
+import { HCI } from '../types';
+import { RunStrategys } from '../config/harvester-map';
+import VM_MIXIN from '../mixins/harvester-vm';
 import Reserved from './kubevirt.io.virtualmachine/VirtualMachineReserved';
 import Volume from './kubevirt.io.virtualmachine/VirtualMachineVolume';
 import Network from './kubevirt.io.virtualmachine/VirtualMachineNetwork';
 import CpuMemory from './kubevirt.io.virtualmachine/VirtualMachineCpuMemory';
 import CloudConfig from './kubevirt.io.virtualmachine/VirtualMachineCloudConfig';
 import SSHKey from './kubevirt.io.virtualmachine/VirtualMachineSSHKey';
-
-import { HCI } from '../types';
-import { randomStr } from '@shell/utils/string';
-import { RunStrategys } from '../config/harvester-map';
-import { _CONFIG, _EDIT, _VIEW } from '@shell/config/query-params';
-import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
-
-import VM_MIXIN from '../mixins/harvester-vm';
-import CreateEditView from '@shell/mixins/create-edit-view';
-import { AFTER_SAVE_HOOKS } from '@shell/mixins/child-hook';
 
 export default {
   name: 'HarvesterEditVMTemplate',
