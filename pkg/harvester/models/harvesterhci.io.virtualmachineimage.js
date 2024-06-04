@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import {
   DESCRIPTION,
   ANNOTATIONS_TO_IGNORE_REGEX,
@@ -64,8 +63,8 @@ export default class HciVmImage extends HarvesterResource {
 
   applyDefaults(resources = this, realMode) {
     if (realMode !== _CLONE) {
-      Vue.set(this.metadata, 'labels', { [HCI_ANNOTATIONS.OS_TYPE]: '', [HCI_ANNOTATIONS.IMAGE_SUFFIX]: '' });
-      Vue.set(this.metadata, 'annotations', { [HCI_ANNOTATIONS.STORAGE_CLASS]: '' });
+      this.metadata['labels'] = { [HCI_ANNOTATIONS.OS_TYPE]: '', [HCI_ANNOTATIONS.IMAGE_SUFFIX]: '' };
+      this.metadata['annotations'] = { [HCI_ANNOTATIONS.STORAGE_CLASS]: '' };
     }
   }
 

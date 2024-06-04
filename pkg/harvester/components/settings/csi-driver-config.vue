@@ -122,7 +122,7 @@ export default {
 
       const value = this.configArr.length ? JSON.stringify(out) : '';
 
-      this.$set(this.value, 'value', value);
+      this.value['value'] = value;
     },
 
     willSave() {
@@ -172,7 +172,7 @@ export default {
     useDefault() {
       const configArr = this.parseValue(this.value.default);
 
-      this.$set(this, 'configArr', configArr);
+      this['configArr'] = configArr;
       this.update();
     }
   }

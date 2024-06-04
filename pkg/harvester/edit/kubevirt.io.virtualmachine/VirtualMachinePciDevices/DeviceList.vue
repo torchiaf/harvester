@@ -134,8 +134,8 @@ export default {
     },
 
     changeRows(filterRows, parentSriov) {
-      this.$set(this, 'filterRows', filterRows);
-      this.$set(this, 'parentSriov', parentSriov);
+      this['filterRows'] = filterRows;
+      this['parentSriov'] = parentSriov;
     },
 
     sortGenerationFn() {

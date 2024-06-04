@@ -109,7 +109,7 @@ export default {
         const name = this.$store.getters['i18n/t']('harvester.modal.migration.fields.nodeName.label');
         const message = this.$store.getters['i18n/t']('validation.required', { key: name });
 
-        this.$set(this, 'errors', [message]);
+        this['errors'] = [message];
         buttonDone(false);
 
         return;
@@ -124,7 +124,7 @@ export default {
         const error = err?.data || err;
         const message = exceptionToErrorsArray(error);
 
-        this.$set(this, 'errors', message);
+        this['errors'] = message;
         buttonDone(false);
       }
     },

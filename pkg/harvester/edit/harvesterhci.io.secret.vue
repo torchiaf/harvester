@@ -52,9 +52,9 @@ export default {
     if ( newCloudCred ) {
       this.value.metadata.namespace = DEFAULT_WORKSPACE;
 
-      this.$set(this.value.metadata, 'name', '');
+      this.value.metadata['name'] = '';
 
-      this.$set(this.value, 'data', {});
+      this.value['data'] = {};
     }
 
     const secretTypes = [
@@ -77,7 +77,7 @@ export default {
     });
 
     if ( this.mode === _CREATE ) {
-      this.$set(this.value, '_type', TYPES.OPAQUE);
+      this.value['_type'] = TYPES.OPAQUE;
     }
 
     return {
@@ -212,7 +212,7 @@ export default {
 
     selectCustomType(type) {
       if (type !== 'custom') {
-        this.$set(this.value, '_type', type);
+        this.value['_type'] = type;
       }
     }
   },

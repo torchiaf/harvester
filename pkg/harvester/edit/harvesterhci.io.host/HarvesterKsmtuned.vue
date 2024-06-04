@@ -92,7 +92,7 @@ export default {
   methods: {
     async saveKsmtuned() {
       this.spec.mergeAcrossNodes = this.enableMergeAcrossNodes ? 1 : 0;
-      this.$set(this.ksmtuned, 'spec', this.spec);
+      this.ksmtuned['spec'] = this.spec;
 
       await this.ksmtuned.save().catch((reason) => {
         if (reason?.type === 'error') {

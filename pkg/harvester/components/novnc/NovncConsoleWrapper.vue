@@ -143,6 +143,7 @@ export default {
       let out = [];
 
       if (!preference?.[0]?.data) {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.hideCustomKeysBar = true;
 
         return out;

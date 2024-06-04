@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { _CLONE } from '@shell/config/query-params';
 import pick from 'lodash/pick';
 import { PV, LONGHORN } from '@shell/config/types';
@@ -21,12 +20,12 @@ export default class HciPv extends HarvesterResource {
     const storageClassName =
       realMode === _CLONE ? this.spec.storageClassName : '';
 
-    Vue.set(this, 'spec', {
+    this['spec'] = {
       accessModes,
       storageClassName,
       volumeName: '',
       resources:  { requests: { storage } }
-    });
+    };
   }
 
   get availableActions() {

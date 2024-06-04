@@ -146,7 +146,7 @@ export default {
       handler(neu) {
         const diskRows = this.getDiskRows(neu);
 
-        this.$set(this, 'diskRows', diskRows);
+        this['diskRows'] = diskRows;
       },
       deep: true
     }

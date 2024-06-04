@@ -114,9 +114,9 @@ export default {
       const valueString = JSON.stringify(this.parsedDefaultValue);
 
       if (this.openVlan) {
-        this.$set(this.value, 'value', valueString);
+        this.value['value'] = valueString;
       } else {
-        this.$set(this.value, 'value', '');
+        this.value['value'] = '';
       }
     },
 

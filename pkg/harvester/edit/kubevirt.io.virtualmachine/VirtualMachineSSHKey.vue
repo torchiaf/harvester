@@ -126,7 +126,7 @@ export default {
 
     checkedSsh(val, old) {
       if ( val.includes(_NEW)) {
-        this.$set(this, 'checkedSsh', old);
+        this['checkedSsh'] = old;
         this.update();
         this.show();
       }

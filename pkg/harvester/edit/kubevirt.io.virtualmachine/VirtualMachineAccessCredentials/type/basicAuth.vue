@@ -49,7 +49,7 @@ export default {
     },
 
     updateUser(neu) {
-      this.$set(this.value, 'username', neu);
+      this.value['username'] = neu;
       this.update();
     },
 

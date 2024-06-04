@@ -72,7 +72,7 @@ export default {
         const error = err?.data || err;
         const message = exceptionToErrorsArray(error);
 
-        this.$set(this, 'errors', message);
+        this['errors'] = message;
         buttonDone(false);
       }
     },
@@ -95,7 +95,7 @@ export default {
           }
         });
 
-        this.$set(this, 'diskNames', diskNames);
+        this['diskNames'] = diskNames;
       },
       deep: true
     }

@@ -19,17 +19,17 @@ import KeyValue from '@shell/components/form/KeyValue';
 
 import { clear } from '@shell/utils/array';
 import { clone } from '@shell/utils/object';
-import { HCI } from '../../types';
-import { RunStrategys } from '../../config/harvester-map';
 import { saferDump } from '@shell/utils/create-yaml';
 import { exceptionToErrorsArray } from '@shell/utils/error';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import { BEFORE_SAVE_HOOKS, AFTER_SAVE_HOOKS } from '@shell/mixins/child-hook';
 
-import VM_MIXIN from '../../mixins/harvester-vm';
 import CreateEditView from '@shell/mixins/create-edit-view';
 
 import { parseVolumeClaimTemplates } from '@pkg/utils/vm';
+import VM_MIXIN from '../../mixins/harvester-vm';
+import { RunStrategys } from '../../config/harvester-map';
+import { HCI } from '../../types';
 import RestartVMDialog from '../../dialog/RestartVMDialog';
 import VirtualMachineVGpuDevices from './VirtualMachineVGpuDevices/index';
 import PciDevices from './VirtualMachinePciDevices/index';
@@ -218,7 +218,7 @@ export default {
         this.getInitConfig({
           value: cloneVersionVM, existUserData: true, fromTemplate: true
         });
-        this.$set(this, 'hasCreateVolumes', []); // When using the template, all volume names need to be newly created
+        this['hasCreateVolumes'] = []; // When using the template, all volume names need to be newly created
       }
     },
 
@@ -261,7 +261,7 @@ export default {
 
     const diskRows = this.getDiskRows(this.value);
 
-    this.$set(this, 'diskRows', diskRows);
+    this['diskRows'] = diskRows;
     const templateId = this.$route.query.templateId;
     const templateVersionId = this.$route.query.versionId;
 
@@ -317,13 +317,13 @@ export default {
       const cloneSpec = clone(this.spec);
 
       for (let i = 1; i <= this.count; i++) {
-        this.$set(this.value, 'spec', cloneValue.spec);
-        this.$set(this, 'spec', cloneSpec);
+        this.value['spec'] = cloneValue.spec;
+        this['spec'] = cloneSpec;
         const suffix = i < 10 ? `0${ i }` : i;
 
         this.value.cleanForNew();
         this.value.metadata.name = `${ this.namePrefix }${ join }${ suffix }`;
-        this.$set(this.value.spec.template.spec, 'hostname', `${ baseHostname }${ join }${ suffix }`);
+        this.value.spec.template.spec['hostname'] = `${ baseHostname }${ join }${ suffix }`;
         this.secretName = '';
         await this.parseVM();
         const basicValue = await this.$store.dispatch('harvester/clone', { resource: this.value });
@@ -380,7 +380,7 @@ export default {
     updateBeforeSave() {
       if (this.isSingle) {
         if (!this.value.spec.template.spec.hostname) {
-          this.$set(this.value.spec.template.spec, 'hostname', this.value.metadata.name);
+          this.value.spec.template.spec['hostname'] = this.value.metadata.name;
         }
       }
 
@@ -395,7 +395,7 @@ export default {
 
     validateCount(count) {
       if (count > 10) {
-        this.$set(this, 'count', 10);
+        this['count'] = 10;
       }
     },
 

@@ -32,7 +32,7 @@ export default {
           parseDefaultValue = { ntpServers: [] };
         }
 
-        this.$set(this, 'parseDefaultValue', parseDefaultValue);
+        this['parseDefaultValue'] = parseDefaultValue;
         this.update();
       },
       deep: true
@@ -43,13 +43,13 @@ export default {
     useDefault() {
       const parseDefaultValue = { ntpServers: [] };
 
-      this.$set(this, 'parseDefaultValue', parseDefaultValue);
+      this['parseDefaultValue'] = parseDefaultValue;
     },
 
     update() {
       const value = JSON.stringify(this.parseDefaultValue);
 
-      this.$set(this.value, 'value', value);
+      this.value['value'] = value;
     },
   },
 };

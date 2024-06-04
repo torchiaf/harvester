@@ -30,7 +30,7 @@ export default {
     update() {
       const value = JSON.stringify(this.parseDefaultValue);
 
-      this.$set(this.value, 'value', value);
+      this.value['value'] = value;
     }
   },
 
@@ -39,7 +39,7 @@ export default {
       handler(neu) {
         const parseDefaultValue = JSON.parse(neu.value);
 
-        this.$set(this, 'parseDefaultValue', parseDefaultValue);
+        this['parseDefaultValue'] = parseDefaultValue;
       },
       deep: true
     }

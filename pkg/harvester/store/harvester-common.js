@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Parse from 'url-parse';
 import { HCI } from '../types';
 import { PRODUCT_NAME } from '../config/harvester';
@@ -42,7 +41,7 @@ const mutations = {
   uploadEnd(state, value) {
     const filtered = state.uploadingImages.filter(l => l !== value);
 
-    Vue.set(state, 'uploadingImages', filtered);
+    state['uploadingImages'] = filtered;
   }
 };
 

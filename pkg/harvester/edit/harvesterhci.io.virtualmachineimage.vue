@@ -56,12 +56,12 @@ export default {
 
     const defaultStorage = this.$store.getters[`${ inStore }/all`](STORAGE_CLASS).find(s => s.isDefault);
 
-    this.$set(this, 'storageClassName', this.storageClassName || defaultStorage?.metadata?.name || 'longhorn');
+    this['storageClassName'] = this.storageClassName || defaultStorage?.metadata?.name || 'longhorn';
   },
 
   data() {
     if ( !this.value.spec ) {
-      this.$set(this.value, 'spec', { sourceType: DOWNLOAD });
+      this.value['spec'] = { sourceType: DOWNLOAD };
     }
 
     if (!this.value.metadata.name) {
@@ -130,7 +130,7 @@ export default {
     },
 
     'value.spec.sourceType'() {
-      this.$set(this, 'file', null);
+      this['file'] = null;
       this.url = '';
 
       if (this.$refs?.file?.value) {

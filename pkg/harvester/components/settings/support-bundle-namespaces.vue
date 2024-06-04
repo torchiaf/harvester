@@ -40,7 +40,7 @@ export default {
     update() {
       const namespaceStr = this.namespaces.join(',');
 
-      this.$set(this.value, 'value', namespaceStr);
+      this.value['value'] = namespaceStr;
     }
   },
 

@@ -34,7 +34,7 @@ export default {
 
     const defaultStorage = this.$store.getters[`${ inStore }/all`](STORAGE_CLASS).find(s => s.isDefault);
 
-    this.$set(this, 'storageClassName', defaultStorage?.metadata?.name || 'longhorn');
+    this['storageClassName'] = defaultStorage?.metadata?.name || 'longhorn';
   },
 
   data() {
@@ -119,14 +119,14 @@ export default {
         } else {
           const error = [res?.data] || exceptionToErrorsArray(res);
 
-          this.$set(this, 'errors', error);
+          this['errors'] = error;
           buttonCb(false);
         }
       } catch (err) {
         const error = err?.data || err;
         const message = exceptionToErrorsArray(error);
 
-        this.$set(this, 'errors', message);
+        this['errors'] = message;
         buttonCb(false);
       }
     }

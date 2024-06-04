@@ -183,7 +183,7 @@ export default {
 
       const value = Object.keys(out).length ? JSON.stringify(out) : '';
 
-      this.$set(this.value, 'value', value);
+      this.value['value'] = value;
     },
 
     addMirror() {
@@ -210,8 +210,8 @@ export default {
     value: {
       handler(value) {
         if (!value.value) { // useDefaultVale
-          this.$set(this, 'mirrors', []);
-          this.$set(this, 'configs', []);
+          this['mirrors'] = [];
+          this['configs'] = [];
           this.update();
         }
       },

@@ -61,14 +61,14 @@ export default {
         } else {
           const error = [res?.data] || exceptionToErrorsArray(res);
 
-          this.$set(this, 'errors', error);
+          this['errors'] = error;
           buttonCb(false);
         }
       } catch (err) {
         const error = err?.data || err;
         const message = exceptionToErrorsArray(error);
 
-        this.$set(this, 'errors', message);
+        this['errors'] = message;
         buttonCb(false);
       }
     }

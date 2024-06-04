@@ -5,7 +5,7 @@ import { BadgeState } from '@components/BadgeState';
 import { Banner } from '@components/Banner';
 import { RadioGroup, RadioButton } from '@components/Form/Radio';
 import HarvesterDisk from '../../mixins/harvester-disk';
-import Tags from '../../components/DiskTags';
+import DiskTags from '../../components/DiskTags';
 import { HCI } from '../../types';
 import { LONGHORN_SYSTEM } from './index';
 
@@ -17,7 +17,7 @@ export default {
     Banner,
     RadioGroup,
     RadioButton,
-    Tags,
+    DiskTags,
   },
 
   mixins: [
@@ -171,7 +171,7 @@ export default {
     <div v-if="!value.isNew">
       <div class="row">
         <div class="col span-12">
-          <Tags
+          <DiskTags
             v-model="value.tags"
             :label="t('harvester.host.disk.tags.label')"
             :add-label="t('harvester.host.disk.tags.addLabel')"

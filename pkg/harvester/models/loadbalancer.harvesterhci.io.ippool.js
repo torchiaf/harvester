@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { clone } from '@shell/utils/object';
 import HarvesterResource from '@pkg/harvester/models/harvester';
 import { HCI } from '@pkg/harvester/types';
@@ -14,8 +13,8 @@ export default class HciLB extends HarvesterResource {
     spec.selector = spec.selector || {};
     spec.selector.network = spec.selector.network || '';
 
-    Vue.set(this, 'spec', spec);
-    Vue.set(this, 'metadata', meta);
+    this['spec'] = spec;
+    this['metadata'] = meta;
   }
 
   get customValidationRules() {

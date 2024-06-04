@@ -3,7 +3,7 @@ import { _VIEW, _EDIT, _CREATE } from '@shell/config/query-params';
 import Tag from '@shell/components/Tag';
 
 export default {
-  name: 'Tags',
+  name: 'DiskTags',
 
   components: { Tag },
 

@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { load } from 'js-yaml';
 import { omitBy, pickBy } from 'lodash';
 
@@ -264,8 +263,8 @@ export default class VirtVm extends HarvesterResource {
     };
 
     if (realMode !== _CLONE) {
-      Vue.set(this.metadata, 'annotations', { [HCI_ANNOTATIONS.VOLUME_CLAIM_TEMPLATE]: '[]' });
-      Vue.set(this, 'spec', spec);
+      this.metadata['annotations'] = { [HCI_ANNOTATIONS.VOLUME_CLAIM_TEMPLATE]: '[]' };
+      this['spec'] = spec;
     }
   }
 
@@ -1057,6 +1056,6 @@ export default class VirtVm extends HarvesterResource {
       return matchesSomeRegex(key, LABELS_TO_IGNORE_REGEX);
     });
 
-    Vue.set(this.spec.template.metadata, 'labels', { ...wasIgnored, ...val });
+    this.spec.template.metadata['labels'] = { ...wasIgnored, ...val };
   }
 }

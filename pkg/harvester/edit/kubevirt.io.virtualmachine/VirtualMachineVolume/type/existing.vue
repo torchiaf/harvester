@@ -140,7 +140,7 @@ export default {
 
     'value.type'(neu) {
       if (neu === 'cd-rom') {
-        this.$set(this.value, 'bus', 'sata');
+        this.value['bus'] = 'sata';
         this.update();
       }
     },

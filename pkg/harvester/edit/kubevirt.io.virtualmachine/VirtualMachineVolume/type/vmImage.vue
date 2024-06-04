@@ -100,7 +100,7 @@ export default {
   watch: {
     'value.type'(neu) {
       if (neu === 'cd-rom') {
-        this.$set(this.value, 'bus', 'sata');
+        this.value['bus'] = 'sata';
         this.update();
       }
     },
@@ -143,11 +143,11 @@ export default {
 
       if (this.idx === 0) {
         if (/iso$/i.test(imageResource?.imageSuffix)) {
-          this.$set(this.value, 'type', 'cd-rom');
-          this.$set(this.value, 'bus', 'sata');
+          this.value['type'] = 'cd-rom';
+          this.value['bus'] = 'sata';
         } else {
-          this.$set(this.value, 'type', 'disk');
-          this.$set(this.value, 'bus', 'virtio');
+          this.value['type'] = 'disk';
+          this.value['bus'] = 'virtio';
         }
       }
 
@@ -165,7 +165,7 @@ export default {
           message: this.$store.getters['i18n/t']('harvester.vmTemplate.tips.notExistImage.message')
         }, { root: true });
 
-        this.$set(this.value, 'image', '');
+        this.value['image'] = '';
       }
     }
   }

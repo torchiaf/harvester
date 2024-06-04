@@ -179,7 +179,7 @@ export default {
     cancel() {
       this.cloudTemplate = '';
       this.cloudTemplateName = '';
-      this.$set(this, 'errors', []);
+      this['errors'] = [];
       this.isOpen = false;
     },
 

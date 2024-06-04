@@ -157,7 +157,7 @@ export default {
       const preference = this.$store.getters['management/all'](STEVE.PREFERENCE)?.[0];
 
       try {
-        this.$set(preference.data, PREFERED_SHORTCUT_KEYS, JSON.stringify(out));
+        preference.data[PREFERED_SHORTCUT_KEYS] = JSON.stringify(out);
         await preference.save();
         this.closeRecordingModal();
         buttonCb(true);

@@ -108,7 +108,7 @@ export default {
       const inStore = this.$store.getters['currentProduct'].inStore;
       const defaultStorage = this.$store.getters[`${ inStore }/all`](STORAGE_CLASS).find( s => s.isDefault);
 
-      this.$set(this.valuesContent.pvcClaim, 'storageClassName', this.valuesContent?.pvcClaim?.storageClassName || defaultStorage?.metadata?.name || 'longhorn');
+      this.valuesContent.pvcClaim['storageClassName'] = this.valuesContent?.pvcClaim?.storageClassName || defaultStorage?.metadata?.name || 'longhorn';
 
       this.update();
     },

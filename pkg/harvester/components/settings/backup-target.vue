@@ -80,7 +80,7 @@ export default {
           parseDefaultValue = { type: '', endpoint: '' };
         }
 
-        this.$set(this, 'parseDefaultValue', parseDefaultValue);
+        this['parseDefaultValue'] = parseDefaultValue;
         this.update();
       },
       deep: true
@@ -105,16 +105,16 @@ export default {
       const value = JSON.stringify(this.parseDefaultValue);
 
       if (!this.parseDefaultValue.type) {
-        this.$delete(this.value, 'value');
+        delete this.value['value'];
       } else {
-        this.$set(this.value, 'value', value);
+        this.value['value'] = value;
       }
     },
 
     useDefault() {
       const parseDefaultValue = { type: '', endpoint: '' };
 
-      this.$set(this, 'parseDefaultValue', parseDefaultValue);
+      this['parseDefaultValue'] = parseDefaultValue;
     }
   }
 };

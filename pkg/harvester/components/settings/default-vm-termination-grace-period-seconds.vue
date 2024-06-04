@@ -15,11 +15,11 @@ export default {
 
   methods: {
     update() {
-      this.$set(this.value, 'value', String(this.terminationGracePeriodSeconds));
+      this.value['value'] = String(this.terminationGracePeriodSeconds);
     },
 
     useDefault() {
-      this.$set(this, 'terminationGracePeriodSeconds', Number(this.value.default));
+      this['terminationGracePeriodSeconds'] = Number(this.value.default);
       this.update();
     },
   },

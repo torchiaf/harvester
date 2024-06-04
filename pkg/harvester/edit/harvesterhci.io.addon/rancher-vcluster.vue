@@ -80,7 +80,7 @@ export default {
   watch: {
     valuesContentJson: {
       handler(neu) {
-        this.$set(this.value.spec, 'valuesContent', jsyaml.dump(neu));
+        this.value.spec['valuesContent'] = jsyaml.dump(neu);
       },
       deep:      true,
       immediate: true

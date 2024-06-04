@@ -30,11 +30,11 @@ export default {
     onKeySelectedCa(type, file) {
       const { name, value } = file;
 
-      this.$set(this.parseDefaultValue, type, value);
-      this.$set(this, `${ type }FileName`, name);
+      this.parseDefaultValue[type] = value;
+      this[`${ type }FileName`] = name;
       const _value = JSON.stringify(this.parseDefaultValue);
 
-      this.$set(this.value, 'value', _value);
+      this.value['value'] = _value;
     }
   },
 
@@ -43,7 +43,7 @@ export default {
       handler(neu) {
         const parseDefaultValue = JSON.parse(neu.value);
 
-        this.$set(this, 'parseDefaultValue', parseDefaultValue);
+        this['parseDefaultValue'] = parseDefaultValue;
       },
       deep: true
     }

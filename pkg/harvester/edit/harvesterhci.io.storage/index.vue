@@ -17,7 +17,7 @@ import { STORAGE_CLASS, LONGHORN } from '@shell/config/types';
 import { allHash } from '@shell/utils/promise';
 import { clone } from '@shell/utils/object';
 import { CSI_DRIVER } from '../../types';
-import Tags from '../../components/DiskTags';
+import DiskTags from '../../components/DiskTags';
 
 const LONGHORN_DRIVER = 'driver.longhorn.io';
 
@@ -34,7 +34,7 @@ export default {
     Tab,
     Tabbed,
     Loading,
-    Tags,
+    DiskTags,
   },
 
   mixins: [CreateEditView],
@@ -72,11 +72,11 @@ export default {
 
     const allowedTopologies = clone(this.value.allowedTopologies?.[0]?.matchLabelExpressions || []);
 
-    this.$set(this.value, 'parameters', this.value.parameters || {});
-    this.$set(this.value, 'provisioner', this.value.provisioner || LONGHORN_DRIVER);
-    this.$set(this.value, 'allowVolumeExpansion', this.value.allowVolumeExpansion || allowVolumeExpansionOptions[0].value);
-    this.$set(this.value, 'reclaimPolicy', this.value.reclaimPolicy || reclaimPolicyOptions[0].value);
-    this.$set(this.value, 'volumeBindingMode', this.value.volumeBindingMode || volumeBindingModeOptions[0].value);
+    this.value['parameters'] = this.value.parameters || {};
+    this.value['provisioner'] = this.value.provisioner || LONGHORN_DRIVER;
+    this.value['allowVolumeExpansion'] = this.value.allowVolumeExpansion || allowVolumeExpansionOptions[0].value;
+    this.value['reclaimPolicy'] = this.value.reclaimPolicy || reclaimPolicyOptions[0].value;
+    this.value['volumeBindingMode'] = this.value.volumeBindingMode || volumeBindingModeOptions[0].value;
 
     return {
       reclaimPolicyOptions,
@@ -141,7 +141,7 @@ export default {
 
   watch: {
     provisionerWatch() {
-      this.$set(this.value, 'parameters', {});
+      this.value['parameters'] = {};
     }
   },
 
@@ -159,8 +159,8 @@ export default {
     },
 
     updateProvisioner(provisioner) {
-      this.$set(this.value, 'provisioner', provisioner);
-      this.$set(this.value, 'allowVolumeExpansion', provisioner === LONGHORN_DRIVER);
+      this.value['provisioner'] = provisioner;
+      this.value['allowVolumeExpansion'] = provisioner === LONGHORN_DRIVER;
     },
 
     willSave() {
@@ -303,7 +303,7 @@ export default {
                 />
               </div>
               <div class="col span-8 value">
-                <Tags
+                <DiskTags
                   v-model="scope.row.value.values"
                   :add-label="t('generic.add')"
                   :mode="modeOverride"

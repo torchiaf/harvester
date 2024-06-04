@@ -40,12 +40,12 @@ export default {
     },
 
     updateUser(neu) {
-      this.$set(this.value, 'users', neu);
+      this.value['users'] = neu;
       this.update();
     },
 
     updateSSH(neu) {
-      this.$set(this.value, 'sshkeys', neu);
+      this.value['sshkeys'] = neu;
       this.update();
     },
 

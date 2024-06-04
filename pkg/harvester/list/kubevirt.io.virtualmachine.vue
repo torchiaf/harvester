@@ -161,7 +161,7 @@ export default {
 
     await this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.VMIM });
 
-    this.$set(this, 'allVMIs', vmis);
+    this['allVMIs'] = vmis;
   }
 };
 </script>
@@ -179,7 +179,7 @@ export default {
       key-field="_key"
       v-on="$listeners"
     >
-      <template slot="cell:state" slot-scope="scope" class="state-col">
+      <template slot="cell:state" slot-scope="scope">
         <div class="state">
           <HarvesterVmState class="vmstate" :row="scope.row" :all-node-network="allNodeNetworks" :all-cluster-network="allClusterNetworks" />
         </div>

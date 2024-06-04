@@ -83,7 +83,7 @@ export default {
         const error = err?.data || err;
         const message = exceptionToErrorsArray(error);
 
-        this.$set(this, 'errors', message);
+        this['errors'] = message;
         buttonDone(false);
       }
     },

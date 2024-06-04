@@ -39,7 +39,7 @@ export default {
       setting.canReset || !!this.value.default || this.value.canReset;
 
     if (this.value.value === undefined) {
-      this.$set(this.value, 'value', null);
+      this.value['value'] = null;
     }
 
     this.value.value = this.value.value || this.value.default || '';

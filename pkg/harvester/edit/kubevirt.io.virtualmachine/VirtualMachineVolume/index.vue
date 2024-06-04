@@ -149,7 +149,7 @@ export default {
           return V;
         });
 
-        this.$set(this, 'rows', rows);
+        this['rows'] = rows;
       },
       deep:      true,
       immediate: true,

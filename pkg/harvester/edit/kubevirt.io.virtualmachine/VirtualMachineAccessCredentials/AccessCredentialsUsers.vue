@@ -73,7 +73,7 @@ export default {
 
     selectedUser(val, old) {
       if ( val.includes(_NEW)) {
-        this.$set(this, 'selectedUser', old);
+        this['selectedUser'] = old;
         this.update();
         this.show();
       }

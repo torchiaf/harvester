@@ -49,10 +49,10 @@ export default {
     }));
 
     if (this.mode !== _VIEW) {
-      this.$set(this.value, 'spec', this.value.spec || {});
+      this.value['spec'] = this.value.spec || {};
 
       providers.forEach((provider) => {
-        this.$set(this.value.spec, provider.name, this.value.spec[provider.name] || clone(provider.default));
+        this.value.spec[provider.name] = this.value.spec[provider.name] || clone(provider.default);
       });
     }
 
@@ -127,11 +127,11 @@ export default {
       if (!isEmpty(bufferJson)) {
         this.value.spec[this.selectedProvider].buffer = bufferJson;
       } else {
-        this.$delete(this.value.spec[this.selectedProvider], 'buffer');
+        delete this.value.spec[this.selectedProvider]['buffer'];
       }
 
       if (this.loggingType === AUDIT_ONLY) {
-        this.$set(this.value.spec, 'loggingRef', 'harvester-kube-audit-log-ref');
+        this.value.spec['loggingRef'] = 'harvester-kube-audit-log-ref';
       }
     },
     tabChanged({ tab }) {

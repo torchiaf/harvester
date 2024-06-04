@@ -139,7 +139,7 @@ export default {
           backendServerSelector[key] = (value[key] || '').split(',');
         });
 
-        this.$set(this.value.spec, 'backendServerSelector', backendServerSelector);
+        this.value.spec['backendServerSelector'] = backendServerSelector;
       },
     },
 

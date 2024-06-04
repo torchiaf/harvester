@@ -73,7 +73,7 @@ export default {
 
         upgradeMessage = currentResource ? currentResource.upgradeMessage : [];
 
-        this.$set(this, 'upgradeMessage', upgradeMessage);
+        this['upgradeMessage'] = upgradeMessage;
       },
       deep: true
     },

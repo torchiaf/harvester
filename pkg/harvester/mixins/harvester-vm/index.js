@@ -361,33 +361,33 @@ export default {
         spec.runStrategy = 'RerunOnFailure';
       }
 
-      this.$set(this, 'spec', spec);
-      this.$set(this, 'runStrategy', runStrategy);
-      this.$set(this, 'secretRef', secretRef);
-      this.$set(this, 'accessCredentials', accessCredentials);
-      this.$set(this, 'userScript', userData);
-      this.$set(this, 'networkScript', networkData);
+      this['spec'] = spec;
+      this['runStrategy'] = runStrategy;
+      this['secretRef'] = secretRef;
+      this['accessCredentials'] = accessCredentials;
+      this['userScript'] = userData;
+      this['networkScript'] = networkData;
 
-      this.$set(this, 'sshKey', sshKey);
-      this.$set(this, 'osType', osType);
-      this.$set(this, 'installAgent', installAgent);
+      this['sshKey'] = sshKey;
+      this['osType'] = osType;
+      this['installAgent'] = installAgent;
 
-      this.$set(this, 'cpu', cpu);
-      this.$set(this, 'memory', memory);
-      this.$set(this, 'reservedMemory', reservedMemory);
-      this.$set(this, 'machineType', machineType);
-      this.$set(this, 'terminationGracePeriodSeconds', terminationGracePeriodSeconds);
+      this['cpu'] = cpu;
+      this['memory'] = memory;
+      this['reservedMemory'] = reservedMemory;
+      this['machineType'] = machineType;
+      this['terminationGracePeriodSeconds'] = terminationGracePeriodSeconds;
 
-      this.$set(this, 'installUSBTablet', installUSBTablet);
-      this.$set(this, 'efiEnabled', efiEnabled);
-      this.$set(this, 'tpmEnabled', tpmEnabled);
-      this.$set(this, 'secureBoot', secureBoot);
+      this['installUSBTablet'] = installUSBTablet;
+      this['efiEnabled'] = efiEnabled;
+      this['tpmEnabled'] = tpmEnabled;
+      this['secureBoot'] = secureBoot;
 
-      this.$set(this, 'hasCreateVolumes', hasCreateVolumes);
-      this.$set(this, 'networkRows', networkRows);
-      this.$set(this, 'imageId', imageId);
+      this['hasCreateVolumes'] = hasCreateVolumes;
+      this['networkRows'] = networkRows;
+      this['imageId'] = imageId;
 
-      this.$set(this, 'diskRows', diskRows);
+      this['diskRows'] = diskRows;
 
       this.refreshYamlEditor();
     },
@@ -556,9 +556,9 @@ export default {
 
     parseOther() {
       if (!this.spec.template.spec.domain.machine) {
-        this.$set(this.spec.template.spec.domain, 'machine', { type: this.machineType });
+        this.spec.template.spec.domain['machine'] = { type: this.machineType };
       } else {
-        this.$set(this.spec.template.spec.domain.machine, 'type', this.machineType);
+        this.spec.template.spec.domain.machine['type'] = this.machineType;
       }
 
       this.spec.template.spec.domain.cpu.cores = this.cpu;
@@ -681,28 +681,28 @@ export default {
           spec = this.multiVMScheduler(spec);
         }
 
-        this.$set(this.value.metadata, 'annotations', {
+        this.value.metadata['annotations'] = {
           ...this.value.metadata.annotations,
           [HCI_ANNOTATIONS.VOLUME_CLAIM_TEMPLATE]: JSON.stringify(volumeClaimTemplates),
           [HCI_ANNOTATIONS.NETWORK_IPS]:           JSON.stringify(this.value.networkIps)
-        });
+        };
 
-        this.$set(this.value.metadata, 'labels', {
+        this.value.metadata['labels'] = {
           ...this.value.metadata.labels,
           [HCI_ANNOTATIONS.CREATOR]: 'harvester',
           [HCI_ANNOTATIONS.OS]:      this.osType
-        });
+        };
 
-        this.$set(this.value, 'spec', spec);
-        this.$set(this, 'spec', spec);
+        this.value['spec'] = spec;
+        this['spec'] = spec;
       } else if (this.resource === HCI.VM_VERSION) {
-        this.$set(this.value.spec.vm, 'spec', spec);
-        this.$set(this.value.spec.vm.metadata, 'annotations', { ...this.value.spec.vm.metadata.annotations, [HCI_ANNOTATIONS.VOLUME_CLAIM_TEMPLATE]: JSON.stringify(volumeClaimTemplates) });
-        this.$set(this.value.spec.vm.metadata, 'labels', {
+        this.value.spec.vm['spec'] = spec;
+        this.value.spec.vm.metadata['annotations'] = { ...this.value.spec.vm.metadata.annotations, [HCI_ANNOTATIONS.VOLUME_CLAIM_TEMPLATE]: JSON.stringify(volumeClaimTemplates) };
+        this.value.spec.vm.metadata['labels'] = {
           ...this.value.spec.vm.metadata.labels,
-          [HCI_ANNOTATIONS.OS]: this.osType,
-        });
-        this.$set(this, 'spec', spec);
+          [HCI_ANNOTATIONS.OS]: this.osType
+        };
+        this['spec'] = spec;
       }
     },
 
@@ -772,7 +772,7 @@ export default {
         networks
       };
 
-      this.$set(this.spec.template, 'spec', spec);
+      this.spec.template['spec'] = spec;
     },
 
     parseAccessCredentials() {
@@ -862,12 +862,12 @@ export default {
     },
 
     updateSSHKey(neu) {
-      this.$set(this, 'sshKey', neu);
+      this['sshKey'] = neu;
     },
 
     updateCpuMemory(cpu, memory) {
-      this.$set(this, 'cpu', cpu);
-      this.$set(this, 'memory', memory);
+      this['cpu'] = cpu;
+      this['memory'] = memory;
     },
 
     parseDisk(R, index) {
@@ -1309,10 +1309,10 @@ export default {
         const index = inputs.findIndex(O => isEqual(O, USB_TABLET[0]));
 
         if (hasExist && inputs.length === 1) {
-          this.$delete(this.spec.template.spec.domain.devices, 'inputs');
+          delete this.spec.template.spec.domain.devices['inputs'];
         } else if (hasExist) {
           inputs.splice(index, 1);
-          this.$set(this.spec.template.spec.domain.devices, 'inputs', inputs);
+          this.spec.template.spec.domain.devices['inputs'] = inputs;
         }
       }
     },
@@ -1325,17 +1325,17 @@ export default {
         // set(this.spec.template.spec.domain, 'features.smm.enabled', false);
 
         try {
-          this.$delete(this.spec.template.spec.domain.features.smm, 'enabled');
+          delete this.spec.template.spec.domain.features.smm['enabled'];
           const noKeys = Object.keys(this.spec.template.spec.domain.features.smm).length === 0;
 
           if (noKeys) {
-            this.$delete(this.spec.template.spec.domain.features, 'smm');
+            delete this.spec.template.spec.domain.features['smm'];
           }
         } catch (e) {}
         set(this.spec.template.spec.domain, 'firmware.bootloader.efi.secureBoot', false);
       } else {
-        this.$delete(this.spec.template.spec.domain, 'firmware');
-        this.$delete(this.spec.template.spec.domain.features, 'smm');
+        delete this.spec.template.spec.domain['firmware'];
+        delete this.spec.template.spec.domain.features['smm'];
       }
     },
 
@@ -1343,7 +1343,7 @@ export default {
       if (tpmEnabled) {
         set(this.spec.template.spec.domain.devices, 'tpm', {});
       } else {
-        this.$delete(this.spec.template.spec.domain.devices, 'tpm');
+        delete this.spec.template.spec.domain.devices['tpm'];
       }
     },
 
@@ -1367,9 +1367,9 @@ export default {
       }
 
       if (isEmpty(userDataJson)) {
-        this.$set(this, 'userScript', undefined);
+        this['userScript'] = undefined;
       } else {
-        this.$set(this, 'userScript', jsyaml.dump(userDataJson));
+        this['userScript'] = jsyaml.dump(userDataJson);
       }
 
       this.refreshYamlEditor();
@@ -1407,11 +1407,11 @@ export default {
     updateReserved(value = {}) {
       const { memory } = value;
 
-      this.$set(this, 'reservedMemory', memory);
+      this['reservedMemory'] = memory;
     },
 
     updateTerminationGracePeriodSeconds(value) {
-      this.$set(this, 'terminationGracePeriodSeconds', value);
+      this['terminationGracePeriodSeconds'] = value;
     },
   },
 
@@ -1444,9 +1444,9 @@ export default {
 
     isWindows(val) {
       if (val) {
-        this.$set(this, 'sshKey', []);
-        this.$set(this, 'userScript', undefined);
-        this.$set(this, 'installAgent', false);
+        this['sshKey'] = [];
+        this['userScript'] = undefined;
+        this['installAgent'] = false;
       }
     },
 
@@ -1487,7 +1487,7 @@ export default {
             }
           }
 
-          this.$set(this, 'userScript', out);
+          this['userScript'] = out;
           this.refreshYamlEditor();
         }
         this.deleteAgent = true;
@@ -1498,7 +1498,7 @@ export default {
     osType(neu) {
       const out = this.getUserData({ installAgent: this.installAgent, osType: neu });
 
-      this.$set(this, 'userScript', out);
+      this['userScript'] = out;
       this.refreshYamlEditor();
     },
 

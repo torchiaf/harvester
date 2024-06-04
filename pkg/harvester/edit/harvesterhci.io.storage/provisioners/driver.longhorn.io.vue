@@ -42,13 +42,13 @@ export default {
 
   data() {
     if (this.realMode === _CREATE) {
-      this.$set(this.value, 'parameters', {
+      this.value['parameters'] = {
         numberOfReplicas:    '3',
         staleReplicaTimeout: '30',
         diskSelector:        null,
         nodeSelector:        null,
-        migratable:          'true',
-      });
+        migratable:          'true'
+      };
     }
 
     return {};

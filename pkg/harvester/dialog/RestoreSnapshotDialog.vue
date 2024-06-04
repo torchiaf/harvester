@@ -46,7 +46,7 @@ export default {
 
       const currentStorageName = this.resources[0].metadata?.annotations[HCI_ANNOTATIONS.STORAGE_CLASS];
 
-      this.$set(this, 'storageClassName', currentStorageName || defaultStorage?.metadata?.name || 'longhorn');
+      this['storageClassName'] = currentStorageName || defaultStorage?.metadata?.name || 'longhorn';
     }
   },
 
@@ -108,14 +108,14 @@ export default {
         } else {
           const error = [res?.data] || exceptionToErrorsArray(res);
 
-          this.$set(this, 'errors', error);
+          this['errors'] = error;
           buttonCb(false);
         }
       } catch (err) {
         const error = err?.data || err;
         const message = exceptionToErrorsArray(error);
 
-        this.$set(this, 'errors', message);
+        this['errors'] = message;
         buttonCb(false);
       }
     }

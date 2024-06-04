@@ -59,7 +59,7 @@ export default {
 
     const defaultStorage = this.$store.getters[`harvester/all`](STORAGE_CLASS).find( O => O.isDefault);
 
-    this.$set(this.value.spec, 'storageClassName', this.value?.spec?.storageClassName || defaultStorage?.metadata?.name || 'longhorn');
+    this.value.spec['storageClassName'] = this.value?.spec?.storageClassName || defaultStorage?.metadata?.name || 'longhorn';
   },
 
   data() {
@@ -247,7 +247,7 @@ export default {
 
       this.value.setAnnotations(imageAnnotations);
 
-      this.$set(this.value, 'spec', spec);
+      this.value['spec'] = spec;
     },
 
     generateYaml() {

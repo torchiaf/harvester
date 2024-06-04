@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { find, pickBy, omitBy } from 'lodash';
 import {
   AS, MODE, _VIEW, _CONFIG, _UNFLAG, _EDIT
@@ -110,7 +109,7 @@ export default class HciVmTemplateVersion extends HarvesterResource {
       }
     };
 
-    Vue.set(this, 'spec', spec);
+    this['spec'] = spec;
   }
 
   get canDelete() {
@@ -272,6 +271,6 @@ export default class HciVmTemplateVersion extends HarvesterResource {
       return matchesSomeRegex(key, LABELS_TO_IGNORE_REGEX);
     });
 
-    Vue.set(this.spec.vm.spec.template.metadata, 'labels', { ...wasIgnored, ...val });
+    this.spec.vm.spec.template.metadata['labels'] = { ...wasIgnored, ...val };
   }
 }

@@ -88,7 +88,7 @@ export default {
 
       const value = JSON.stringify(out);
 
-      this.$set(this.value, 'value', value);
+      this.value['value'] = value;
     },
 
     willSave() {

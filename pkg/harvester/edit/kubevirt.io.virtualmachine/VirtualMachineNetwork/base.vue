@@ -138,7 +138,7 @@ export default {
       handler(neu) {
         const hasManagementNetwork = !!neu.some(N => N.isPod);
 
-        this.$set(this, 'hasManagementNetwork', hasManagementNetwork);
+        this['hasManagementNetwork'] = hasManagementNetwork;
       },
       immediate: true,
       deep:      true
@@ -146,7 +146,7 @@ export default {
 
     isSingle(neu) {
       if (!neu) {
-        this.$set(this.value, 'macAddress', '');
+        this.value['macAddress'] = '';
         this.update();
       }
     }
@@ -164,7 +164,7 @@ export default {
         this.value.isPod = false;
       }
 
-      this.$set(this, 'isMasquerade', this.value.isPod);
+      this['isMasquerade'] = this.value.isPod;
 
       if (this.value.isPod) {
         this.value.type = 'masquerade';

@@ -1,5 +1,6 @@
 <script lang="ts">
 import Vue from 'vue';
+// eslint-disable-next-line import/named
 import { Location } from 'vue-router';
 import ExplorerProjectsNamespaces from '@shell/components/ExplorerProjectsNamespaces.vue';
 import { MANAGEMENT, NAMESPACE } from '@shell/config/types';

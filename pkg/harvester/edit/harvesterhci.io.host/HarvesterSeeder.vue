@@ -123,8 +123,8 @@ export default {
         } else {
           const [namespace, name] = value.split('/');
 
-          this.$set(this.value.spec.baseboardSpec.connection.authSecretRef, 'namespace', namespace);
-          this.$set(this.value.spec.baseboardSpec.connection.authSecretRef, 'name', name);
+          this.value.spec.baseboardSpec.connection.authSecretRef['namespace'] = namespace;
+          this.value.spec.baseboardSpec.connection.authSecretRef['name'] = name;
         }
       },
     },
@@ -135,7 +135,7 @@ export default {
       },
 
       set(value) {
-        this.$set(this.secret.data, 'username', base64Encode(value));
+        this.secret.data['username'] = base64Encode(value);
       }
     },
 
@@ -145,7 +145,7 @@ export default {
       },
 
       set(value) {
-        this.$set(this.secret.data, 'password', base64Encode(value));
+        this.secret.data['password'] = base64Encode(value);
       }
     },
   },

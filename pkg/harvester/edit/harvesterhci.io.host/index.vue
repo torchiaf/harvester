@@ -25,7 +25,7 @@ import { _EDIT } from '@shell/config/query-params';
 import { sortBy } from '@shell/utils/sort';
 import { Banner } from '@components/Banner';
 import { HCI } from '../../types';
-import Tags from '../../components/DiskTags';
+import DiskTags from '../../components/DiskTags';
 import HarvesterDisk from './HarvesterDisk';
 import HarvesterSeeder from './HarvesterSeeder';
 import HarvesterKsmtuned from './HarvesterKsmtuned';
@@ -46,7 +46,7 @@ export default {
     ButtonDropdown,
     KeyValue,
     Banner,
-    Tags,
+    DiskTags,
     Loading,
     HarvesterSeeder,
     MessageLink,
@@ -546,7 +546,7 @@ export default {
             class="row mb-20"
           >
             <div class="col span-12">
-              <Tags
+              <DiskTags
                 v-model="longhornNode.spec.tags"
                 :label="t('harvester.host.tags.label')"
                 :add-label="t('harvester.host.tags.addLabel')"
