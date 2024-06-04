@@ -24,6 +24,7 @@ import {
   SUB_TYPE,
   ADDRESS,
 } from '@shell/config/table-headers';
+import { IF_HAVE } from '@shell/store/type-map';
 import { HCI, VOLUME_SNAPSHOT } from './types';
 import {
   IMAGE_DOWNLOAD_SIZE,
@@ -31,9 +32,6 @@ import {
   IMAGE_PROGRESS,
   SNAPSHOT_TARGET_VOLUME,
 } from './config/table-headers';
-
-// import { IF_HAVE } from '@shell/store/type-map';
-const IF_HAVE = { MULTI_CLUSTER: false };
 
 const TEMPLATE = HCI.VM_VERSION;
 const MONITORING_GROUP = 'Monitoring & Logging::Monitoring';

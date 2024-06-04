@@ -13,7 +13,7 @@ export default {
     divider,
     notFilterNamespaces
   }: any) => {
-    const out = [{
+    const out: { id: string, kind: string, label: string }[] = [{
       id:    ALL,
       kind:  NAMESPACE_FILTER_KINDS.SPECIAL,
       label: rootGetters['i18n/t']('nav.ns.all'),
@@ -29,9 +29,11 @@ export default {
         MANAGEMENT.PROJECT
       );
 
-      projects = sortBy(filterBy(projects, 'spec.clusterName', cluster.id), [
-        'nameDisplay',
-      ]).filter((project: any) => project.nameDisplay !== 'System');
+      projects = sortBy(
+        filterBy(projects, 'spec.clusterName', cluster.id),
+        ['nameDisplay'],
+        null
+      ).filter((project: any) => project.nameDisplay !== 'System');
 
       const projectsById: any = {};
       const namespacesByProject: any = {};
