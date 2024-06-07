@@ -1,6 +1,9 @@
 dev
 lint
 
+# rancher shell
+.shell
+
 # compiled output
 /dist
 /dist-pkg

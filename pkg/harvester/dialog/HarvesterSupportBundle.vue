@@ -5,7 +5,7 @@ import { LabeledInput } from '@components/Form/LabeledInput';
 import AsyncButton from '@shell/components/AsyncButton';
 import GraphCircle from '@shell/components/graph/Circle';
 import { Banner } from '@components/Banner';
-import AppModal from '@shell/components/AppModal.vue';
+import AppModal from '@shell/components/AppModal';
 import { HCI } from '../types';
 
 export default {
