@@ -10,7 +10,7 @@ import { HCI } from '../../../types';
 import VGpuDeviceList from './VGpuDeviceList';
 
 export default {
-  name:       'VirtualMachinedevices',
+  name:       'VirtualMachineVGpuDevices',
   components: {
     Banner,
     LabeledSelect,
