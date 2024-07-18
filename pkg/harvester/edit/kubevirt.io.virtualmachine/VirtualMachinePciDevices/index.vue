@@ -3,6 +3,8 @@ import { _EDIT } from '@shell/config/query-params';
 import { allHash } from '@shell/utils/promise';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 import Banner from '@components/Banner/Banner.vue';
+import CompatibilityMatrix from '../CompatibilityMatrix';
+import DeviceList from './DeviceList';
 
 import remove from 'lodash/remove';
 import { get, set } from '@shell/utils/object';
