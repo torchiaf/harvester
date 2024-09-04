@@ -98,7 +98,7 @@ export default {
         const metricCol = [
           {
             name:          'cpu',
-            labelKey:      'node.detail.glance.consumptionGauge.cpu',
+            labelKey:      'tableHeaders.cpu',
             value:         'id',
             formatter:     'HarvesterCPUUsed',
             formatterOpts: { showUsed: true },
