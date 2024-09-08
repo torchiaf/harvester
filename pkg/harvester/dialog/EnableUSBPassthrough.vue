@@ -1,14 +1,12 @@
 <script>
+import { HCI } from '../types';
 import { mapGetters } from 'vuex';
 import { Card } from '@components/Card';
 import AsyncButton from '@shell/components/AsyncButton';
 import { escapeHtml } from '@shell/utils/string';
-import { HCI } from '../types';
 
 export default {
-  name: 'HarvesterEnablePassthrough',
-
-  emits: ['close'],
+  name: 'HarvesterEnableUSBPassthrough',
 
   components: {
     AsyncButton,
@@ -49,19 +47,19 @@ export default {
         const actionResource = this.resources[i];
         const inStore = this.$store.getters['currentProduct'].inStore;
         const pt = await this.$store.dispatch(`${ inStore }/create`, {
-          type:     HCI.PCI_CLAIM,
+          type:     HCI.USB_CLAIM,
           metadata: {
             name:            actionResource.metadata.name,
             ownerReferences: [{
               apiVersion: 'devices.harvesterhci.io/v1beta1',
-              kind:       'PCIDevice',
+              kind:       'USBDevice',
               name:       actionResource.metadata.name,
               uid:        actionResource.metadata.uid,
             }]
           },
           spec: {
-            address:  actionResource.status.address,
-            nodeName: actionResource.status.nodeName,
+            pciAddress:  actionResource.status.pciAddress,
+            nodeName:    actionResource.status.nodeName,
             userName
           }
         } );
@@ -72,7 +70,7 @@ export default {
           this.close();
         } catch (err) {
           this.$store.dispatch('growl/fromError', {
-            title: this.t('harvester.pci.claimError', { name: escapeHtml(actionResource.metadata.name) }),
+            title: this.t('harvester.usb.claimError', { name: escapeHtml(actionResource.metadata.name) }),
             err,
           }, { root: true });
           buttonCb(false);
@@ -85,28 +83,21 @@ export default {
 
 <template>
   <Card :show-highlight-border="false">
-    <template #title>
-      <h4
-        v-clean-html="t('promptRemove.title')"
-        class="text-default-text"
-      />
-    </template>
+    <h4
+      slot="title"
+      v-clean-html="t('promptRemove.title')"
+      class="text-default-text"
+    />
 
-    <template #body>
-      {{ t('harvester.pci.enablePassthroughWarning') }}
-    </template>
+    <div slot="actions" class="actions">
+      <div class="buttons">
+        <button class="btn role-secondary mr-10" @click="close">
+          {{ t('generic.cancel') }}
+        </button>
 
-    <template #actions>
-      <div class="actions">
-        <div class="buttons">
-          <button class="btn role-secondary mr-10" @click="close">
-            {{ t('generic.cancel') }}
-          </button>
-
-          <AsyncButton mode="enable" @click="save" />
-        </div>
+        <AsyncButton mode="enable" @click="save" />
       </div>
-    </template>
+    </div>
   </Card>
 </template>
 
