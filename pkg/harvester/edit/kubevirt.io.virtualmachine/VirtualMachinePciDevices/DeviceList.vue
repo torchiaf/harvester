@@ -80,7 +80,6 @@ export default {
         label: 'Claimed By',
         value: 'passthroughClaim.userName',
         sort:  ['passthroughClaim.userName'],
-
       });
     }
 
