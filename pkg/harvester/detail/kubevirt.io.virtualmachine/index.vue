@@ -158,12 +158,12 @@ export default {
   <div>
     <Tabbed v-bind="$attrs" class="mt-15" :side-tabs="true" @changed="onTabChanged">
       <Tab name="basics" :label="t('harvester.virtualMachine.detail.tabs.basics')" class="bordered-table" :weight="7">
-        <OverviewBasics v-model="value" :vmi="vmi" mode="view" />
+        <OverviewBasics v-model:value="value" :vmi="vmi" mode="view" />
       </Tab>
 
       <Tab name="disks" :label="t('harvester.tab.volume')" class="bordered-table" :weight="6">
         <Volume
-          v-model="diskRows"
+          v-model:value="diskRows"
           mode="view"
           :namespace="value.metadata.namespace"
           :vm="value"
@@ -172,11 +172,11 @@ export default {
       </Tab>
 
       <Tab name="networks" :label="t('harvester.virtualMachine.detail.tabs.networks')" class="bordered-table" :weight="5">
-        <Network v-model="networkRows" mode="view" />
+        <Network v-model:value="networkRows" mode="view" />
       </Tab>
 
       <Tab name="keypairs" :label="t('harvester.virtualMachine.detail.tabs.keypairs')" class="bordered-table" :weight="3">
-        <OverviewKeypairs v-model="value" />
+        <OverviewKeypairs v-model:value="value" />
       </Tab>
 
       <Tab
@@ -235,7 +235,7 @@ export default {
       </Tab>
 
       <Tab name="migration" :label="t('harvester.virtualMachine.detail.tabs.migration')">
-        <Migration v-model="value" :vmi-resource="vmi" />
+        <Migration v-model:value="value" :vmi-resource="vmi" />
       </Tab>
 
       <Tab
@@ -261,7 +261,7 @@ export default {
               :mode="mode"
               :read-allowed="false"
               :value-can-be-empty="true"
-              @input="value.setInstanceLabels($event)"
+              @update:value="value.setInstanceLabels($event)"
             />
           </template>
         </Labels>

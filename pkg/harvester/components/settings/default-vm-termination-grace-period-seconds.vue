@@ -32,7 +32,7 @@ export default {
   >
     <div class="col span-12">
       <UnitInput
-        v-model="terminationGracePeriodSeconds"
+        v-model:value="terminationGracePeriodSeconds"
         :suffix="terminationGracePeriodSeconds === 1 ? 'Second' : 'Seconds'"
         :label="t('harvester.virtualMachine.terminationGracePeriodSeconds.label')"
         :mode="mode"

@@ -177,13 +177,13 @@ export default {
   >
     <NameNsDescription
       ref="nd"
-      v-model="value"
+      v-model:value="value"
       :mode="mode"
     />
     <Tabbed v-bind="$attrs" class="mt-15" :side-tabs="true">
       <Tab name="basics" :label="t('harvester.network.tabs.basics')" :weight="99" class="bordered-table">
         <LabeledSelect
-          v-model="type"
+          v-model:value="type"
           class="mb-20"
           :options="networkType"
           :mode="mode"
@@ -201,7 +201,7 @@ export default {
           placeholder="e.g. 1-4094"
           :label="t('tableHeaders.networkVlan')"
           :mode="mode"
-          @input="input"
+          @update:value="input"
         />
 
         <div class="row">
@@ -209,7 +209,7 @@ export default {
             class="col span-12"
           >
             <LabeledSelect
-              v-model="config.bridge"
+              v-model:value="config.bridge"
               class="mb-20"
               :label="t('harvester.network.clusterNetwork.label')"
               required
@@ -230,7 +230,7 @@ export default {
         <div class="row mt-10">
           <div class="col span-6">
             <RadioGroup
-              v-model="layer3Network.mode"
+              v-model:value="layer3Network.mode"
               name="layer3NetworkMode"
               :label="t('harvester.network.layer3Network.mode.label')"
               :mode="mode"
@@ -244,7 +244,7 @@ export default {
         >
           <div class="col span-6">
             <LabeledInput
-              v-model="layer3Network.serverIPAddr"
+              v-model:value="layer3Network.serverIPAddr"
               class="mb-20"
               :label="t('harvester.network.layer3Network.serverIPAddr.label')"
               :mode="mode"
@@ -257,7 +257,7 @@ export default {
         >
           <div class="col span-6">
             <LabeledInput
-              v-model="layer3Network.cidr"
+              v-model:value="layer3Network.cidr"
               class="mb-20"
               :label="t('harvester.network.layer3Network.cidr.label')"
               :placeholder="t('harvester.network.layer3Network.cidr.placeholder')"
@@ -267,7 +267,7 @@ export default {
           </div>
           <div class="col span-6">
             <LabeledInput
-              v-model="layer3Network.gateway"
+              v-model:value="layer3Network.gateway"
               class="mb-20"
               :label="t('harvester.network.layer3Network.gateway.label')"
               :placeholder="t('harvester.network.layer3Network.gateway.placeholder')"

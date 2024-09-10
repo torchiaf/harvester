@@ -201,14 +201,14 @@ export default {
           :is="customComponent"
           v-if="hasCustomComponent"
           ref="settingComp"
-          v-model="value"
+          v-model:value="value"
           :register-before-hook="registerBeforeHook"
           :mode="mode"
         />
       </div>
       <div v-else-if="setting.kind === 'enum'">
         <LabeledSelect
-          v-model="value.value"
+          v-model:value="value.value"
           :label="t('advancedSettings.edit.value')"
           :localized-label="true"
           :mode="mode"
@@ -217,7 +217,7 @@ export default {
       </div>
       <div v-else-if="setting.kind === 'boolean'">
         <RadioGroup
-          v-model="value.value"
+          v-model:value="value.value"
           name="settings_value"
           :labels="[
             t('advancedSettings.edit.trueOption'),
@@ -227,11 +227,11 @@ export default {
         />
       </div>
       <div v-else-if="setting.kind === 'multiline' || setting.kind === 'json'">
-        <TextAreaAutoGrow v-model="value.value" :min-height="254" />
+        <TextAreaAutoGrow v-model:value="value.value" :min-height="254" />
       </div>
       <div v-else>
         <LabeledInput
-          v-model="value.value"
+          v-model:value="value.value"
           :label="t('advancedSettings.edit.value')"
         />
       </div>
@@ -249,7 +249,7 @@ export default {
   }
 }
 
-::v-deep .edit-help code {
+:deep() .edit-help code {
   padding: 1px 5px;
 }
 </style>

@@ -158,7 +158,7 @@ export default {
 
 <template>
   <ResourceTabs
-    v-model="value"
+    v-model:value="value"
     :need-events="false"
     :need-related="false"
     :mode="mode"
@@ -255,9 +255,7 @@ export default {
 
       <div v-else>
         <div
-          v-for="(row,idx) in parsedRows"
-          :key="idx"
-          class="entry"
+          v-for="(row,idx) in parsedRows" :key="idx"class="entry"
         >
           <DetailText
             :value="row.value"

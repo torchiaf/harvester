@@ -144,11 +144,10 @@ export default {
     :rows="rows"
     :schema="schema"
     key-field="_key"
-    v-on="$listeners"
+    
   >
     <template
-      slot="cell:state"
-      slot-scope="scope"
+      cell:state="scope"
     >
       <div class="state">
         <HarvesterVolumeState
@@ -158,8 +157,7 @@ export default {
       </div>
     </template>
     <template
-      slot="cell:AttachedVM"
-      slot-scope="scope"
+      cell:AttachedVM="scope"
     >
       <div>
         <router-link

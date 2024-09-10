@@ -42,7 +42,7 @@ export default {
     <h4>{{ title }} <span class="float-r text-info">{{ precent }}%</span></h4>
     <div>
       <div>
-        <Collapse :open.sync="open">
+        <Collapse v-model:open="open">
           <template #title>
             <div class="total-bar">
               <span class="bar"><PercentageBar :value="precent" preferred-direction="MORE" /></span>
@@ -52,7 +52,7 @@ export default {
 
           <template>
             <div class="custom-content">
-              <div v-for="item in list" :key="item.name" class="item">
+              <div  v-for="(item, i) in list" :key="i" >
                 <p>{{ item.name }} <span class="status" :class="{ [item.state]: true }">{{ item.state }}</span></p>
                 <PercentageBar :value="item.percent" preferred-direction="MORE" />
                 <p class="warning">

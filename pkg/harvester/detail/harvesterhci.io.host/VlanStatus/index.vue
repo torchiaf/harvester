@@ -87,7 +87,7 @@ export default {
     <div class="row mt-20">
       <div class="col span-12">
         <ArrayListGrouped
-          v-model="linkStatus"
+          v-model:value="linkStatus"
           :mode="mode"
           :can-remove="false"
         >

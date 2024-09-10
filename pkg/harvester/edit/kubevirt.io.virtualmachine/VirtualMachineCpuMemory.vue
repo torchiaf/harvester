@@ -77,7 +77,7 @@ export default {
     <div class="col span-6">
       <InputOrDisplay name="CPU" :value="cupDisplay" :mode="mode" class="mb-10">
         <UnitInput
-          v-model="localCpu"
+          v-model:value="localCpu"
           v-int-number
           label="CPU"
           suffix="C"
@@ -86,7 +86,7 @@ export default {
           :disabled="disabled"
           :mode="mode"
           class="mb-20"
-          @input="change"
+          @update:value="change"
         />
       </InputOrDisplay>
     </div>
@@ -94,7 +94,7 @@ export default {
     <div class="col span-6">
       <InputOrDisplay :name="t('harvester.virtualMachine.input.memory')" :value="memoryDisplay" :mode="mode" class="mb-10">
         <UnitInput
-          v-model="localMemory"
+          v-model:value="localMemory"
           v-int-number
           :label="t('harvester.virtualMachine.input.memory')"
           :mode="mode"
@@ -105,7 +105,7 @@ export default {
           :disabled="disabled"
           required
           class="mb-20"
-          @input="change"
+          @update:value="change"
         />
       </InputOrDisplay>
     </div>

@@ -250,16 +250,14 @@ export default {
   <div>
     <div v-if="inventory.warningMessages.length > 0">
       <Banner
-        v-for="msg in inventory.warningMessages"
-        :key="msg.text"
-        color="error"
+         v-for="(msg, i) in inventory.warningMessages" :key="i" color="error"
         :label="msg.text"
       />
     </div>
     <div class="row">
       <div class="col span-6">
         <RadioGroup
-          v-model="enableInventory"
+          v-model:value="enableInventory"
           :options="[
             { label: t('generic.enabled'), value: true },
             { label: t('generic.disabled'), value: false }
@@ -273,14 +271,14 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledInput
-            v-model="value.spec.baseboardSpec.connection.host"
+            v-model:value="value.spec.baseboardSpec.connection.host"
             :label="t('harvester.seeder.inventory.host.label')"
             :placeholder="t('harvester.seeder.inventory.host.placeholder')"
             :mode="mode"
             required
           />
           <Checkbox
-            v-model="value.spec.baseboardSpec.connection.insecureTLS"
+            v-model:value="value.spec.baseboardSpec.connection.insecureTLS"
             class="mt-5"
             :mode="mode"
             :label="t('harvester.seeder.inventory.insecureTLS.label')"
@@ -299,7 +297,7 @@ export default {
       <div class="row mt-20">
         <div class="col span-6">
           <LabeledSelect
-            v-model="selectedSecret"
+            v-model:value="selectedSecret"
             :label="t('harvester.seeder.inventory.secret.label')"
             :mode="mode"
             :options="secretOption"
@@ -310,7 +308,7 @@ export default {
       <div class="row mt-20">
         <div class="col span-6">
           <RadioGroup
-            v-model="value.spec.events.enabled"
+            v-model:value="value.spec.events.enabled"
             name="enabled"
             :options="[true, false]"
             :label="t('harvester.seeder.inventory.event.label')"
@@ -323,7 +321,7 @@ export default {
           class="col span-6"
         >
           <LabeledInput
-            v-model="value.spec.events.pollingInterval"
+            v-model:value="value.spec.events.pollingInterval"
             :label="t('harvester.seeder.inventory.pollingInterval.label')"
             :mode="mode"
           />
@@ -344,20 +342,20 @@ export default {
 
         <template #content>
           <NameNsDescription
-            v-model="secret"
+            v-model:value="secret"
             :namespaced="true"
             mode="create"
           />
 
           <LabeledInput
-            v-model="username"
+            v-model:value="username"
             :label="t('harvester.virtualMachine.input.username')"
             class="mb-20"
             required
           />
 
           <LabeledInput
-            v-model="password"
+            v-model:value="password"
             type="password"
             :label="t('harvester.virtualMachine.input.password')"
             class="mb-20"

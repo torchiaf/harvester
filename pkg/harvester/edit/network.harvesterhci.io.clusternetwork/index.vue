@@ -70,7 +70,7 @@ export default {
       :namespaced="false"
     />
     <ResourceTabs
-      v-model="value"
+      v-model:value="value"
       :mode="mode"
       :side-tabs="true"
     >

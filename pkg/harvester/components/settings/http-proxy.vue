@@ -57,25 +57,25 @@ export default {
       <t k="harvester.setting.httpProxy.warning" :raw="true" />
     </Banner>
 
-    <div class="row" @input="update">
+    <div class="row" @update:value="update">
       <div class="col span-12">
         <template>
           <LabeledInput
-            v-model="parseDefaultValue.httpProxy"
+            v-model:value="parseDefaultValue.httpProxy"
             class="mb-20"
             :mode="mode"
             label="http-proxy"
           />
 
           <LabeledInput
-            v-model="parseDefaultValue.httpsProxy"
+            v-model:value="parseDefaultValue.httpsProxy"
             class="mb-20"
             :mode="mode"
             label="https-proxy"
           />
 
           <LabeledInput
-            v-model="parseDefaultValue.noProxy"
+            v-model:value="parseDefaultValue.noProxy"
             class="mb-20"
             :mode="mode"
             label="no-proxy"

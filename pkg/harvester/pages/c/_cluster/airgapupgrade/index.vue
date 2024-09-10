@@ -227,7 +227,7 @@ export default {
       @cancel="done"
     >
       <RadioGroup
-        v-model="imageSource"
+        v-model:value="imageSource"
         class="image-group"
         name="image"
         :options="[
@@ -245,18 +245,18 @@ export default {
       <div v-if="uploadImage">
         <LabeledInput v-model.trim="imageValue.spec.displayName" class="mb-20" label-key="harvester.fields.name" required />
 
-        <LabeledInput v-model="imageValue.spec.checksum" class="mb-10" label-key="harvester.setting.upgrade.checksum" />
+        <LabeledInput v-model:value="imageValue.spec.checksum" class="mb-10" label-key="harvester.setting.upgrade.checksum" />
 
         <Checkbox
           v-if="canEnableLogging"
-          v-model="enableLogging"
+          v-model:value="enableLogging"
           class="check mb-20"
           type="checkbox"
           :label="t('harvester.upgradePage.enableLogging')"
         />
 
         <RadioGroup
-          v-model="sourceType"
+          v-model:value="sourceType"
           class="mb-20 image-group"
           name="sourceType"
           :options="[
@@ -302,7 +302,7 @@ export default {
 
       <LabeledSelect
         v-else
-        v-model="imageId"
+        v-model:value="imageId"
         :options="osImageOptions"
         required
         class="mb-20"
@@ -314,7 +314,7 @@ export default {
 
 <style lang="scss" scoped>
 #air-gap {
-  ::v-deep .image-group .radio-group {
+  :deep() .image-group .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;

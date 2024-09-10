@@ -116,9 +116,7 @@ export default {
 
       <div>
         <Checkbox
-          v-for="disk in allDisk"
-          :key="disk.name"
-          v-model="disk.value"
+           v-for="(disk, i) in allDisk" :key="i" v-model:value="disk.value"
           :label="disk.name"
         />
       </div>

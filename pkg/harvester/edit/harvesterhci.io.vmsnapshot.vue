@@ -206,7 +206,7 @@ export default {
     <div class="content">
       <div class="mb-20">
         <RadioGroup
-          v-model="restoreNewVm"
+          v-model:value="restoreNewVm"
           name="model"
           :options="[true,false]"
           :labels="[t('harvester.backup.restore.createNew'), t('harvester.backup.restore.replaceExisting')]"
@@ -218,7 +218,7 @@ export default {
       <div class="row">
         <div class="col span-6">
           <LabeledSelect
-            v-model="namespace"
+            v-model:value="namespace"
             :disabled="true"
             :label="t('nameNsDescription.namespace.label')"
             :options="namespaces"
@@ -227,7 +227,7 @@ export default {
 
         <div class="col span-6">
           <LabeledInput
-            v-model="name"
+            v-model:value="name"
             :disabled="!restoreNewVm"
             :label="t('harvester.backup.restore.virtualMachineName')"
             :placeholder="t('nameNsDescription.name.placeholder')"
@@ -236,9 +236,9 @@ export default {
         </div>
       </div>
 
-      <LabeledSelect v-model="snapshotName" class="mb-20" :label="t('harvester.vmSnapshot.snapshot')" :options="snapshotOption" />
+      <LabeledSelect v-model:value="snapshotName" class="mb-20" :label="t('harvester.vmSnapshot.snapshot')" :options="snapshotOption" />
 
-      <LabeledSelect v-if="!restoreNewVm" v-model="deletionPolicy" :label="t('harvester.backup.restore.deletePreviousVolumes')" :options="deletionPolicyOption" />
+      <LabeledSelect v-if="!restoreNewVm" v-model:value="deletionPolicy" :label="t('harvester.backup.restore.deletePreviousVolumes')" :options="deletionPolicyOption" />
     </div>
 
     <Footer mode="create" class="footer" :errors="errors" @save="saveRestore" @done="done" />
@@ -251,7 +251,7 @@ export default {
   flex-grow: 1;
   flex-direction: column;
 
-  ::v-deep .radio-group {
+  :deep() .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;
@@ -271,7 +271,7 @@ export default {
     margin-bottom: -$space-m;
     padding: $space-s $space-m;
 
-    ::v-deep .spacer-small {
+    :deep() .spacer-small {
       padding: 0px;
     }
   }

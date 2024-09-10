@@ -85,14 +85,14 @@ export default {
     <NameNsDescription
       ref="nd"
       :key="randomString"
-      v-model="value"
+      v-model:value="value"
       :mode="mode"
     />
 
     <Tabbed v-bind="$attrs" class="mt-15" :side-tabs="true">
       <Tab name="basic" :label="t('harvester.sshKey.tabs.basics')" :weight="1" class="bordered-table">
         <LabeledInput
-          v-model="publicKey"
+          v-model:value="publicKey"
           type="multiline"
           :mode="mode"
           :min-height="160"

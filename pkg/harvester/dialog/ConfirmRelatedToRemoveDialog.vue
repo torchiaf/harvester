@@ -146,11 +146,11 @@ export default {
       <div class="mb-10">
         <CopyToClipboardText :text="nameToMatch" />
       </div>
-      <input id="confirm" v-model="confirmName" type="text" />
+      <input id="confirm" v-model:value="confirmName" type="text" />
       <div class="text-info mt-20">
         {{ protip }}
       </div>
-      <Banner v-for="(error, i) in errors" :key="i" class="" color="error" :label="error" />
+      <Banner v-for="(error, i) in errors" :key="i"/>
     </div>
     <template #actions>
       <button class="btn role-secondary mr-10" @click="close">

@@ -95,7 +95,7 @@ export default {
     />
 
     <template #body>
-      <LabeledInput v-model="backUpName" :label="t('generic.name')" required />
+      <LabeledInput v-model:value="backUpName" :label="t('generic.name')" required />
     </template>
 
     <div slot="actions" class="actions">

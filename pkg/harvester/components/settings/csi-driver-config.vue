@@ -181,7 +181,7 @@ export default {
 
 <template>
   <div>
-    <InfoBox v-for="(driver, idx) in configArr" :key="driver.key" class="box">
+    <InfoBox v-for="(driver, idx) in configArr" :key="idx">
       <button :disabled="disableEdit(driver.key)" type="button" class="role-link btn btn-sm remove" @click="remove(idx)">
         <i class="icon icon-x" />
       </button>
@@ -189,7 +189,7 @@ export default {
       <div class="row">
         <div class="col span-4">
           <LabeledSelect
-            v-model="driver.key"
+            v-model:value="driver.key"
             :mode="mode"
             required
             :disabled="disableEdit(driver.key)"
@@ -197,33 +197,33 @@ export default {
             :searchable="true"
             :options="provisioners"
             @keydown.native.enter.prevent="()=>{}"
-            @input="update"
+            @update:value="update"
           />
         </div>
 
         <div class="col span-4">
           <LabeledSelect
-            v-model="driver.value.volumeSnapshotClassName"
+            v-model:value="driver.value.volumeSnapshotClassName"
             :mode="mode"
             required
             :disabled="disableEdit(driver.key)"
             :options="getVolumeSnapshotOptions(driver.key)"
             :label="t('harvester.setting.csiDriverConfig.volumeSnapshotClassName')"
             @keydown.native.enter.prevent="()=>{}"
-            @input="update"
+            @update:value="update"
           />
         </div>
 
         <div class="col span-4">
           <LabeledSelect
-            v-model="driver.value.backupVolumeSnapshotClassName"
+            v-model:value="driver.value.backupVolumeSnapshotClassName"
             :mode="mode"
             required
             :disabled="disableEdit(driver.key)"
             :options="getVolumeSnapshotOptions(driver.key)"
             :label="t('harvester.setting.csiDriverConfig.backupVolumeSnapshotClassName')"
             @keydown.native.enter.prevent="()=>{}"
-            @input="update"
+            @update:value="update"
           />
         </div>
       </div>

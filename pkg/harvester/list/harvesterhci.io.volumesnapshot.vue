@@ -71,6 +71,6 @@ export default {
     :schema="schema"
     :rows="filteredRows"
     key-field="_key"
-    v-on="$listeners"
+    
   />
 </template>

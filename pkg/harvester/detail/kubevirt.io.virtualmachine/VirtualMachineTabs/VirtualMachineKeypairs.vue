@@ -66,7 +66,7 @@ export default {
 
 <template>
   <div class="overview-sshKeys">
-    <div v-for="(ssh, index) in sshKeys" :key="index" class="row overview-sshKeys__item">
+    <div v-for="(ssh, index) in sshKeys" :key="index">
       <div class="col span-4">
         {{ ssh.id }}
       </div>

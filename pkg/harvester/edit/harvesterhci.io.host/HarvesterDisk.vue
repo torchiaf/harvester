@@ -151,7 +151,7 @@ export default {
 </script>
 
 <template>
-  <div class="disk" @input="update">
+  <div class="disk" @update:value="update">
     <div class="mt-10" />
     <Banner
       v-if="mountedMessage && isProvisioned"
@@ -172,7 +172,7 @@ export default {
       <div class="row">
         <div class="col span-12">
           <DiskTags
-            v-model="value.tags"
+            v-model:value="value.tags"
             :label="t('harvester.host.disk.tags.label')"
             :add-label="t('harvester.host.disk.tags.addLabel')"
             :mode="mode"
@@ -228,7 +228,7 @@ export default {
     <div class="row mt-10">
       <div class="col span-12">
         <LabeledInput
-          v-model="value.displayName"
+          v-model:value="value.displayName"
           :label="t('generic.name')"
           :disabled="true"
         />
@@ -237,7 +237,7 @@ export default {
     <div v-if="(value.isNew && !isFormatted) || isCorrupted" class="row mt-10">
       <div class="col span-6">
         <RadioGroup
-          v-model="value.forceFormatted"
+          v-model:value="value.forceFormatted"
           :mode="mode"
           name="forceFormatted"
           label-key="harvester.host.disk.forceFormatted.label"

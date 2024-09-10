@@ -37,7 +37,7 @@ export default {
       :weight="99"
     >
       <RadioGroup
-        v-model="value.spec.enabled"
+        v-model:value="value.spec.enabled"
         class="mb-20"
         name="model"
         :mode="mode"
@@ -49,7 +49,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  ::v-deep .radio-group {
+  :deep() .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;

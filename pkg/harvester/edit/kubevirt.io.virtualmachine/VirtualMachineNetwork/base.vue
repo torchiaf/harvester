@@ -198,12 +198,12 @@ export default {
           :mode="mode"
         >
           <LabeledInput
-            v-model="value.name"
+            v-model:value="value.name"
             :label="t('harvester.fields.name')"
             required
             :mode="mode"
             :disabled="isDisabled"
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -218,13 +218,13 @@ export default {
           :mode="mode"
         >
           <LabeledSelect
-            v-model="value.model"
+            v-model:value="value.model"
             :label="t('harvester.fields.model')"
             :disabled="isDisabled"
             :options="modelOption"
             :mode="mode"
             required
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -241,13 +241,13 @@ export default {
           :mode="mode"
         >
           <LabeledSelect
-            v-model="value.networkName"
+            v-model:value="value.networkName"
             :label="t('harvester.fields.network')"
             :options="allNetworkOption"
             :mode="mode"
             required
             :disabled="isDisabled"
-            @input="updateNetworkName"
+            @update:value="updateNetworkName"
           />
         </InputOrDisplay>
       </div>
@@ -262,12 +262,12 @@ export default {
           :mode="mode"
         >
           <LabeledSelect
-            v-model="value.type"
+            v-model:value="value.type"
             :label="t('harvester.fields.type')"
             :options="typeOption"
             :mode="mode"
             required
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -292,11 +292,11 @@ export default {
             :mode="mode"
           >
             <LabeledInput
-              v-model="value.macAddress"
+              v-model:value="value.macAddress"
               label-key="harvester.fields.macAddress"
               :mode="mode"
               :tooltip="t('harvester.virtualMachine.volume.macTip')"
-              @input="update"
+              @update:value="update"
             />
           </InputOrDisplay>
         </div>

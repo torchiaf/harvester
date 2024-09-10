@@ -91,11 +91,11 @@ export default {
     </template>
 
     <template #body>
-      <Checkbox v-model="cloneData" class="mb-10" label-key="harvester.modal.cloneVM.type" />
+      <Checkbox v-model:value="cloneData" class="mb-10" label-key="harvester.modal.cloneVM.type" />
 
       <LabeledInput
         v-show="cloneData"
-        v-model="name"
+        v-model:value="name"
         class="mb-20"
         :label="t('harvester.modal.cloneVM.name')"
         required
@@ -116,7 +116,7 @@ export default {
         />
       </div>
 
-      <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
+      <Banner v-for="(err, i) in errors" :key="i"/>
     </div>
   </Card>
 </template>

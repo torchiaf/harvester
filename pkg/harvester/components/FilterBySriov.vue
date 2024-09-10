@@ -88,7 +88,7 @@ export default {
         <div class="filter-popup">
           <div>
             <LabeledSelect
-              v-model="parentSriov"
+              v-model:value="parentSriov"
               :options="parentSriovOptions"
               :searchable="true"
               :label="label"
@@ -121,7 +121,7 @@ export default {
   width: 300px;
 }
 
-::v-deep .box {
+:deep() .box {
   display: grid;
   grid-template-columns: 40% 40% 10%;
   column-gap: 1.75%;

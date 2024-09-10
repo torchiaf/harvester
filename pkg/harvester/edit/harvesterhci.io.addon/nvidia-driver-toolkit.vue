@@ -110,13 +110,13 @@ export default {
           :mode="mode"
           :options="[true,false]"
           :labels="[t('generic.enabled'), t('generic.disabled')]"
-          @input="toggleEnable"
+          @update:value="toggleEnable"
         />
         <div v-if="value.spec.enabled">
           <div v-if="valuesContentJson.image" class="row mb-15">
             <div class="col span-6">
               <LabeledInput
-                v-model="valuesContentJson.image.repo"
+                v-model:value="valuesContentJson.image.repo"
                 :mode="mode"
                 :required="true"
                 label-key="harvester.addons.nvidiaDriverToolkit.image.repository"
@@ -124,7 +124,7 @@ export default {
             </div>
             <div class="col span-6">
               <LabeledInput
-                v-model="valuesContentJson.image.tag"
+                v-model:value="valuesContentJson.image.tag"
                 :mode="mode"
                 :required="true"
                 class="col span-6"
@@ -134,7 +134,7 @@ export default {
           </div>
           <div class="row mb-15">
             <LabeledInput
-              v-model="valuesContentJson.driverLocation"
+              v-model:value="valuesContentJson.driverLocation"
               :mode="mode"
               :required="true"
               label-key="harvester.addons.nvidiaDriverToolkit.driver.location"
@@ -147,7 +147,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  ::v-deep .radio-group {
+  :deep() .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;

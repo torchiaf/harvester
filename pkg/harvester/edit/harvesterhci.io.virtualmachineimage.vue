@@ -280,7 +280,7 @@ export default {
   >
     <NameNsDescription
       ref="nd"
-      v-model="value"
+      v-model:value="value"
       :mode="mode"
       :label="t('generic.name')"
       name-key="spec.displayName"
@@ -295,7 +295,7 @@ export default {
       >
         <RadioGroup
           v-if="isCreate"
-          v-model="value.spec.sourceType"
+          v-model:value="value.spec.sourceType"
           name="model"
           :options="[
             'download',
@@ -311,7 +311,7 @@ export default {
           <div class="col span-12">
             <LabeledInput
               v-if="!isCreate"
-              v-model="value.spec.sourceType"
+              v-model:value="value.spec.sourceType"
               :mode="mode"
               class="mb-20"
               :disabled="isEdit"
@@ -320,7 +320,7 @@ export default {
 
             <LabeledInput
               v-if="value.spec.sourceType === 'download'"
-              v-model="value.spec.url"
+              v-model:value="value.spec.url"
               :mode="mode"
               :disabled="isEdit"
               class="mb-20 labeled-input--tooltip"
@@ -332,7 +332,7 @@ export default {
             <div v-else>
               <LabeledInput
                 v-if="isView"
-                v-model="imageName"
+                v-model:value="imageName"
                 :mode="mode"
                 class="mt-20"
                 label-key="harvester.image.fileName"
@@ -368,7 +368,7 @@ export default {
 
             <LabeledInput
               v-if="value.spec.sourceType === 'download'"
-              v-model="value.spec.checksum"
+              v-model:value="value.spec.checksum"
               :mode="mode"
               :disabled="isEdit"
               label-key="harvester.image.checksum"
@@ -387,7 +387,7 @@ export default {
         <div class="row">
           <div class="col span-6">
             <LabeledSelect
-              v-model="storageClassName"
+              v-model:value="storageClassName"
               :options="storageClassOptions"
               :label="t('harvester.storage.storageClass.label')"
               :mode="mode"
@@ -408,28 +408,28 @@ export default {
           :pad-left="false"
           :read-allowed="false"
           @focusKey="focusKey"
-          @input="value.setLabels($event)"
+          @update:value="value.setLabels($event)"
         >
           <template #value="{row, keyName, valueName, queueUpdate}">
             <Select
               v-if="internalAnnotations(row)"
-              v-model="row[valueName]"
+              v-model:value="row[valueName]"
               :mode="mode"
               :searchable="true"
               :clearable="false"
               :options="calculateOptions(row[keyName])"
-              @input="queueUpdate"
+              @update:value="queueUpdate"
             />
             <input
               v-else
-              v-model="row[valueName]"
+              v-model:value="row[valueName]"
               :disabled="isView"
               :type="'text'"
               :placeholder="t('keyValue.valuePlaceholder')"
               autocorrect="off"
               autocapitalize="off"
               spellcheck="false"
-              @input="queueUpdate"
+              @update:value="queueUpdate"
             />
           </template>
         </KeyValue>

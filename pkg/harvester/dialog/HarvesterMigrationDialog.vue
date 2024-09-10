@@ -141,7 +141,7 @@ export default {
 
     <template #body>
       <LabeledSelect
-        v-model="nodeName"
+        v-model:value="nodeName"
         :label="t('harvester.modal.migration.fields.nodeName.label')"
         :placeholder="t('harvester.modal.migration.fields.nodeName.placeholder')"
         :options="nodeNameList"
@@ -161,7 +161,7 @@ export default {
         />
       </div>
 
-      <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
+      <Banner v-for="(err, i) in errors" :key="i"/>
     </div>
   </Card>
 </template>

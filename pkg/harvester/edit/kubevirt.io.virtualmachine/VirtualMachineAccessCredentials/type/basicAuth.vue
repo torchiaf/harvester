@@ -61,10 +61,10 @@ export default {
 </script>
 
 <template>
-  <div class="row" @input="update">
+  <div class="row" @update:value="update">
     <div class="col span-6">
       <AccessCredentialsUsers
-        v-model="value.username"
+        v-model:value="value.username"
         :resource="resource"
         :user-options="userOptions"
         :multiple="false"
@@ -76,7 +76,7 @@ export default {
     <div class="col span-6">
       <Password
         ref="password"
-        v-model="value.newPassword"
+        v-model:value="value.newPassword"
         :mode="mode"
         :disabled="mode !== 'edit'"
         :label="t('harvester.virtualMachine.input.password')"

@@ -102,9 +102,9 @@ export default {
         default-sort-by="age"
         :rows="rows"
         key-field="_key"
-        v-on="$listeners"
+        
       >
-        <template slot="cell:state" slot-scope="scope">
+        <template cell:state="scope">
           <div class="state">
             <HarvesterVmState class="vmstate" :row="scope.row" :all-cluster-network="allClusterNetwork" />
           </div>
@@ -116,11 +116,11 @@ export default {
 
 <style lang="scss" scoped>
 #host-instances {
-  ::v-deep thead th {
+  :deep() thead th {
     vertical-align: middle;
   }
 
-  ::v-deep .state {
+  :deep() .state {
     display: flex;
 
     .vmstate {

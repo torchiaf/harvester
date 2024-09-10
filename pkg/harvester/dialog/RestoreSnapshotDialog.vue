@@ -129,13 +129,13 @@ export default {
     </template>
     <template #body>
       <LabeledInput
-        v-model="name"
+        v-model:value="name"
         :label="t('harvester.modal.restoreSnapshot.name')"
         required
       />
       <LabeledSelect
         v-if="showStorageClass"
-        v-model="storageClassName"
+        v-model:value="storageClassName"
         :options="storageClassOptions"
         :label="t('harvester.storage.storageClass.label')"
         class="mt-20"
@@ -153,7 +153,7 @@ export default {
           @click="save"
         />
       </div>
-      <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
+      <Banner v-for="(err, i) in errors" :key="i"/>
     </div>
   </Card>
 </template>

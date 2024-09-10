@@ -141,7 +141,7 @@ export default {
 <template>
   <div class="vm__credentials-users">
     <LabeledSelect
-      v-model="selectedUser"
+      v-model:value="selectedUser"
       :options="userOptions"
       :label="t('harvester.virtualMachine.accessCredentials.injectSSH.users')"
       :taggable="multiple"
@@ -167,7 +167,7 @@ export default {
 
       <template #content>
         <LabeledInput
-          v-model="newUsername"
+          v-model:value="newUsername"
           :label="t('harvester.virtualMachine.input.username')"
           class="mb-20"
           required

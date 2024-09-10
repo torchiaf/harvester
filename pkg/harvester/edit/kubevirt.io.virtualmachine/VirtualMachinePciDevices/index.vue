@@ -226,7 +226,7 @@ export default {
         <div class="row">
           <div class="col span-6">
             <LabeledSelect
-              v-model="selectedDevices"
+              v-model:value="selectedDevices"
               label="Available PCI Devices"
               searchable
               multiple
@@ -244,7 +244,7 @@ export default {
           <div class="col span-12 text-muted">
             Compatible hosts:
             <!-- eslint-disable-next-line vue/no-parsing-error -->
-            <span v-for="(node, idx) in compatibleNodes" :key="node">{{ node }}{{ idx < compatibleNodes.length-1 ? ', ' : '' }}</span>
+            <span v-for="(node, idx) in compatibleNodes" :key="idx">{{ node }}{{ idx < compatibleNodes.length-1 ? ', ' : '' }}</span>
           </div>
         </div>
         <div v-else-if="selectedDevices.length" class="text-error">

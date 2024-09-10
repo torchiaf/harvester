@@ -118,8 +118,8 @@ export default {
     />
 
     <template #body>
-      <LabeledInput v-model="actionResource.metadata.namespace" :disabled="true" :label="t('generic.namespace')" />
-      <LabeledInput v-model="snapshotName" class="mt-20" :label="t('generic.name')" required />
+      <LabeledInput v-model:value="actionResource.metadata.namespace" :disabled="true" :label="t('generic.namespace')" />
+      <LabeledInput v-model:value="snapshotName" class="mt-20" :label="t('generic.name')" required />
     </template>
 
     <div slot="actions" class="actions">
@@ -131,7 +131,7 @@ export default {
         <AsyncButton mode="create" :disabled="!snapshotName" @click="save" />
       </div>
 
-      <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
+      <Banner v-for="(err, i) in errors" :key="i"/>
     </div>
   </Card>
 </template>

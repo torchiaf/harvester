@@ -70,7 +70,7 @@ export default {
       :schema="schema"
       :sort-generation-fn="sortGenerationFn"
       key-field="_key"
-      v-on="$listeners"
+      
     >
       <template #more-header-middle>
         <FilterLabel ref="filterLabel" :rows="rows" @changeRows="changeRows" />

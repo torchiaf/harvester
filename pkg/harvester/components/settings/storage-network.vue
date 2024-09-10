@@ -165,19 +165,19 @@ export default {
 <template>
   <div
     :class="mode"
-    @input="update"
+    @update:value="update"
   >
     <Banner color="warning">
       <t k="harvester.setting.storageNetwork.warning" :raw="true" />
     </Banner>
 
     <RadioGroup
-      v-model="openVlan"
+      v-model:value="openVlan"
       class="mb-20"
       name="model"
       :options="[true,false]"
       :labels="[t('generic.enabled'), t('generic.disabled')]"
-      @input="update"
+      @update:value="update"
     />
 
     <div v-if="openVlan">
@@ -190,16 +190,16 @@ export default {
       />
 
       <LabeledSelect
-        v-model="parsedDefaultValue.clusterNetwork"
+        v-model:value="parsedDefaultValue.clusterNetwork"
         label-key="harvester.setting.storageNetwork.clusterNetwork"
         class="mb-20"
         required
         :options="clusterNetworkOptions"
-        @input="update"
+        @update:value="update"
       />
 
       <LabeledInput
-        v-model="parsedDefaultValue.range"
+        v-model:value="parsedDefaultValue.range"
         class="mb-5"
         :mode="mode"
         required
@@ -211,12 +211,12 @@ export default {
       </Tip>
 
       <ArrayList
-        v-model="exclude"
+        v-model:value="exclude"
         :show-header="true"
         :default-add-value="defaultAddValue"
         :mode="mode"
         :add-label="t('harvester.setting.storageNetwork.exclude.addIp')"
-        @input="update"
+        @update:value="update"
       >
         <template v-slot:column-headers>
           <div class="box">
@@ -228,9 +228,9 @@ export default {
         <template v-slot:columns="scope">
           <div class="key">
             <input
-              v-model="scope.row.value"
+              v-model:value="scope.row.value"
               :placeholder="t('harvester.setting.storageNetwork.exclude.placeholder')"
-              @input="update"
+              @update:value="update"
             />
           </div>
         </template>

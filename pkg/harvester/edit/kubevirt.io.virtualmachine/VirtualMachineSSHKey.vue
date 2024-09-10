@@ -239,7 +239,7 @@ export default {
 <template>
   <div>
     <LabeledSelect
-      v-model="checkedSsh"
+      v-model:value="checkedSsh"
       :label="t('harvester.virtualMachine.input.sshKey')"
       :taggable="true"
       :mode="mode"
@@ -247,7 +247,7 @@ export default {
       :searchable="searchable"
       :disabled="disabled"
       :options="sshOption"
-      @input="update"
+      @update:value="update"
     />
 
     <ModalWithCard
@@ -264,7 +264,7 @@ export default {
 
       <template #content>
         <LabeledInput
-          v-model="sshName"
+          v-model:value="sshName"
           :label="t('harvester.virtualMachine.input.name')"
           class="mb-20"
           required
@@ -272,7 +272,7 @@ export default {
         />
 
         <LabeledInput
-          v-model="publicKey"
+          v-model:value="publicKey"
           :label="t('harvester.virtualMachine.input.sshKeyValue')"
           :min-height="160"
           class="mb-20"

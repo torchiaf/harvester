@@ -105,7 +105,7 @@ export default {
     <div class="col span-12">
       <template>
         <LabeledInput
-          v-model="parseDefaultValue.repository"
+          v-model:value="parseDefaultValue.repository"
           class="mb-20"
           :mode="mode"
           required
@@ -113,7 +113,7 @@ export default {
         />
 
         <LabeledInput
-          v-model="parseDefaultValue.tag"
+          v-model:value="parseDefaultValue.tag"
           class="mb-20"
           :mode="mode"
           required
@@ -121,7 +121,7 @@ export default {
         />
 
         <LabeledSelect
-          v-model="parseDefaultValue.imagePullPolicy"
+          v-model:value="parseDefaultValue.imagePullPolicy"
           class="mb-20"
           required
           label-key="harvester.setting.supportBundleImage.imagePullPolicy"

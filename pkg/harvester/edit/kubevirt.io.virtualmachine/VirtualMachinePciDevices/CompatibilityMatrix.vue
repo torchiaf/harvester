@@ -82,18 +82,16 @@ export default {
         </div>
         <div>{{ t('harvester.pci.matrixHostName') }}</div>
       </div>
-      <div v-for="nodeName in allNodeNames" :key="nodeName" class="node-label">
+      <div  v-for="(nodeName, i) in allNodeNames" :key="i" >
         <span>  {{ nodeName }}</span>
       </div>
     </div>
-    <div v-for="deviceCRD in enabledDevices" :key="deviceCRD.metadata.name" class="device-col">
+    <div  v-for="(deviceCRD, i) in enabledDevices" :key="i" >
       <div v-clean-tooltip="deviceTooltip(deviceCRD)" class="compat-cell device-label" :class="{'text-muted': noneAvailable(deviceCRD)}">
         {{ deviceCRD.metadata.name }}
       </div>
       <div
-        v-for="nodeName in allNodeNames"
-        :key="nodeName"
-        class="compat-cell"
+         v-for="(nodeName, i) in allNodeNames" :key="i" class="compat-cell"
         :class="{'has-device': nodeHasDevice(nodeName, deviceCRD)}"
       />
     </div>

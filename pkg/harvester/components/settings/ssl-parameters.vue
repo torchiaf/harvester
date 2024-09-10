@@ -138,22 +138,22 @@ export default {
     <div class="row mt-10">
       <div class="col span-12">
         <LabeledSelect
-          v-model="parsedDefaultValue.protocols"
+          v-model:value="parsedDefaultValue.protocols"
           :mode="mode"
           label-key="harvester.sslParameters.protocols.label"
           :multiple="true"
           :options="protocolOptions"
-          @input="update"
+          @update:value="update"
         />
       </div>
     </div>
     <div class="row mt-20">
       <div class="col span-12">
         <LabeledInput
-          v-model="parsedDefaultValue.ciphers"
+          v-model:value="parsedDefaultValue.ciphers"
           :mode="mode"
           label-key="harvester.sslParameters.ciphers.label"
-          @input="update"
+          @update:value="update"
         />
       </div>
     </div>

@@ -117,7 +117,7 @@ export default {
 
 <template>
   <div class="filter">
-    <template v-for="(label, index) in searchLabels">
+    <template v-for="(label, index) in searchLabels" :key="index">
       <span v-if="label.key" :key="`${label.key}${index}`" class="banner-item bg-warning">
         {{ label.key }}{{ label.value ? "=" : '' }}{{ label.value }}<i class="icon icon-close" @click="remove(label)" />
       </span>
@@ -139,11 +139,11 @@ export default {
         <div class="filter-popup">
           <div>
             <ArrayList
-              v-model="searchLabels"
+              v-model:value="searchLabels"
               :show-header="true"
               :default-add-value="defaultAddValue"
               :initial-empty-row="true"
-              @input="filterRows"
+              @update:value="filterRows"
             >
               <template v-slot:column-headers>
                 <div class="box">
@@ -162,11 +162,11 @@ export default {
                   <Select
                     ref="select"
                     key="label"
-                    v-model="scope.row.value.key"
+                    v-model:value="scope.row.value.key"
                     :append-to-body="false"
                     :searchable="true"
                     :options="optionLabels"
-                    @input="filterRows"
+                    @update:value="filterRows"
                   />
                 </div>
                 <div class="value">
@@ -174,13 +174,13 @@ export default {
                     v-if="calcValueOptions(scope.row.value.key).length > 0"
                     ref="select"
                     key="value"
-                    v-model="scope.row.value.value"
+                    v-model:value="scope.row.value.value"
                     :append-to-body="false"
                     :searchable="true"
                     :options="calcValueOptions(scope.row.value.key)"
-                    @input="filterRows"
+                    @update:value="filterRows"
                   />
-                  <LabeledInput v-else v-model="scope.row.value.value" @input="filterRows" />
+                  <LabeledInput v-else v-model:value="scope.row.value.value" @update:value="filterRows" />
                 </div>
               </template>
 
@@ -234,7 +234,7 @@ export default {
   width: 600px;
 }
 
-::v-deep .box {
+:deep() .box {
   display: grid;
   grid-template-columns: 40% 40% 10%;
   column-gap: 1.75%;

@@ -71,7 +71,7 @@ export default {
 
 <template>
   <ResourceTabs
-    v-model="value"
+    v-model:value="value"
     :need-related="false"
   >
     <Tab

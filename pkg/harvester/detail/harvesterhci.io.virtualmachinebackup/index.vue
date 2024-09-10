@@ -154,7 +154,7 @@ export default {
               <template #value>
                 <div>
                   <ul>
-                    <li v-for="(disk) in disks" :key="disk.bootOrder">
+                    <li  v-for="(disk, i) in disks" :key="i" >
                       {{ disk.bootOrder }}. {{ disk.name }} ({{ getDeviceType(disk) }})
                     </li>
                   </ul>
@@ -167,7 +167,7 @@ export default {
               <template #value>
                 <div>
                   <ul v-if="cdroms.length > 0">
-                    <li v-for="(rom) in cdroms" :key="rom.name">
+                    <li  v-for="(rom, i) in cdroms" :key="i" >
                       {{ rom.name }}
                     </li>
                   </ul>
@@ -186,7 +186,7 @@ export default {
         :label="t('harvester.tab.volume')"
         :weight="-1"
       >
-        <Volume v-model="diskRows" :mode="mode" />
+        <Volume v-model:value="diskRows" :mode="mode" />
       </Tab>
 
       <Tab
@@ -194,11 +194,11 @@ export default {
         :label="t('harvester.tab.network')"
         :weight="-2"
       >
-        <Network v-model="networkRows" :mode="mode" />
+        <Network v-model:value="networkRows" :mode="mode" />
       </Tab>
 
       <Tab name="keypairs" :label="t('harvester.virtualMachine.detail.tabs.keypairs')" class="bordered-table" :weight="-3">
-        <OverviewKeypairs v-if="vm" v-model="vm" />
+        <OverviewKeypairs v-if="vm" v-model:value="vm" />
       </Tab>
 
       <Tab
@@ -214,7 +214,7 @@ export default {
         />
 
         <div class="spacer"></div>
-        <Checkbox v-model="installUSBTablet" :mode="mode" class="check" type="checkbox" :label="t('harvester.virtualMachine.enableUsb')" />
+        <Checkbox v-model:value="installUSBTablet" :mode="mode" class="check" type="checkbox" :label="t('harvester.virtualMachine.enableUsb')" />
       </Tab>
     </Tabbed>
   </CruResource>

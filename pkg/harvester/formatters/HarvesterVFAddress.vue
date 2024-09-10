@@ -48,9 +48,7 @@ export default {
 <template>
   <div class="vfs">
     <span
-      v-for="(vf, index) in rows.visible"
-      :key="vf.name"
-    >
+      v-for="(vf, index) in rows.visible" :key="index">
       <router-link
         :to="vf.to"
       >
@@ -78,9 +76,7 @@ export default {
         <div class="vfs-popup">
           <div>
             <span
-              v-for="(vf, index) in rows.invisible"
-              :key="vf.name"
-            >
+              v-for="(vf, index) in rows.invisible" :key="index">
               <router-link
                 :to="vf.to"
               >

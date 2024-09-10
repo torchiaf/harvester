@@ -134,37 +134,37 @@ export default {
   <div>
     <div class="row">
       <RadioGroup
-        v-model="selectNode"
+        v-model:value="selectNode"
         name="selectNode"
         :options="selectNodeOptions"
         :mode="mode"
-        @input="update"
+        @update:value="update"
       />
     </div>
     <template v-if="selectNode === 'nodeSelector'">
       <div class="row mb-10">
         <div class="col span-6">
           <LabeledSelect
-            v-model="nodeName"
+            v-model:value="nodeName"
             :label="t('workload.scheduling.affinity.nodeName')"
             :options="nodes || []"
             :mode="mode"
             :multiple="false"
-            @input="update"
+            @update:value="update"
           />
         </div>
       </div>
     </template>
     <template v-else-if="selectNode === 'custom'">
       <KeyValue
-        v-model="nodeSelector"
+        v-model:value="nodeSelector"
         :key-label="t('generic.key')"
         :mode="mode"
         :add-label="t('workload.scheduling.affinity.addNodeSelector')"
         :read-allowed="false"
         :value-label="t('generic.value')"
         :initial-empty-row="true"
-        @input="update"
+        @update:value="update"
       />
     </template>
   </div>

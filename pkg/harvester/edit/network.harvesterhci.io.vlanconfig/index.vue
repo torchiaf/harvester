@@ -434,13 +434,11 @@ export default {
         <div class="row mt-20">
           <div class="col span-12">
             <Banner
-              v-for="(err, i) in nicErrors"
-              :key="i"
-              color="warning"
+              v-for="(err, i) in nicErrors" :key="i"color="warning"
               :label="err"
             />
             <ArrayListSelect
-              v-model="value.spec.uplink.nics"
+              v-model:value="value.spec.uplink.nics"
               :mode="mode"
               :options="nicOptions"
               :array-list-props="{
@@ -463,7 +461,7 @@ export default {
         <div class="row">
           <div class="col span-6">
             <LabeledSelect
-              v-model="bondOptionMode"
+              v-model:value="bondOptionMode"
               :label="t('harvester.vlanConfig.uplink.bondOptions.mode.label')"
               :mode="mode"
               :options="bondOptions"

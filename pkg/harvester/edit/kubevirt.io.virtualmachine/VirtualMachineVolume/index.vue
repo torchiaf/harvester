@@ -267,15 +267,13 @@ export default {
       label-key="harvester.virtualMachine.volume.dragTip"
     />
     <draggable
-      v-model="rows"
+      v-model:value="rows"
       :disabled="isView"
       @end="update"
     >
       <transition-group>
         <div
-          v-for="(volume, i) in rows"
-          :key="volume.id"
-        >
+          v-for="(volume, i) in rows" :key="i">
           <InfoBox class="box">
             <button
               v-if="!isView"
@@ -328,7 +326,7 @@ export default {
             <div>
               <component
                 :is="componentFor(volume.source)"
-                v-model="rows[i]"
+                v-model:value="rows[i]"
                 :rows="rows"
                 :namespace="namespace"
                 :is-create="isCreate"

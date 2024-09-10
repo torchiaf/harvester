@@ -128,7 +128,7 @@ export default {
 
     <template #body>
       <LabeledSelect
-        v-model="backupName"
+        v-model:value="backupName"
         :label="t('harvester.modal.restore.selectBackup')"
         :localized-label="true"
         :options="backupOption"

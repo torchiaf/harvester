@@ -200,7 +200,7 @@ export default {
     <div class="mb-20">
       <DataTemplate
         ref="userTemplate"
-        v-model="userScript"
+        v-model:value="userScript"
         type="user"
         :view-code="viewCode"
         :mode="mode"
@@ -215,7 +215,7 @@ export default {
     <div class="mb-20">
       <DataTemplate
         ref="networkTemplate"
-        v-model="networkScript"
+        v-model:value="networkScript"
         type="network"
         :view-code="viewCode"
         :mode="mode"
@@ -240,7 +240,7 @@ export default {
 
       <template #content>
         <LabeledInput
-          v-model="cloudTemplateName"
+          v-model:value="cloudTemplateName"
           :label="t('harvester.virtualMachine.input.name')"
           class="mb-20"
           required
@@ -251,7 +251,7 @@ export default {
           <div class="resource-yaml">
             <YamlEditor
               ref="createTemplate"
-              v-model="cloudTemplate"
+              v-model:value="cloudTemplate"
               class="yaml-editor"
               :editor-mode="editorMode"
             />
@@ -270,7 +270,7 @@ $yaml-height: 350px;
   overflow: auto;
 }
 
-::v-deep .resource-yaml {
+:deep() .resource-yaml {
   flex: 1;
   display: flex;
   flex-direction: column;

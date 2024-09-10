@@ -132,7 +132,7 @@ export default {
       :weight="99"
     >
       <RadioGroup
-        v-model="value.spec.enabled"
+        v-model:value="value.spec.enabled"
         class="mb-20"
         name="model"
         :mode="mode"
@@ -144,40 +144,40 @@ export default {
         <div class="row mt-10">
           <div class="col span-6">
             <LabeledInput
-              v-model="valuesContent.resources.limits.cpu"
+              v-model:value="valuesContent.resources.limits.cpu"
               :label="t('monitoring.prometheus.config.limits.cpu')"
               :required="true"
               :mode="mode"
-              @input="update"
+              @update:value="update"
             />
           </div>
           <div class="col span-6">
             <LabeledInput
-              v-model="valuesContent.resources.limits.memory"
+              v-model:value="valuesContent.resources.limits.memory"
               :label="t('monitoring.prometheus.config.limits.memory')"
               :required="true"
               :mode="mode"
-              @input="update"
+              @update:value="update"
             />
           </div>
         </div>
         <div class="row mt-10">
           <div class="col span-6">
             <LabeledInput
-              v-model="valuesContent.resources.requests.cpu"
+              v-model:value="valuesContent.resources.requests.cpu"
               :label="t('monitoring.prometheus.config.requests.cpu')"
               :required="true"
               :mode="mode"
-              @input="update"
+              @update:value="update"
             />
           </div>
           <div class="col span-6">
             <LabeledInput
-              v-model="valuesContent.resources.requests.memory"
+              v-model:value="valuesContent.resources.requests.memory"
               :label="t('monitoring.prometheus.config.requests.memory')"
               :required="true"
               :mode="mode"
-              @input="update"
+              @update:value="update"
             />
           </div>
         </div>
@@ -186,34 +186,34 @@ export default {
         <h2>{{ t('harvester.addons.vmImport.titles.pvc') }}</h2>
         <div v-if="value.spec.enabled">
           <RadioGroup
-            v-model="valuesContent.pvcClaim.enabled"
+            v-model:value="valuesContent.pvcClaim.enabled"
             class="mb-20"
             name="model"
             :mode="mode"
             :options="[true,false]"
             :labels="[t('generic.enabled'), t('generic.disabled')]"
-            @input="update"
+            @update:value="update"
           />
 
           <div v-if="valuesContent.pvcClaim.enabled">
             <div class="row mt-10">
               <div class="col span-6">
                 <LabeledInput
-                  v-model="valuesContent.pvcClaim.size"
+                  v-model:value="valuesContent.pvcClaim.size"
                   :label="t('harvester.volume.size')"
                   :required="true"
                   :mode="mode"
-                  @input="update"
+                  @update:value="update"
                 />
               </div>
               <div class="col span-6">
                 <LabeledSelect
-                  v-model="valuesContent.pvcClaim.storageClassName"
+                  v-model:value="valuesContent.pvcClaim.storageClassName"
                   :options="storageClassOptions"
                   :label="t('harvester.storage.storageClass.label')"
                   :mode="mode"
                   class="mb-20"
-                  @input="update"
+                  @update:value="update"
                 />
               </div>
             </div>
@@ -225,7 +225,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  ::v-deep .radio-group {
+  :deep() .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;

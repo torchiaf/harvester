@@ -71,7 +71,7 @@ export default {
     </template>
     <template #body>
       <LabeledInput
-        v-model="name"
+        v-model:value="name"
         :label="t('harvester.modal.snapshot.name')"
         required
       />

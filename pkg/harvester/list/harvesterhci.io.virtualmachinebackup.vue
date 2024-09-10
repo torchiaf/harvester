@@ -214,7 +214,7 @@ export default {
       :schema="schema"
       key-field="_key"
       default-sort-by="age"
-      v-on="$listeners"
+      
     >
       <template #col:name="{row}">
         <td>

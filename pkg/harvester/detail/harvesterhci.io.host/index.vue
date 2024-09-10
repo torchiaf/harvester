@@ -378,7 +378,7 @@ export default {
     >
       <Tab name="basics" :label="t('harvester.host.tabs.basics')" :weight="4" class="bordered-table">
         <Basic
-          v-model="value"
+          v-model:value="value"
           :metrics="metrics"
           :mode="mode"
         />
@@ -394,9 +394,7 @@ export default {
         class="bordered-table"
       >
         <InfoBox
-          v-for="vlan in vlanStatuses"
-          :key="vlan.id"
-        >
+           v-for="(vlan, i) in vlanStatuses" :key="i" >
           <VlanStatus
             :value="vlan"
             :mode="mode"
@@ -420,7 +418,7 @@ export default {
             >
               <template #value>
                 <div class="mt-5">
-                  <Tag v-for="(prop, key) in longhornNode.spec.tags" :key="key + prop" class="mr-5">
+                  <Tag v-for="(prop, key) in longhornNode.spec.tags" :key="key">
                     {{ prop }}
                   </Tag>
                 </div>
@@ -429,14 +427,14 @@ export default {
           </div>
         </div>
         <ArrayListGrouped
-          v-model="newDisks"
+          v-model:value="newDisks"
           :mode="mode"
           :can-remove="false"
           :initial-empty-row="false"
         >
           <template #default="props">
             <Disk
-              v-model="props.row.value"
+              v-model:value="props.row.value"
               class="mb-20"
               :mode="mode"
               :disks="disks"

@@ -92,7 +92,7 @@ export default {
 </script>
 
 <template>
-  <div class="disk" @input="update">
+  <div class="disk" @update:value="update">
     <Banner
       v-if="mountedMessage"
       color="error"
@@ -107,7 +107,7 @@ export default {
           >
             <template #value>
               <div class="mt-5">
-                <Tag v-for="(prop, key) in value.tags" :key="key + prop" class="mr-5">
+                <Tag v-for="(prop, key) in value.tags" :key="key">
                   {{ prop }}
                 </Tag>
               </div>

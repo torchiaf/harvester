@@ -124,13 +124,13 @@ export default {
           class="content"
         >
           <LabeledInput
-            v-model="url"
+            v-model:value="url"
             :label="t('harvester.modal.bundle.url')"
             class="mb-20"
           />
 
           <LabeledInput
-            v-model="description"
+            v-model:value="description"
             :label="t('harvester.modal.bundle.description')"
             type="multiline"
             :min-height="120"
@@ -154,9 +154,7 @@ export default {
         </div>
 
         <div
-          v-for="(err, idx) in errors"
-          :key="idx"
-        >
+          v-for="(err, idx) in errors" :key="idx">
           <Banner
             color="error"
             :label="stringify(err)"

@@ -42,7 +42,7 @@ export default {
   <SerialConsole
     v-else
     ref="serialConsole"
-    v-model="vmi"
+    v-model:value="vmi"
   />
 </template>
 

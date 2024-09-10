@@ -254,7 +254,7 @@ export default {
         <div class="row">
           <div class="col span-6">
             <LabeledSelect
-              v-model="value.spec.ipam"
+              v-model:value="value.spec.ipam"
               :label="t('harvester.loadBalancer.ipam.label')"
               :options="ipamOption"
               :mode="mode"
@@ -265,11 +265,11 @@ export default {
             class="col span-6"
           >
             <LabeledSelect
-              v-model="value.spec.ipPool"
+              v-model:value="value.spec.ipPool"
               :label="t('harvester.loadBalancer.ipPool.label')"
               :options="ipPoolOptions"
               :mode="mode"
-              @input="update"
+              @update:value="update"
             />
           </div>
         </div>
@@ -288,7 +288,7 @@ export default {
           <span v-clean-html="healthCheckPortInUseWarning" />
         </Banner>
         <Listeners
-          v-model="value.spec.listeners"
+          v-model:value="value.spec.listeners"
           class="col span-12"
           :mode="mode"
         />
@@ -308,7 +308,7 @@ export default {
           </div>
         </div>
         <KeyValue
-          v-model="backendServerSelector"
+          v-model:value="backendServerSelector"
           :mode="mode"
           :read-allowed="false"
           :initial-empty-row="true"
@@ -322,7 +322,7 @@ export default {
         class="bordered-table"
       >
         <HealthCheck
-          v-model="value.spec.healthCheck"
+          v-model:value="value.spec.healthCheck"
           :mode="mode"
           :model="value"
           @enabled="healthCheckEnabled"
@@ -378,7 +378,7 @@ export default {
       height: 100%;
     }
 
-    .port-protocol ::v-deep {
+    .port-protocol :deep() {
       .unlabeled-select {
         .v-select.inline {
           margin-top: 2px;

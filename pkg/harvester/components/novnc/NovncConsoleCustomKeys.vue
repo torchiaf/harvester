@@ -204,7 +204,7 @@ export default {
         />
 
         <div class="displayed-banners">
-          <Banner v-for="(keys,index) in displayedKeys" :key="index" color="info" :closable="true" @close="removeKey(keys)">
+          <Banner v-for="(keys,index) in displayedKeys" :key="index">
             <span v-clean-html="keys"></span>
           </Banner>
         </div>

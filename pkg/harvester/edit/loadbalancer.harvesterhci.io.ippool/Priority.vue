@@ -120,15 +120,13 @@ export default {
         />
       </div>
       <div
-        v-for="(row, idx) in rows"
-        :key="idx"
-      >
+        v-for="(row, idx) in rows" :key="idx">
         <PriorityRow
           :row="row"
           :mode="mode"
           :rows="rows"
           :idx="idx"
-          @input="queueUpdate"
+          @update:value="queueUpdate"
           @remove="remove(idx)"
         />
       </div>

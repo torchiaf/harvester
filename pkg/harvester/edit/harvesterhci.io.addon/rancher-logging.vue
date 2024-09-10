@@ -94,7 +94,7 @@ export default {
       :weight="99"
     >
       <RadioGroup
-        v-model="value.spec.enabled"
+        v-model:value="value.spec.enabled"
         class="mb-20"
         name="model"
         :mode="mode"
@@ -106,7 +106,7 @@ export default {
       <div class="row mt-20">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.fluentbit.resources.requests.cpu"
+            v-model:value="valuesContentJson.fluentbit.resources.requests.cpu"
             :label="t('monitoring.prometheus.config.requests.cpu')"
             :required="true"
             :mode="mode"
@@ -114,7 +114,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.fluentbit.resources.requests.memory"
+            v-model:value="valuesContentJson.fluentbit.resources.requests.memory"
             :label="t('monitoring.prometheus.config.requests.memory')"
             :required="true"
             :mode="mode"
@@ -124,7 +124,7 @@ export default {
       <div class="row mt-20">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.fluentbit.resources.limits.cpu"
+            v-model:value="valuesContentJson.fluentbit.resources.limits.cpu"
             :label="t('monitoring.prometheus.config.limits.cpu')"
             :required="true"
             :mode="mode"
@@ -132,7 +132,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.fluentbit.resources.limits.memory"
+            v-model:value="valuesContentJson.fluentbit.resources.limits.memory"
             :label="t('monitoring.prometheus.config.limits.memory')"
             :required="true"
             :mode="mode"
@@ -144,7 +144,7 @@ export default {
       <div class="row mt-20">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.fluentd.resources.requests.cpu"
+            v-model:value="valuesContentJson.fluentd.resources.requests.cpu"
             :label="t('monitoring.prometheus.config.requests.cpu')"
             :required="true"
             :mode="mode"
@@ -152,7 +152,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.fluentd.resources.requests.memory"
+            v-model:value="valuesContentJson.fluentd.resources.requests.memory"
             :label="t('monitoring.prometheus.config.requests.memory')"
             :required="true"
             :mode="mode"
@@ -162,7 +162,7 @@ export default {
       <div class="row mt-20">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.fluentd.resources.limits.cpu"
+            v-model:value="valuesContentJson.fluentd.resources.limits.cpu"
             :label="t('monitoring.prometheus.config.limits.cpu')"
             :required="true"
             :mode="mode"
@@ -170,7 +170,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.fluentd.resources.limits.memory"
+            v-model:value="valuesContentJson.fluentd.resources.limits.memory"
             :label="t('monitoring.prometheus.config.limits.memory')"
             :required="true"
             :mode="mode"
@@ -182,7 +182,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  ::v-deep .radio-group {
+  :deep() .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;

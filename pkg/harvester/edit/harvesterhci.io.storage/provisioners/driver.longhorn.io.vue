@@ -168,7 +168,7 @@ export default {
     <div class="row">
       <div class="col span-6">
         <LabeledInput
-          v-model="numberOfReplicas"
+          v-model:value="numberOfReplicas"
           :label="t('harvester.storage.parameters.numberOfReplicas.label')"
           :required="true"
           :mode="mode"
@@ -179,7 +179,7 @@ export default {
       </div>
       <div class="col span-6">
         <LabeledInput
-          v-model="value.parameters.staleReplicaTimeout"
+          v-model:value="value.parameters.staleReplicaTimeout"
           :label="t('harvester.storage.parameters.staleReplicaTimeout.label')"
           :required="true"
           :mode="mode"
@@ -190,7 +190,7 @@ export default {
     <div class="row mt-10">
       <div class="col span-6">
         <LabeledSelect
-          v-model="nodeSelector"
+          v-model:value="nodeSelector"
           :label="t('harvester.storage.parameters.nodeSelector.label')"
           :options="nodeTags"
           :taggable="true"
@@ -206,7 +206,7 @@ export default {
       </div>
       <div class="col span-6">
         <LabeledSelect
-          v-model="diskSelector"
+          v-model:value="diskSelector"
           :label="t('harvester.storage.parameters.diskSelector.label')"
           :options="diskTags"
           :taggable="true"
@@ -224,7 +224,7 @@ export default {
     <div class="row mt-10">
       <div class="col span-6">
         <RadioGroup
-          v-model="value.parameters.migratable"
+          v-model:value="value.parameters.migratable"
           name="layer3NetworkMode"
           :label="t('harvester.storage.parameters.migratable.label')"
           :mode="mode"
@@ -233,7 +233,7 @@ export default {
       </div>
     </div>
     <KeyValue
-      v-model="parameters"
+      v-model:value="parameters"
       :add-label="t('storageClass.longhorn.addLabel')"
       :read-allowed="false"
       :mode="mode"

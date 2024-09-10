@@ -213,7 +213,7 @@ export default {
     @cancel="done"
   >
     <NameNsDescription
-      v-model="value"
+      v-model:value="value"
       :name-editable="true"
       :mode="mode"
       :namespaced="false"
@@ -227,7 +227,7 @@ export default {
       <div class="col span-3">
         <LabeledSelect
           v-if="pspOptions"
-          v-model="value.spec.podSecurityPolicyTemplateId"
+          v-model:value="value.spec.podSecurityPolicyTemplateId"
           class="psp"
           :mode="mode"
           :options="pspOptions"
@@ -261,7 +261,7 @@ export default {
         :weight="9"
       >
         <ResourceQuota
-          v-model="value"
+          v-model:value="value"
           :mode="canEditTabElements"
           :types="isStandaloneHarvester ? HARVESTER_TYPES : RANCHER_TYPES"
           @remove="removeQuota"
@@ -273,7 +273,7 @@ export default {
         :weight="8"
       >
         <ContainerResourceLimit
-          v-model="value.spec.containerDefaultResourceLimit"
+          v-model:value="value.spec.containerDefaultResourceLimit"
           :mode="canEditTabElements"
           :show-tip="false"
           :register-before-hook="registerBeforeHook"

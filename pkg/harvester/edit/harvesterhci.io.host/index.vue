@@ -522,14 +522,14 @@ export default {
       <Tabbed ref="tabbed" class="mt-15" :side-tabs="true">
         <Tab name="basics" :weight="100" :label="t('harvester.host.tabs.basics')">
           <LabeledInput
-            v-model="customName"
+            v-model:value="customName"
             :label="t('harvester.host.detail.customName')"
             class="mb-20"
             :mode="mode"
           />
 
           <LabeledInput
-            v-model="consoleUrl"
+            v-model:value="consoleUrl"
             :label="t('harvester.host.detail.consoleUrl')"
             class="mb-20"
             :mode="mode"
@@ -547,7 +547,7 @@ export default {
           >
             <div class="col span-12">
               <DiskTags
-                v-model="longhornNode.spec.tags"
+                v-model:value="longhornNode.spec.tags"
                 :label="t('harvester.host.tags.label')"
                 :add-label="t('harvester.host.tags.addLabel')"
                 :mode="mode"
@@ -555,13 +555,13 @@ export default {
             </div>
           </div>
           <ArrayListGrouped
-            v-model="newDisks"
+            v-model:value="newDisks"
             :mode="mode"
             :initial-empty-row="false"
           >
             <template #default="props">
               <HarvesterDisk
-                v-model="props.row.value"
+                v-model:value="props.row.value"
                 class="mb-20"
                 :mode="mode"
                 :disks="disks"
@@ -652,7 +652,7 @@ export default {
             :title="t('labels.labels.title')"
             :read-allowed="false"
             :value-can-be-empty="true"
-            @input="updateHostLabels"
+            @update:value="updateHostLabels"
           />
         </Tab>
       </Tabbed>

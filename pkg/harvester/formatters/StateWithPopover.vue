@@ -36,9 +36,7 @@ export default {
 
         <template v-slot:popover>
           <p
-            v-for="(message, index) in warningMessages"
-            :key="message.text"
-          >
+            v-for="(message, index) in warningMessages" :key="index">
             {{ index + 1 }}.
             {{ message.text }}
           </p>

@@ -182,7 +182,7 @@ export default {
         <div class="col span-6">
           <LabelValue :name="t('harvester.virtualMachine.detail.details.ipAddress')">
             <template #value>
-              <HarvesterIpAddress v-model="value.id" :row="value" />
+              <HarvesterIpAddress v-model:value="value.id" :row="value" />
             </template>
           </LabelValue>
         </div>
@@ -201,7 +201,7 @@ export default {
           <InputOrDisplay :name="t('harvester.virtualMachine.detail.details.bootOrder')" :value="disks" :mode="mode">
             <template #value>
               <ul>
-                <li v-for="(disk) in disks" :key="disk.bootOrder">
+                <li  v-for="(disk, i) in disks" :key="i" >
                   {{ disk.bootOrder }}. {{ disk.name }} ({{ getDeviceType(disk) }})
                 </li>
               </ul>
@@ -213,7 +213,7 @@ export default {
             <template #value>
               <div>
                 <ul v-if="cdroms.length > 0">
-                  <li v-for="(rom) in cdroms" :key="rom.name">
+                  <li  v-for="(rom, i) in cdroms" :key="i" >
                     {{ rom.name }}
                   </li>
                 </ul>

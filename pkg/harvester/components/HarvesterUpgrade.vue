@@ -161,7 +161,7 @@ export default {
 
         <div>
           <LabeledSelect
-            v-model="version"
+            v-model:value="version"
             class="mb-10"
             :label="t('harvester.upgradePage.versionLabel')"
             :options="versionOptions"
@@ -173,7 +173,7 @@ export default {
             class="mb-5"
           >
             <Checkbox
-              v-model="enableLogging"
+              v-model:value="enableLogging"
               class="check"
               type="checkbox"
               :label="t('harvester.upgradePage.enableLogging')"
@@ -187,7 +187,7 @@ export default {
             ></p>
 
             <Checkbox
-              v-model="readyReleaseNote"
+              v-model:value="readyReleaseNote"
               class="check"
               type="checkbox"
               label-key="harvester.upgradePage.checkReady"

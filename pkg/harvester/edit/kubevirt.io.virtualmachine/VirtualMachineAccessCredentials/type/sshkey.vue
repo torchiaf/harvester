@@ -61,7 +61,7 @@ export default {
     <div class="columns row">
       <div class="col span-6">
         <AccessCredentialsUsers
-          v-model="value.users"
+          v-model:value="value.users"
           :resource="resource"
           :user-options="userOptions"
           :mode="mode"
@@ -72,7 +72,7 @@ export default {
       </div>
       <div class="col span-6">
         <SSHKey
-          v-model="value.sshkeys"
+          v-model:value="value.sshkeys"
           class="mb-20"
           :namespace="resource.metadata.namespace"
           :mode="mode"

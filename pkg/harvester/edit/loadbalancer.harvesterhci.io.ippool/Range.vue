@@ -101,9 +101,7 @@ export default {
   <div>
     <div v-if="rows.length">
       <div
-        v-for="(row, idx) in rows"
-        :key="idx"
-      >
+        v-for="(row, idx) in rows" :key="idx">
         <div
           class="pool-headers"
           :class="{
@@ -150,7 +148,7 @@ export default {
             </span>
             <input
               v-else
-              v-model="row.subnet"
+              v-model:value="row.subnet"
               type="text"
               @input="queueUpdate"
             />
@@ -163,7 +161,7 @@ export default {
             </span>
             <input
               v-else
-              v-model="row.gateway"
+              v-model:value="row.gateway"
               type="text"
               @input="queueUpdate"
             />
@@ -177,7 +175,7 @@ export default {
             </span>
             <input
               v-else
-              v-model="row.rangeStart"
+              v-model:value="row.rangeStart"
               type="text"
               @input="queueUpdate"
             />
@@ -191,7 +189,7 @@ export default {
             </span>
             <input
               v-else
-              v-model="row.rangeEnd"
+              v-model:value="row.rangeEnd"
               type="text"
               @input="queueUpdate"
             />

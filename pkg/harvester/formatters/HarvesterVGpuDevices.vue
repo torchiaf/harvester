@@ -46,9 +46,7 @@ export default {
 <template>
   <div class="vgpudevices">
     <span
-      v-for="(vgpu, index) in rows.visible"
-      :key="vgpu.name"
-    >
+      v-for="(vgpu, index) in rows.visible" :key="index">
       <router-link
         :to="vgpu.to"
       >
@@ -76,9 +74,7 @@ export default {
         <div class="vgpu-popup">
           <div>
             <span
-              v-for="(vgpu, index) in rows.invisible"
-              :key="vgpu.name"
-            >
+              v-for="(vgpu, index) in rows.invisible" :key="index">
               <router-link
                 :to="vgpu.to"
               >

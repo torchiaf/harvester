@@ -73,11 +73,11 @@ export default {
     <div class="row mb-20">
       <div class="col span-6">
         <LabeledSelect
-          v-model="selector.network"
+          v-model:value="selector.network"
           :label="t('harvester.ipPool.network.label')"
           :options="networkOptions"
           :mode="mode"
-          @input="queueUpdate"
+          @update:value="queueUpdate"
         />
       </div>
       <div class="col span-6">
@@ -87,15 +87,15 @@ export default {
           :mode="mode"
           type="number"
           min="0"
-          @input="update"
+          @update:value="update"
         />
       </div>
     </div>
     <Priority
-      v-model="selector.scope"
+      v-model:value="selector.scope"
       class="col span-12"
       :mode="mode"
-      @input="update"
+      @update:value="update"
     />
   </div>
 </template>

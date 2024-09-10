@@ -112,7 +112,7 @@ export default {
 <template>
   <div>
     <LabeledSelect
-      v-model="spec.run"
+      v-model:value="spec.run"
       :label="t('harvester.host.ksmtuned.run')"
       :options="ksmtunedRunOption"
       class="mb-20"
@@ -122,7 +122,7 @@ export default {
 
     <template v-if="showKsmt">
       <UnitInput
-        v-model="spec.thresCoef"
+        v-model:value="spec.thresCoef"
         v-int-number
         :label="t('harvester.host.ksmtuned.thresCoef')"
         suffix="%"
@@ -132,13 +132,13 @@ export default {
         class="mb-20"
       />
 
-      <Checkbox v-model="enableMergeAcrossNodes" :mode="mode" class="check mb-20" type="checkbox" :label="t('harvester.host.ksmtuned.enableMergeNodes')" />
+      <Checkbox v-model:value="enableMergeAcrossNodes" :mode="mode" class="check mb-20" type="checkbox" :label="t('harvester.host.ksmtuned.enableMergeNodes')" />
 
       <h3>
         <t k="harvester.host.ksmtuned.modeLink" :raw="true" />
       </h3>
       <RadioGroup
-        v-model="spec.mode"
+        v-model:value="spec.mode"
         class="mb-20"
         :name="t('harvester.host.ksmtuned.mode')"
         :options="ksmtunedMode"

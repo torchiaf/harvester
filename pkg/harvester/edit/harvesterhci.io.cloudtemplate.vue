@@ -78,7 +78,7 @@ export default {
     @cancel="done"
   >
     <NameNsDescription
-      v-model="value"
+      v-model:value="value"
       :mode="mode"
       :namespaced="true"
     />
@@ -87,7 +87,7 @@ export default {
       <Tab name="basics" :label="t('harvester.host.tabs.basics')" :weight="1">
         <div class="mb-20">
           <LabeledSelect
-            v-model="type"
+            v-model:value="type"
             :label="t('harvester.cloudTemplate.templateType')"
             :disabled="!isCreate"
             :options="types"
@@ -97,7 +97,7 @@ export default {
         <div class="resource-yaml">
           <YamlEditor
             ref="yamlUser"
-            v-model="config"
+            v-model:value="config"
             class="yaml-editor"
             :editor-mode="mode === 'view' ? 'VIEW_CODE' : 'EDIT_CODE'"
             @onChanges="update"
@@ -111,7 +111,7 @@ export default {
 <style lang="scss" scoped>
   $yaml-height: 200px;
 
-  ::v-deep .yaml-editor{
+  :deep() .yaml-editor{
     flex: 1;
     min-height: $yaml-height;
     & .code-mirror .CodeMirror {

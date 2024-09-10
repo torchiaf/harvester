@@ -100,7 +100,7 @@ export default {
 
     <template #body>
       <LabeledSelect
-        v-model="clusterNetwork"
+        v-model:value="clusterNetwork"
         :label="t('harvester.harvesterVlanConfigMigrateDialog.targetClusterNetwork.label')"
         :placeholder="t('harvester.harvesterVlanConfigMigrateDialog.targetClusterNetwork.placeholder')"
         :options="clusterNetworks"
@@ -120,7 +120,7 @@ export default {
         />
       </div>
 
-      <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
+      <Banner v-for="(err, i) in errors" :key="i"/>
     </div>
   </Card>
 </template>

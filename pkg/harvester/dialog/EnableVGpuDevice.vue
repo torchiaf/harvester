@@ -69,7 +69,7 @@ export default {
       <div class="body">
         <div class="type-field">
           <LabeledSelect
-            v-model="type"
+            v-model:value="type"
             required
             :options="availableTypes"
             :searchable="true"

@@ -186,7 +186,7 @@ export default {
           <div class="row">
             <div class="col span-6">
               <LabeledSelect
-                v-model="loggingType"
+                v-model:value="loggingType"
                 class="mb-20"
                 :options="outputTypeOptions"
                 :disabled="!isCreate"
@@ -197,7 +197,7 @@ export default {
           </div>
           <div class="row">
             <div class="col span-6">
-              <LabeledSelect v-model="selectedProvider" label="Output" :options="providers" :mode="mode" />
+              <LabeledSelect v-model:value="selectedProvider" label="Output" :options="providers" :mode="mode" />
             </div>
           </div>
           <div class="spacer"></div>
@@ -206,7 +206,7 @@ export default {
         <Tab name="buffer" :label="t('logging.output.buffer.label')" :weight="1">
           <YamlEditor
             ref="yaml"
-            v-model="bufferYaml"
+            v-model:value="bufferYaml"
             :scrolling="false"
             :initial-yaml-values="initialBufferYaml"
             :editor-mode="isView ? EDITOR_MODES.VIEW_CODE : EDITOR_MODES.EDIT_CODE"

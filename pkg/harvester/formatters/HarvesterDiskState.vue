@@ -87,9 +87,7 @@ export default {
 
       <template slot="popover">
         <p
-          v-for="(message, index) in warningMessage"
-          :key="message"
-        >
+          v-for="(message, index) in warningMessage" :key="index">
           {{ index + 1 }}. {{ message }}
         </p>
       </template>

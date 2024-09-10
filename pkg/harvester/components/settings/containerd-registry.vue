@@ -233,20 +233,19 @@ export default {
         <div class="row mb-20">
           <div class="col span-12">
             <LabeledInput
-              v-model="mirror.key"
+              v-model:value="mirror.key"
               :mode="mode"
               required
               label-key="harvester.setting.containerdRegistry.mirrors.registryName"
               @keydown.native.enter.prevent="()=>{}"
-              @input="update"
+              @update:value="update"
             />
           </div>
         </div>
 
         <div class="mb-20">
           <LabeledSelect
-            :key="mirror.idx"
-            v-model="mirror.value.Endpoints"
+            v-model:value="mirror.value.Endpoints"
             :mode="mode"
             required
             label-key="harvester.setting.containerdRegistry.mirrors.endpoints"
@@ -255,20 +254,20 @@ export default {
             :searchable="true"
             :options="[]"
             @keydown.native.enter.prevent="()=>{}"
-            @input="update"
+            @update:value="update"
           />
         </div>
 
         <div class="row mb-20">
           <KeyValue
-            v-model="mirror.value.Rewrites"
+            v-model:value="mirror.value.Rewrites"
             :add-label="t('harvester.setting.containerdRegistry.mirrors.rewrite.addRewrite')"
             :mode="mode"
             :title="t('harvester.setting.containerdRegistry.mirrors.rewrite.rewrite')"
             :read-allowed="false"
             :value-can-be-empty="true"
             @keydown.native.enter.prevent="()=>{}"
-            @input="update"
+            @update:value="update"
           />
         </div>
       </infobox>
@@ -291,11 +290,11 @@ export default {
           <div class="col span-12">
             <div class="col span-12">
               <LabeledInput
-                v-model="config.key"
+                v-model:value="config.key"
                 :mode="mode"
                 :placeholder="t('harvester.setting.containerdRegistry.configs.registryPlaceholder')"
                 label-key="harvester.setting.containerdRegistry.configs.registryEDQNorIP"
-                @input="update"
+                @update:value="update"
               />
             </div>
           </div>
@@ -304,19 +303,19 @@ export default {
         <div class="row mb-20">
           <div class="col span-6">
             <LabeledInput
-              v-model="config.value.Auth.Username"
+              v-model:value="config.value.Auth.Username"
               :mode="mode"
               label-key="harvester.setting.containerdRegistry.configs.username"
-              @input="update"
+              @update:value="update"
             />
           </div>
 
           <div class="col span-6">
             <LabeledInput
-              v-model="config.value.Auth.Password"
+              v-model:value="config.value.Auth.Password"
               :mode="mode"
               label-key="harvester.setting.containerdRegistry.configs.password"
-              @input="update"
+              @update:value="update"
             />
           </div>
         </div>
@@ -324,34 +323,34 @@ export default {
         <div class="row mb-20">
           <div class="col span-6">
             <LabeledInput
-              v-model="config.value.Auth.Auth"
+              v-model:value="config.value.Auth.Auth"
               :mode="mode"
               type="multiline"
               :min-height="150"
               label-key="harvester.setting.containerdRegistry.configs.auth"
-              @input="update"
+              @update:value="update"
             />
           </div>
 
           <div class="col span-6">
             <LabeledInput
-              v-model="config.value.Auth.IdentityToken"
+              v-model:value="config.value.Auth.IdentityToken"
               :mode="mode"
               type="multiline"
               :min-height="150"
               label-key="harvester.setting.containerdRegistry.configs.identityToken"
-              @input="update"
+              @update:value="update"
             />
           </div>
         </div>
 
         <div class="row">
           <LabeledSelect
-            v-model="config.value.TLS.InsecureSkipVerify"
+            v-model:value="config.value.TLS.InsecureSkipVerify"
             :mode="mode"
             label-key="harvester.setting.containerdRegistry.configs.insecureSkipVerify"
             :options="insecureSkipVerifyOption"
-            @input="update"
+            @update:value="update"
           />
         </div>
       </infobox>

@@ -60,12 +60,12 @@ export default {
     <div class="col span-12">
       <template>
         <ArrayList
-          v-model="parseDefaultValue.ntpServers"
+          v-model:value="parseDefaultValue.ntpServers"
           :title="t('harvester.host.ntp.label')"
           :protip="t('harvester.host.ntp.tips')"
           :value-placeholder="t('harvester.host.ntp.placeholder')"
           :mode="mode"
-          @input="update"
+          @update:value="update"
         />
       </template>
     </div>

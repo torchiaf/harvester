@@ -57,7 +57,7 @@ export default {
     <div class="row">
       <div class="col span-6">
         <RadioGroup
-          v-model="healthCheckEnabled"
+          v-model:value="healthCheckEnabled"
           :mode="mode"
           name="healthCheckEnabled"
           :labels="[t('generic.disabled'),t('generic.enabled')]"
@@ -71,7 +71,7 @@ export default {
       <div class="row mt-10">
         <div v-if="healthCheckEnabled" class="col span-6">
           <LabeledSelect
-            v-model="value.port"
+            v-model:value="value.port"
             :mode="mode"
             :options="portOptions"
             required

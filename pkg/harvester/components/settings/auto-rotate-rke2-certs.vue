@@ -51,16 +51,16 @@ export default {
   <div class="row">
     <div class="col span-12">
       <RadioGroup
-        v-model="parseDefaultValue.enable"
+        v-model:value="parseDefaultValue.enable"
         class="mb-20"
         name="model"
         :options="[true,false]"
         :labels="[t('generic.enabled'), t('generic.disabled')]"
-        @input="update"
+        @update:value="update"
       />
       <UnitInput
         v-if="parseDefaultValue.enable"
-        v-model="parseDefaultValue.expiringInHours"
+        v-model:value="parseDefaultValue.expiringInHours"
         v-int-number
         class="mb-20"
         :min="1"
@@ -69,14 +69,14 @@ export default {
         :suffix="parseDefaultValue.expiringInHours === 1 ? 'Hour' : 'Hours'"
         :label="t('harvester.setting.autoRotateRKE2Certs.expiringInHours')"
         :mode="mode"
-        @input="update"
+        @update:value="update"
       />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-  ::v-deep .radio-group {
+  :deep() .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;

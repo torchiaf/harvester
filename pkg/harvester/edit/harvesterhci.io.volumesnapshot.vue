@@ -62,7 +62,7 @@ export default {
     >
       <NameNsDescription :value="value" :namespaced="true" :mode="mode" />
       <ResourceTabs
-        v-model="value"
+        v-model:value="value"
         class="mt-15"
         :need-conditions="false"
         :need-related="false"
@@ -72,17 +72,17 @@ export default {
         <Tab name="basics" :label="t('harvester.virtualMachine.detail.tabs.basics')" class="bordered-table">
           <div class="row">
             <div class="col span-12">
-              <LabeledInput v-model="size" :label="t('harvester.snapshot.size')" class="mt-20" :disabled="true" />
+              <LabeledInput v-model:value="size" :label="t('harvester.snapshot.size')" class="mt-20" :disabled="true" />
             </div>
           </div>
           <div class="row">
             <div class="col span-12">
-              <LabeledInput v-model="targetVolume" :label="t('harvester.snapshot.targetVolume')" class="mt-20" :disabled="true" />
+              <LabeledInput v-model:value="targetVolume" :label="t('harvester.snapshot.targetVolume')" class="mt-20" :disabled="true" />
             </div>
           </div>
           <div v-if="isImageVolume" class="row">
             <div class="col span-12">
-              <LabeledInput v-model="imageName" :label="t('harvester.snapshot.image')" class="mt-20" :disabled="true" />
+              <LabeledInput v-model:value="imageName" :label="t('harvester.snapshot.image')" class="mt-20" :disabled="true" />
             </div>
           </div>
         </Tab>

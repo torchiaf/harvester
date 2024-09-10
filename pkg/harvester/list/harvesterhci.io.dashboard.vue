@@ -632,9 +632,7 @@ export default {
 
     <div class="resource-gauges">
       <ResourceSummary
-        v-for="resource in totalCountGaugeInput"
-        :key="resource.resource"
-        :spoofed-counts="resource.isSpoofed ? resource : null"
+         v-for="(resource, i) in totalCountGaugeInput" :key="i" :spoofed-counts="resource.isSpoofed ? resource : null"
         :resource="resource.resource"
       />
     </div>

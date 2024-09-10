@@ -117,7 +117,7 @@ export default {
 
     <LabeledSelect
       v-if="!isView"
-      v-model="id"
+      v-model:value="id"
       class="mb-20"
       :options="options"
       :disabled="viewCode"
@@ -127,7 +127,7 @@ export default {
     <div class="resource-yaml">
       <YamlEditor
         ref="yaml"
-        v-model="yamlScript"
+        v-model:value="yamlScript"
         class="yaml-editor"
         :editor-mode="editorMode"
       />
@@ -138,7 +138,7 @@ export default {
 <style lang="scss" scoped>
 $yaml-height: 200px;
 
-::v-deep .resource-yaml {
+:deep() .resource-yaml {
   flex: 1;
   display: flex;
   flex-direction: column;

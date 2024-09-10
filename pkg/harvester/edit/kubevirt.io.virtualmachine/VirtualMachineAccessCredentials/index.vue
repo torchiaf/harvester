@@ -152,7 +152,7 @@ export default {
   <div>
     <Banner class="mb-20" color="info" :label="t('harvester.virtualMachine.accessCredentials.tips')" />
 
-    <div v-for="(row, i) in rows" :key="row.id">
+    <div v-for="(row, i) in rows" :key="i">
       <InfoBox class="volume-source">
         <button v-if="isEdit" type="button" class="role-link btn btn-sm remove-vol" @click="remove(row)">
           <i class="icon icon-x" />
@@ -165,7 +165,7 @@ export default {
         <div>
           <component
             :is="componentFor(row.source)"
-            v-model="rows[i]"
+            v-model:value="rows[i]"
             :rows="rows"
             :resource="resource"
             :user-options="userOptions"

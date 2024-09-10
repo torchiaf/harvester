@@ -196,7 +196,7 @@ export default {
       :rows="[...rows]"
       :namespaced="false"
       key-field="_key"
-      v-on="$listeners"
+      
     >
       <template #cell:console="{row}">
         <button type="button" class="btn btn-sm role-primary" :disabled="!row.consoleUrl" @click="goto(row)">

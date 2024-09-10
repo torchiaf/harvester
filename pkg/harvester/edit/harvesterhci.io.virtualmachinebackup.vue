@@ -209,7 +209,7 @@ export default {
     <div class="content">
       <div class="mb-20">
         <RadioGroup
-          v-model="restoreNewVm"
+          v-model:value="restoreNewVm"
           name="model"
           :options="[true,false]"
           :labels="[t('harvester.backup.restore.createNew'), t('harvester.backup.restore.replaceExisting')]"
@@ -221,7 +221,7 @@ export default {
       <div class="row">
         <div class="col span-6">
           <LabeledSelect
-            v-model="namespace"
+            v-model:value="namespace"
             :disabled="!restoreNewVm"
             :label="t('nameNsDescription.namespace.label')"
             :options="namespaces"
@@ -230,7 +230,7 @@ export default {
 
         <div class="col span-6">
           <LabeledInput
-            v-model="name"
+            v-model:value="name"
             :disabled="!restoreNewVm"
             :label="t('harvester.backup.restore.virtualMachineName')"
             :placeholder="t('nameNsDescription.name.placeholder')"
@@ -240,7 +240,7 @@ export default {
       </div>
 
       <LabeledSelect
-        v-model="backupName"
+        v-model:value="backupName"
         class="mb-20"
         :label="t('harvester.backup.restore.backup')"
         :options="backupOption"
@@ -248,14 +248,14 @@ export default {
 
       <Checkbox
         v-if="restoreNewVm"
-        v-model="restoreResource.spec.keepMacAddress"
+        v-model:value="restoreResource.spec.keepMacAddress"
         type="checkbox"
         :label="t('harvester.backup.restore.keepMacAddress')"
       />
 
       <LabeledSelect
         v-if="!restoreNewVm"
-        v-model="deletionPolicy"
+        v-model:value="deletionPolicy"
         :label="t('harvester.backup.restore.deletePreviousVolumes')"
         :options="deletionPolicyOption"
       />
@@ -271,7 +271,7 @@ export default {
   flex-grow: 1;
   flex-direction: column;
 
-  ::v-deep .radio-group {
+  :deep() .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;
@@ -291,7 +291,7 @@ export default {
     margin-bottom: -$space-m;
     padding: $space-s $space-m;
 
-    ::v-deep .spacer-small {
+    :deep() .spacer-small {
       padding: 0px;
     }
   }

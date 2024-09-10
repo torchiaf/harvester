@@ -57,9 +57,7 @@ export default {
   <div>
     <div v-if="inventory.warningMessages.length > 0">
       <Banner
-        v-for="msg in inventory.warningMessages"
-        :key="msg.text"
-        color="error"
+         v-for="(msg, i) in inventory.warningMessages" :key="i" color="error"
         :label="msg.text"
       />
     </div>
@@ -117,7 +115,7 @@ export default {
     >
       <div class="col span-6">
         <RadioGroup
-          v-model="enableInventory"
+          v-model:value="enableInventory"
           :options="[
             { label: t('generic.enabled'), value: true },
             { label: t('generic.disabled'), value: false }

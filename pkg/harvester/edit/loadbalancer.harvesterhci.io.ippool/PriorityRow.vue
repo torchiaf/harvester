@@ -187,9 +187,9 @@ export default {
       </span>
       <Select
         v-else
-        v-model="row.project"
+        v-model:value="row.project"
         :options="projectOptions"
-        @input="update"
+        @update:value="update"
       />
     </div>
     <div class="pool-namespace">
@@ -198,9 +198,9 @@ export default {
       </span>
       <Select
         v-else
-        v-model="row.namespace"
+        v-model:value="row.namespace"
         :options="namespaceOptions"
-        @input="update"
+        @update:value="update"
       />
     </div>
     <div
@@ -212,9 +212,9 @@ export default {
       </span>
       <Select
         v-else
-        v-model="row.guestCluster"
+        v-model:value="row.guestCluster"
         :options="guestClusterOptions"
-        @input="update"
+        @update:value="update"
       />
     </div>
     <div v-if="showRemove" class="remove">

@@ -94,7 +94,7 @@ export default {
     <div class="row">
       <div class="col span-12">
         <RadioGroup
-          v-model="value.spec.enabled"
+          v-model:value="value.spec.enabled"
           class="mb-20"
           name="model"
           :mode="mode"
@@ -108,7 +108,7 @@ export default {
       <div class="row mb-20">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.hostname"
+            v-model:value="valuesContentJson.hostname"
             label-key="harvester.addons.rancherVcluster.hostname"
             :required="true"
             :mode="mode"
@@ -118,7 +118,7 @@ export default {
 
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.rancherVersion"
+            v-model:value="valuesContentJson.rancherVersion"
             label-key="harvester.addons.rancherVcluster.rancherVersion"
             :required="true"
             :disabled="true"
@@ -129,7 +129,7 @@ export default {
       <div class="row mt-20">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.bootstrapPassword"
+            v-model:value="valuesContentJson.bootstrapPassword"
             label-key="harvester.addons.rancherVcluster.password"
             :mode="mode"
             :required="true"
@@ -142,7 +142,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  ::v-deep .radio-group {
+  :deep() .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;

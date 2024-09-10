@@ -124,7 +124,7 @@ export default {
       class="bordered-table"
     >
       <Storage
-        v-model="value.spec.storageClassParameters"
+        v-model:value="value.spec.storageClassParameters"
       />
     </Tab>
   </Tabbed>

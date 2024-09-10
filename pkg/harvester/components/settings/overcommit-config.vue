@@ -54,7 +54,7 @@ export default {
     <div class="col span-12">
       <template>
         <UnitInput
-          v-model="parseDefaultValue.cpu"
+          v-model:value="parseDefaultValue.cpu"
           v-int-number
           label-key="harvester.generic.cpu"
           suffix="%"
@@ -62,11 +62,11 @@ export default {
           required
           :mode="mode"
           class="mb-20"
-          @input="update"
+          @update:value="update"
         />
 
         <UnitInput
-          v-model="parseDefaultValue.memory"
+          v-model:value="parseDefaultValue.memory"
           v-int-number
           label-key="harvester.generic.memory"
           suffix="%"
@@ -74,11 +74,11 @@ export default {
           required
           :mode="mode"
           class="mb-20"
-          @input="update"
+          @update:value="update"
         />
 
         <UnitInput
-          v-model="parseDefaultValue.storage"
+          v-model:value="parseDefaultValue.storage"
           v-int-number
           label-key="harvester.generic.storage"
           suffix="%"
@@ -86,7 +86,7 @@ export default {
           required
           :mode="mode"
           class="mb-20"
-          @input="update"
+          @update:value="update"
         />
       </template>
     </div>

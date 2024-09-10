@@ -26,7 +26,7 @@ export default {
 
         <div>
           <TextAreaAutoGrow
-            v-model="value.value"
+            v-model:value="value.value"
             :min-height="254"
           />
         </div>

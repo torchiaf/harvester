@@ -177,11 +177,11 @@ export default {
           :mode="mode"
         >
           <LabeledInput
-            v-model="value.name"
+            v-model:value="value.name"
             :label="t('harvester.fields.name')"
             :mode="mode"
             required
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -196,12 +196,12 @@ export default {
           :mode="mode"
         >
           <LabeledSelect
-            v-model="value.type"
+            v-model:value="value.type"
             :label="t('harvester.fields.type')"
             :mode="mode"
             :options="VOLUME_TYPE"
             required
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -218,13 +218,13 @@ export default {
           :mode="mode"
         >
           <LabeledSelect
-            v-model="value.volumeName"
+            v-model:value="value.volumeName"
             :disabled="isDisabled"
             :label="t('harvester.fields.volume')"
             :mode="mode"
             :options="volumeOption"
             required
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -239,14 +239,14 @@ export default {
           :mode="mode"
         >
           <UnitInput
-            v-model="value.size"
+            v-model:value="value.size"
             :output-modifier="true"
             :increment="1024"
             :input-exponent="3"
             :label="t('harvester.fields.size')"
             :mode="mode"
             :disabled="true"
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -264,11 +264,11 @@ export default {
           :mode="mode"
         >
           <LabeledInput
-            v-model="image"
+            v-model:value="image"
             :label="t('harvester.fields.image')"
             :mode="mode"
             :disabled="true"
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -283,13 +283,13 @@ export default {
           :mode="mode"
         >
           <LabeledSelect
-            v-model="value.bus"
+            v-model:value="value.bus"
             :label="t('harvester.virtualMachine.volume.bus')"
             :mode="mode"
             :options="InterfaceOption"
             :disabled="true"
             required
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>

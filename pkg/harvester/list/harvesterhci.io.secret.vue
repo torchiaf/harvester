@@ -55,6 +55,6 @@ export default {
     :schema="schema"
     :rows="rows"
     key-field="_key"
-    v-on="$listeners"
+    
   />
 </template>

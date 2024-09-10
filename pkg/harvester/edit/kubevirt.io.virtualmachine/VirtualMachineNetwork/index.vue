@@ -125,7 +125,7 @@ export default {
 
 <template>
   <div>
-    <InfoBox v-for="(row, i) in rows" :key="i" class="infoBox">
+    <InfoBox v-for="(row, i) in rows" :key="i">
       <button v-if="!isView" type="button" class="role-link remove-vol" @click="remove(row)">
         <i class="icon icon-x" />
       </button>
@@ -133,8 +133,7 @@ export default {
       <h3> {{ t('harvester.virtualMachine.network.title') }} </h3>
 
       <Base
-        :key="rows[i].rowKeyId"
-        v-model="rows[i]"
+        v-model:value="rows[i]"
         :rows="rows"
         :mode="mode"
         :is-single="isSingle"

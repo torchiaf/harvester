@@ -98,7 +98,7 @@ export default {
         class="bordered-table"
       >
         <Range
-          v-model="value.spec.ranges"
+          v-model:value="value.spec.ranges"
           class="col span-12"
           :mode="mode"
         />
@@ -110,7 +110,7 @@ export default {
         class="bordered-table"
       >
         <Selector
-          v-model="value.spec.selector"
+          v-model:value="value.spec.selector"
           :mode="mode"
         />
       </Tab>

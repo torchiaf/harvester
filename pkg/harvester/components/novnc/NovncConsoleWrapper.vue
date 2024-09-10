@@ -318,7 +318,7 @@ export default {
 
             <hr>
 
-            <div v-for="(keys, index) in preferredShortcutKeys" :key="index" class="mb-5">
+            <div v-for="(keys, index) in preferredShortcutKeys" :key="index">
               <button class="btn btn-sm bg-primary" @click="sendCustomKeys(keys.value)">
                 {{ keys.label }}
               </button>

@@ -107,7 +107,7 @@ export default {
     :schema="schema"
     :group-can-action="true"
     key-field="_key"
-    v-on="$listeners"
+    
   >
     <template #group-by="group">
       <div class="group-bar">
@@ -140,7 +140,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-::v-deep {
+:deep() {
   .group-name {
     line-height: 30px;
   }

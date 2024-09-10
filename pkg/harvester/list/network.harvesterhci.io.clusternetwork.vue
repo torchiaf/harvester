@@ -230,7 +230,7 @@ export default {
           </div>
         </template>
         <template
-          v-for="clusterNetwork in clusterNetworkWithoutConfigs"
+           v-for="(clusterNetwork, i) in clusterNetworkWithoutConfigs" :key="i" 
           v-slot:[slotName(clusterNetwork.id)]
         >
           <tr

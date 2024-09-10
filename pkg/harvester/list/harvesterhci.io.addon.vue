@@ -64,9 +64,9 @@ export default {
       :schema="schema"
       :headers="headers"
     >
-      <template slot="cell:name" slot-scope="scope">
+      <template cell:name="scope">
         <div class="cell-name">
-          <LinkDetail v-model="scope.row.displayName" :row="scope.row" />
+          <LinkDetail v-model:value="scope.row.displayName" :row="scope.row" />
 
           <a
             v-if="scope.row.metadata.name === 'rancher-vcluster' && scope.row.spec.enabled"
@@ -85,12 +85,12 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-::v-deep .sortable-table TD .badge-state {
+:deep() .sortable-table TD .badge-state {
     max-width: 250px;
     text-overflow: clip;
   }
 
-::v-deep .cell-name {
+:deep() .cell-name {
   white-space: nowrap;
 }
 </style>

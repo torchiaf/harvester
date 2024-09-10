@@ -121,16 +121,16 @@ export default {
 </script>
 
 <template>
-  <div class="row" @input="update">
+  <div class="row" @update:value="update">
     <div class="col span-12">
-      <LabeledSelect v-model="parseDefaultValue.type" class="mb-20" :label="t('harvester.fields.type')" :options="typeOption" @input="update" />
+      <LabeledSelect v-model:value="parseDefaultValue.type" class="mb-20" :label="t('harvester.fields.type')" :options="typeOption" @update:value="update" />
 
-      <LabeledInput v-model="parseDefaultValue.endpoint" class="mb-5" :placeholder="endpointPlaceholder" :mode="mode" label="Endpoint" />
+      <LabeledInput v-model:value="parseDefaultValue.endpoint" class="mb-5" :placeholder="endpointPlaceholder" :mode="mode" label="Endpoint" />
       <Tip class="mb-20" icon="icon icon-info" :text="t('harvester.backup.backupTargetTip')" />
 
       <template v-if="isS3">
         <LabeledInput
-          v-model="parseDefaultValue.bucketName"
+          v-model:value="parseDefaultValue.bucketName"
           class="mb-20"
           :mode="mode"
           label="Bucket Name"
@@ -138,7 +138,7 @@ export default {
         />
 
         <LabeledInput
-          v-model="parseDefaultValue.bucketRegion"
+          v-model:value="parseDefaultValue.bucketRegion"
           class="mb-20"
           :mode="mode"
           label="Bucket Region"
@@ -146,7 +146,7 @@ export default {
         />
 
         <LabeledInput
-          v-model="parseDefaultValue.accessKeyId"
+          v-model:value="parseDefaultValue.accessKeyId"
           :placeholder="t('harvester.setting.placeholder.accessKeyId')"
           class="mb-20"
           :mode="mode"
@@ -155,7 +155,7 @@ export default {
         />
 
         <Password
-          v-model="parseDefaultValue.secretAccessKey"
+          v-model:value="parseDefaultValue.secretAccessKey"
           class="mb-20"
           :mode="mode"
           :placeholder="t('harvester.setting.placeholder.secretAccessKey')"
@@ -163,7 +163,7 @@ export default {
           required
         />
 
-        <LabeledSelect v-model="parseDefaultValue.virtualHostedStyle" class="mb-20" label="Virtual Hosted-Style" :options="virtualHostedStyleType" @input="update" />
+        <LabeledSelect v-model:value="parseDefaultValue.virtualHostedStyle" class="mb-20" label="Virtual Hosted-Style" :options="virtualHostedStyleType" @update:value="update" />
 
         <div class="mb-20">
           <Tip icon="icon icon-info">

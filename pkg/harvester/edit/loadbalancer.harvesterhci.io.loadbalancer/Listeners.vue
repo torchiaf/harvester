@@ -127,9 +127,7 @@ export default {
         />
       </div>
       <div
-        v-for="(row, idx) in rows"
-        :key="idx"
-        class="listener-row"
+        v-for="(row, idx) in rows" :key="idx"class="listener-row"
       >
         <div class="port-name">
           <span v-if="isView">
@@ -150,7 +148,7 @@ export default {
           </span>
           <Select
             v-else
-            v-model="row.protocol"
+            v-model:value="row.protocol"
             :options="protocolOptions"
             @input="queueUpdate"
           />

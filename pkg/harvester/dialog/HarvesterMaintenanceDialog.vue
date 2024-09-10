@@ -93,7 +93,7 @@ export default {
     <template #body>
       <div>
         <Checkbox
-          v-model="force"
+          v-model:value="force"
           label-key="harvester.host.enableMaintenance.force"
         />
       </div>
@@ -109,9 +109,7 @@ export default {
 
         <div class="vm-list mb-5">
           <BadgeState
-            v-for="vm in unhealthyVM.vms"
-            :key="vm"
-            color="bg-error mb-5 mr-5"
+             v-for="(vm, i) in unhealthyVM.vms" :key="i" color="bg-error mb-5 mr-5"
             :label="vm"
           />
         </div>

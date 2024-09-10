@@ -43,7 +43,7 @@ export default {
   <NovncConsoleWrapper
     v-else
     ref="console"
-    v-model="vmi"
+    v-model:value="vmi"
     class="novnc-wrapper"
   />
 </template>

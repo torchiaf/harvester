@@ -61,12 +61,12 @@ export default {
   <div class="row">
     <div class="col span-12">
       <LabeledSelect
-        v-model="namespaces"
+        v-model:value="namespaces"
         :multiple="true"
         label-key="nameNsDescription.namespace.label"
         :mode="mode"
         :options="namespaceOptions"
-        @input="update"
+        @update:value="update"
       />
     </div>
   </div>

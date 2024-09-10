@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/named
-import { RouteConfig } from 'vue-router';
+// import { RouteRecordRaw } from 'vue-router';
 import { PRODUCT_NAME } from '../config/harvester';
 
 import Root from '../pages/c/_cluster/index.vue';
@@ -16,7 +16,7 @@ import HarvesterMembers from '../pages/c/_cluster/members/index.vue';
 import ProjectNamespaces from '../pages/c/_cluster/projectsnamespaces.vue';
 import HarvesterAlertmanagerReceiver from '../pages/c/_cluster/alertmanagerconfig/_alertmanagerconfigid/receiver.vue';
 
-const routes: RouteConfig[] = [
+const routes: any[] = [
   {
     name:      `${ PRODUCT_NAME }-c-cluster-support`,
     path:      `/:product/c/:cluster/support`,

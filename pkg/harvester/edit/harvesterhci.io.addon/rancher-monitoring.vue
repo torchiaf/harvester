@@ -208,7 +208,7 @@ export default {
       :weight="99"
     >
       <RadioGroup
-        v-model="value.spec.enabled"
+        v-model:value="value.spec.enabled"
         class="mb-20"
         name="model"
         :mode="mode"
@@ -244,7 +244,7 @@ export default {
       <div class="row">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.prometheus.prometheusSpec.scrapeInterval"
+            v-model:value="valuesContentJson.prometheus.prometheusSpec.scrapeInterval"
             :label="t('monitoring.prometheus.config.scrape')"
             :tooltip="t('harvester.setting.harvesterMonitoring.tips.scrape')"
             :required="true"
@@ -253,7 +253,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.prometheus.prometheusSpec.evaluationInterval"
+            v-model:value="valuesContentJson.prometheus.prometheusSpec.evaluationInterval"
             :label="t('monitoring.prometheus.config.evaluation')"
             :tooltip="t('harvester.setting.harvesterMonitoring.tips.evaluation')"
             :required="true"
@@ -264,7 +264,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.prometheus.prometheusSpec.retention"
+            v-model:value="valuesContentJson.prometheus.prometheusSpec.retention"
             :label="t('monitoring.prometheus.config.retention')"
             :tooltip="t('harvester.setting.harvesterMonitoring.tips.retention')"
             :required="true"
@@ -273,7 +273,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.prometheus.prometheusSpec.retentionSize"
+            v-model:value="valuesContentJson.prometheus.prometheusSpec.retentionSize"
             :label="t('monitoring.prometheus.config.retentionSize')"
             :tooltip="t('harvester.setting.harvesterMonitoring.tips.retentionSize')"
             :required="true"
@@ -291,7 +291,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.prometheus.prometheusSpec.resources.requests.cpu"
+            v-model:value="valuesContentJson.prometheus.prometheusSpec.resources.requests.cpu"
             :label="t('monitoring.prometheus.config.requests.cpu')"
             :required="true"
             :mode="mode"
@@ -299,7 +299,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.prometheus.prometheusSpec.resources.requests.memory"
+            v-model:value="valuesContentJson.prometheus.prometheusSpec.resources.requests.memory"
             :label="t('monitoring.prometheus.config.requests.memory')"
             :required="true"
             :mode="mode"
@@ -309,7 +309,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.prometheus.prometheusSpec.resources.limits.cpu"
+            v-model:value="valuesContentJson.prometheus.prometheusSpec.resources.limits.cpu"
             :label="t('monitoring.prometheus.config.limits.cpu')"
             :required="true"
             :mode="mode"
@@ -317,7 +317,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.prometheus.prometheusSpec.resources.limits.memory"
+            v-model:value="valuesContentJson.prometheus.prometheusSpec.resources.limits.memory"
             :label="t('monitoring.prometheus.config.limits.memory')"
             :required="true"
             :mode="mode"
@@ -329,7 +329,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledInput
-            v-model="prometheusNodeExporter.resources.limits.cpu"
+            v-model:value="prometheusNodeExporter.resources.limits.cpu"
             :label="t('monitoring.prometheus.config.limits.cpu')"
             :required="true"
             :mode="mode"
@@ -337,7 +337,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="prometheusNodeExporter.resources.limits.memory"
+            v-model:value="prometheusNodeExporter.resources.limits.memory"
             :label="t('monitoring.prometheus.config.limits.memory')"
             :required="true"
             :mode="mode"
@@ -347,7 +347,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledInput
-            v-model="prometheusNodeExporter.resources.requests.cpu"
+            v-model:value="prometheusNodeExporter.resources.requests.cpu"
             :label="t('monitoring.prometheus.config.requests.cpu')"
             :required="true"
             :mode="mode"
@@ -355,7 +355,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="prometheusNodeExporter.resources.requests.memory"
+            v-model:value="prometheusNodeExporter.resources.requests.memory"
             :label="t('monitoring.prometheus.config.requests.memory')"
             :required="true"
             :mode="mode"
@@ -391,7 +391,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.grafana.resources.requests.cpu"
+            v-model:value="valuesContentJson.grafana.resources.requests.cpu"
             :label="t('monitoring.prometheus.config.requests.cpu')"
             :required="true"
             :mode="mode"
@@ -399,7 +399,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.grafana.resources.requests.memory"
+            v-model:value="valuesContentJson.grafana.resources.requests.memory"
             :label="t('monitoring.prometheus.config.requests.memory')"
             :required="true"
             :mode="mode"
@@ -409,7 +409,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.grafana.resources.limits.cpu"
+            v-model:value="valuesContentJson.grafana.resources.limits.cpu"
             :label="t('monitoring.prometheus.config.limits.cpu')"
             :required="true"
             :mode="mode"
@@ -417,7 +417,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="valuesContentJson.grafana.resources.limits.memory"
+            v-model:value="valuesContentJson.grafana.resources.limits.memory"
             :label="t('monitoring.prometheus.config.limits.memory')"
             :required="true"
             :mode="mode"
@@ -427,7 +427,7 @@ export default {
     </Tab>
     <Tab v-if="value.spec.enabled" name="alertmanager" :label="t('harvester.setting.harvesterMonitoring.section.alertmanager')" :weight="-4">
       <RadioGroup
-        v-model="valuesContentJson.alertmanager.enabled"
+        v-model:value="valuesContentJson.alertmanager.enabled"
         class="mb-20"
         name="model"
         :mode="mode"
@@ -465,7 +465,7 @@ export default {
         <div class="row mt-10">
           <div class="col span-6">
             <LabeledInput
-              v-model="valuesContentJson.alertmanager.alertmanagerSpec.retention"
+              v-model:value="valuesContentJson.alertmanager.alertmanagerSpec.retention"
               :label="t('monitoring.prometheus.config.retention')"
               :required="true"
               :mode="mode"
@@ -475,7 +475,7 @@ export default {
         <div class="row mt-10">
           <div class="col span-6">
             <LabeledInput
-              v-model="valuesContentJson.alertmanager.alertmanagerSpec.resources.limits.cpu"
+              v-model:value="valuesContentJson.alertmanager.alertmanagerSpec.resources.limits.cpu"
               :label="t('monitoring.prometheus.config.limits.cpu')"
               :required="true"
               :mode="mode"
@@ -483,7 +483,7 @@ export default {
           </div>
           <div class="col span-6">
             <LabeledInput
-              v-model="valuesContentJson.alertmanager.alertmanagerSpec.resources.limits.memory"
+              v-model:value="valuesContentJson.alertmanager.alertmanagerSpec.resources.limits.memory"
               :label="t('monitoring.prometheus.config.limits.memory')"
               :required="true"
               :mode="mode"
@@ -493,7 +493,7 @@ export default {
         <div class="row mt-10">
           <div class="col span-6">
             <LabeledInput
-              v-model="valuesContentJson.alertmanager.alertmanagerSpec.resources.requests.cpu"
+              v-model:value="valuesContentJson.alertmanager.alertmanagerSpec.resources.requests.cpu"
               :label="t('monitoring.prometheus.config.requests.cpu')"
               :required="true"
               :mode="mode"
@@ -501,7 +501,7 @@ export default {
           </div>
           <div class="col span-6">
             <LabeledInput
-              v-model="valuesContentJson.alertmanager.alertmanagerSpec.resources.requests.memory"
+              v-model:value="valuesContentJson.alertmanager.alertmanagerSpec.resources.requests.memory"
               :label="t('monitoring.prometheus.config.requests.memory')"
               :required="true"
               :mode="mode"
@@ -514,7 +514,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  ::v-deep .radio-group {
+  :deep() .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;

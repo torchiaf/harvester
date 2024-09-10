@@ -446,7 +446,7 @@ export default {
   >
     <RadioGroup
       v-if="isCreate"
-      v-model="isSingle"
+      v-model:value="isSingle"
       class="mb-20 vm-radio-group"
       name="createInstanceMode"
       :options="[true,false]"
@@ -454,7 +454,7 @@ export default {
     />
 
     <NameNsDescription
-      v-model="value"
+      v-model:value="value"
       :mode="mode"
       :has-extra="!isSingle"
       :name-label="nameLabel"
@@ -471,14 +471,14 @@ export default {
           type="number"
           :label="t('harvester.virtualMachine.instance.multiple.count')"
           required
-          @input="validateCount"
+          @update:value="validateCount"
         />
       </template>
     </NameNsDescription>
 
     <Checkbox
       v-if="isCreate"
-      v-model="useTemplate"
+      v-model:value="useTemplate"
       class="check mb-20"
       type="checkbox"
       label-key="harvester.virtualMachine.useTemplate.label"
@@ -490,16 +490,16 @@ export default {
     >
       <div class="col span-6">
         <LabeledSelect
-          v-model="templateId"
+          v-model:value="templateId"
           label-key="harvester.virtualMachine.useTemplate.template.label"
           :options="templateOptions"
-          @input="updateTemplateId"
+          @update:value="updateTemplateId"
         />
       </div>
 
       <div class="col span-6">
         <LabeledSelect
-          v-model="templateVersionId"
+          v-model:value="templateVersionId"
           label-key="harvester.virtualMachine.useTemplate.version.label"
           :options="versionOptions"
         />
@@ -522,7 +522,7 @@ export default {
         />
 
         <SSHKey
-          v-model="sshKey"
+          v-model:value="sshKey"
           class="mb-20"
           :create-namespace="true"
           :namespace="value.metadata.namespace"
@@ -539,7 +539,7 @@ export default {
         :weight="-1"
       >
         <Volume
-          v-model="diskRows"
+          v-model:value="diskRows"
           :mode="mode"
           :custom-volume-mode="customVolumeMode"
           :namespace="value.metadata.namespace"
@@ -555,7 +555,7 @@ export default {
         :weight="-2"
       >
         <Network
-          v-model="networkRows"
+          v-model:value="networkRows"
           :mode="mode"
           :is-single="isSingle"
         />
@@ -568,7 +568,6 @@ export default {
       >
         <template #default="{active}">
           <NodeScheduling
-            :key="active"
             :mode="mode"
             :value="spec.template.spec"
             :nodes="nodesIdOptions"
@@ -583,7 +582,6 @@ export default {
       >
         <template #default="{active}">
           <PodAffinity
-            :key="active"
             :mode="mode"
             :value="spec.template.spec"
             :nodes="nodes"
@@ -627,7 +625,7 @@ export default {
         :weight="-7"
       >
         <AccessCredentials
-          v-model="accessCredentials"
+          v-model:value="accessCredentials"
           :mode="mode"
           :resource="value"
           :is-qemu-installed="isQemuInstalled"
@@ -642,7 +640,7 @@ export default {
         <div class="row mb-20">
           <div class="col span-6">
             <LabeledSelect
-              v-model="runStrategy"
+              v-model:value="runStrategy"
               label-key="harvester.virtualMachine.runStrategy"
               :options="RunStrategys"
               :mode="mode"
@@ -651,7 +649,7 @@ export default {
 
           <div class="col span-6">
             <LabeledSelect
-              v-model="osType"
+              v-model:value="osType"
               label-key="harvester.virtualMachine.osType"
               :options="OS"
               :disabled="!isCreate"
@@ -681,7 +679,7 @@ export default {
           <div class="row mb-20">
             <div class="col span-6">
               <LabeledInput
-                v-model="hostname"
+                v-model:value="hostname"
                 :label-key="hostnameLabel"
                 :placeholder="hostPlaceholder"
                 :mode="mode"
@@ -690,7 +688,7 @@ export default {
 
             <div class="col span-6">
               <LabeledSelect
-                v-model="machineType"
+                v-model:value="machineType"
                 label-key="harvester.virtualMachine.input.MachineType"
                 :options="machineTypeOptions"
                 :mode="mode"
@@ -708,12 +706,12 @@ export default {
             </div>
             <div class="col span-6">
               <UnitInput
-                v-model="terminationGracePeriodSeconds"
+                v-model:value="terminationGracePeriodSeconds"
                 :suffix="terminationGracePeriodSeconds == 1 ? 'Second' : 'Seconds'"
                 :label="t('harvester.virtualMachine.terminationGracePeriodSeconds.label')"
                 :mode="mode"
                 positive
-                @input="updateTerminationGracePeriodSeconds"
+                @update:value="updateTerminationGracePeriodSeconds"
               />
             </div>
           </div>
@@ -732,7 +730,7 @@ export default {
         />
 
         <Checkbox
-          v-model="installUSBTablet"
+          v-model:value="installUSBTablet"
           class="check mt-20"
           type="checkbox"
           tooltip-key="harvester.virtualMachine.usbTip"
@@ -741,17 +739,17 @@ export default {
         />
 
         <Checkbox
-          v-model="installAgent"
+          v-model:value="installAgent"
           class="check"
           type="checkbox"
           :disabled="isWindows"
           label-key="harvester.virtualMachine.installAgent"
           :mode="mode"
-          @input="updateAgent"
+          @update:value="updateAgent"
         />
 
         <Checkbox
-          v-model="tpmEnabled"
+          v-model:value="tpmEnabled"
           class="check"
           type="checkbox"
           label-key="harvester.virtualMachine.advancedOptions.tpm"
@@ -759,7 +757,7 @@ export default {
         />
 
         <Checkbox
-          v-model="efiEnabled"
+          v-model:value="efiEnabled"
           class="check"
           type="checkbox"
           :label="t('harvester.virtualMachine.efiEnabled')"
@@ -768,7 +766,7 @@ export default {
 
         <Checkbox
           v-if="efiEnabled"
-          v-model="secureBoot"
+          v-model:value="secureBoot"
           class="check"
           type="checkbox"
           :label="t('harvester.virtualMachine.secureBoot')"
@@ -799,7 +797,7 @@ export default {
               :mode="mode"
               :read-allowed="false"
               :value-can-be-empty="true"
-              @input="value.setInstanceLabels($event)"
+              @update:value="value.setInstanceLabels($event)"
             />
           </template>
         </Labels>
@@ -815,7 +813,7 @@ export default {
 
 <style lang="scss" scoped>
 #vm {
-  ::v-deep .vm-radio-group .radio-group {
+  :deep() .vm-radio-group .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;

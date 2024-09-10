@@ -222,7 +222,7 @@ export default {
       :searchable="true"
       :taggable="true"
       class="mb-20"
-      @input="updateProvisioner($event)"
+      @update:value="updateProvisioner($event)"
     />
     <Tabbed :side-tabs="true">
       <Tab name="parameters" :label="t('storageClass.parameters.label')" :weight="2">
@@ -238,7 +238,7 @@ export default {
         <div class="row mt-20">
           <div class="col span-6">
             <RadioGroup
-              v-model="value.reclaimPolicy"
+              v-model:value="value.reclaimPolicy"
               name="reclaimPolicy"
               :label="t('storageClass.customize.reclaimPolicy.label')"
               :mode="modeOverride"
@@ -247,7 +247,7 @@ export default {
           </div>
           <div class="col span-6">
             <RadioGroup
-              v-model="value.allowVolumeExpansion"
+              v-model:value="value.allowVolumeExpansion"
               name="allowVolumeExpansion"
               :label="t('storageClass.customize.allowVolumeExpansion.label')"
               :mode="modeOverride"
@@ -258,7 +258,7 @@ export default {
         <div class="row mt-20">
           <div class="col span-6">
             <RadioGroup
-              v-model="value.volumeBindingMode"
+              v-model:value="value.volumeBindingMode"
               name="volumeBindingMode"
               :label="t('storageClass.customize.volumeBindingMode.label')"
               :mode="modeOverride"
@@ -274,7 +274,7 @@ export default {
         :tooltip="t('harvester.storage.allowedTopologies.tooltip')"
       >
         <ArrayList
-          v-model="allowedTopologies"
+          v-model:value="allowedTopologies"
           :default-add-value="defaultAddValue"
           :initial-empty-row="true"
           :show-header="true"
@@ -297,14 +297,14 @@ export default {
             <div class="row custom-headers">
               <div class="col span-4 key">
                 <LabeledInput
-                  v-model="scope.row.value.key"
+                  v-model:value="scope.row.value.key"
                   :required="true"
                   :mode="modeOverride"
                 />
               </div>
               <div class="col span-8 value">
                 <DiskTags
-                  v-model="scope.row.value.values"
+                  v-model:value="scope.row.value.values"
                   :add-label="t('generic.add')"
                   :mode="modeOverride"
                 />

@@ -59,11 +59,11 @@ export default {
           :mode="mode"
         >
           <LabeledInput
-            v-model="value.name"
+            v-model:value="value.name"
             :label="t('harvester.fields.name')"
             required
             :mode="mode"
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -78,12 +78,12 @@ export default {
           :mode="mode"
         >
           <LabeledSelect
-            v-model="value.type"
+            v-model:value="value.type"
             :label="t('harvester.fields.type')"
             :options="VOLUME_TYPE"
             :mode="mode"
             required
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -100,11 +100,11 @@ export default {
           :mode="mode"
         >
           <LabeledInput
-            v-model="value.container"
+            v-model:value="value.container"
             :label="t('harvester.virtualMachine.volume.dockerImage')"
             :mode="mode"
             required
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>
@@ -119,11 +119,11 @@ export default {
           :mode="mode"
         >
           <LabeledSelect
-            v-model="value.bus"
+            v-model:value="value.bus"
             :label="t('harvester.virtualMachine.volume.bus')"
             :options="InterfaceOption"
             :mode="mode"
-            @input="update"
+            @update:value="update"
           />
         </InputOrDisplay>
       </div>

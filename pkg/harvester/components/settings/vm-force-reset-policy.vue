@@ -51,7 +51,7 @@ export default {
   <div class="row" @input="update">
     <div class="col span-12">
       <RadioGroup
-        v-model="parseDefaultValue.enable"
+        v-model:value="parseDefaultValue.enable"
         class="mb-20"
         name="model"
         :options="[true,false]"
@@ -72,7 +72,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  ::v-deep .radio-group {
+  :deep() .radio-group {
     display: flex;
     .radio-container {
       margin-right: 30px;

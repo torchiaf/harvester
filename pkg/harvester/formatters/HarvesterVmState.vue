@@ -144,7 +144,7 @@ export default {
             @mouseenter="showMessage(true)"
             @mouseleave="showMessage(false)"
           >
-            <p v-for="(message, index) in warningMessage" :key="message">
+            <p v-for="(message, index) in warningMessage" :key="index">
               {{ index + 1 }}.
               <a
                 v-if="canMiss(row, message)"

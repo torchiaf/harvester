@@ -38,13 +38,13 @@ export default {
 
 <template>
   <UnitInput
-    v-model="memory"
+    v-model:value="memory"
     v-int-number
     :label="t('harvester.virtualMachine.input.reservedMemory')"
     :mode="mode"
     :input-exponent="2"
     :increment="1024"
     :output-modifier="true"
-    @input="change"
+    @update:value="change"
   />
 </template>

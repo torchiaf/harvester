@@ -122,9 +122,7 @@ export default {
     </div>
     <div class="mt-10">
       <Tag
-        v-for="(tag) in value"
-        :key="tag"
-        class="tag"
+         v-for="((tag), i) in value" :key="i" class="tag"
       >
         <span>
           {{ tag }}
@@ -157,7 +155,7 @@ export default {
       >
         <input
           ref="addTagInput"
-          v-model="inputValue"
+          v-model:value="inputValue"
           type="text"
           size="small"
           @blur="confirmAdd"
