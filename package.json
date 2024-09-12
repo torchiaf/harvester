@@ -6,24 +6,14 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
-    "@rancher/components": "0.3.0-alpha.1",
-    "@rancher/shell": "2.0.0",
-    "@vue/cli-plugin-babel": "5.0.8",
-    "@vue/cli-plugin-typescript": "5.0.8",
-    "@vue/cli-service": "5.0.8",
+    "@rancher/shell": "^3.0.0-rc.1",
     "cache-loader": "^4.1.0",
-    "codemirror": ">=5.64.0 <6",
-    "codemirror-editor-vue3": "^2.7.0",
-    "core-js": "3.25.3",
-    "css-loader": "4.3.0",
-    "diff_match_patch": "^0.1.1",
-    "node-polyfill-webpack-plugin": "^3.0.0",
-    "yaml": "2.0.0"
+    "color": "4.2.3",
+    "ip": "2.0.1",
+    "node-polyfill-webpack-plugin": "^3.0.0"
   },
   "resolutions": {
-    "@vue/cli-plugin-babel": "5.0.8",
-    "@vue/cli-service": "5.0.8",
-    "@vue/cli-plugin-typescript": "5.0.8",
+    "@types/node": "~20.10.0",
     "d3-color": "3.1.0",
     "ejs": "3.1.9",
     "follow-redirects": "1.15.2",
@@ -45,17 +35,7 @@
     "clean": "./node_modules/@rancher/shell/scripts/clean",
     "build-pkg": "./node_modules/@rancher/shell/scripts/build-pkg.sh",
     "serve-pkgs": "./node_modules/@rancher/shell/scripts/serve-pkgs",
-    "vue-migrate": "scripts/vue-migrate.js",
     "publish-pkgs": "./node_modules/@rancher/shell/scripts/extension/publish",
-    "parse-tag-name": "./node_modules/@rancher/shell/scripts/extension/parse-tag-name",
-    "lint": "./node_modules/.bin/eslint --max-warnings 0 --ext .js,.ts,.vue .",
-    "test": "jest --watch",
-    "migrate": "node ./vue-migrate.js"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/lodash": "^4.17.5",
-    "@vue/vue3-jest": "^27.0.0-alpha.1",
-    "babel-plugin-transform-require-context": "^0.1.1"
+    "parse-tag-name": "./node_modules/@rancher/shell/scripts/extension/parse-tag-name"
   }
 }

@@ -1,28 +1,18 @@
 import { importTypes } from '@rancher/auto-import';
 import { IPlugin } from '@shell/core/types';
-import extensionRouting from './routing/harvester-routing';
-import harvesterCommonStore from './store/harvester-common';
-import harvesterStore from './store/harvester-store';
-import customValidators from './validators';
+import extensionRoutes from './routing/harvester-routing';
 
 // Init the package
-export default function(plugin: IPlugin): void {
+export default function (plugin: IPlugin) {
   // Auto-import model, detail, edit from the folders
   importTypes(plugin);
 
   // Provide plugin metadata from package.json
   plugin.metadata = require('./package.json');
 
-  // Load a product
-  plugin.addProduct(require('./product'));
+  // Built-in icon
+  plugin.metadata.icon = require('./icon.svg');
 
-  // Add Vue Routes
-  plugin.addRoutes(extensionRouting);
-
-  plugin.addDashboardStore(harvesterCommonStore.config.namespace, harvesterCommonStore.specifics, harvesterCommonStore.config);
-  plugin.addDashboardStore(harvesterStore.config.namespace, harvesterStore.specifics, harvesterStore.config, harvesterStore.init);
-
-  plugin.validators = customValidators;
-
-  plugin.register('component', 'NavHeaderRight', () => import(/* webpackChunkName: "pkg/harvester/components" */ `./components/HarvesterUpgradeHeader.vue`));
+  plugin.addProduct(require('./config/harvester-manager'));
+  plugin.addRoutes(extensionRoutes);
 }

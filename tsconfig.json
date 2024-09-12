@@ -28,9 +28,8 @@
     "typeRoots": [
       "./node_modules",
       "./node_modules/@rancher/shell/types"
-    ],    
+    ],
     "types": [
-      "@types/jest",
       "@types/node",
       "cypress",
       "rancher",

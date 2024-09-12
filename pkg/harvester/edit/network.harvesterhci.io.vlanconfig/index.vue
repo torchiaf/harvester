@@ -434,7 +434,7 @@ export default {
         <div class="row mt-20">
           <div class="col span-12">
             <Banner
-              v-for="(err, i) in nicErrors" :key="i"color="warning"
+              v-for="(err, i) in nicErrors" :key="i" color="warning"
               :label="err"
             />
             <ArrayListSelect

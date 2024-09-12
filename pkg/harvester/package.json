@@ -1,11 +1,12 @@
 {
   "name": "harvester",
-  "description": "harvester plugin",
+  "description": "Provides the Virtualization Management feature in Rancher Manager",
   "version": "0.1.0",
   "private": false,
   "rancher": {
     "annotations": {
-      "catalog.cattle.io/rancher-version": ">= v2.8.3"
+      "catalog.cattle.io/rancher-version": ">= v2.10.0",
+      "catalog.cattle.io/display-name": "Virtualization Manager"
     }
   },
   "scripts": {

@@ -127,7 +127,7 @@ export default {
         />
       </div>
       <div
-        v-for="(row, idx) in rows" :key="idx"class="listener-row"
+        v-for="(row, idx) in rows" :key="idx" class="listener-row"
       >
         <div class="port-name">
           <span v-if="isView">
