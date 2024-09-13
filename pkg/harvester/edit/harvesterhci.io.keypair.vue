@@ -85,7 +85,8 @@ export default {
     <NameNsDescription
       ref="nd"
       :key="randomString"
-      v-model:value="value"
+      :value="value"
+      @update:value="$emit('input', $event)"
       :mode="mode"
     />
 

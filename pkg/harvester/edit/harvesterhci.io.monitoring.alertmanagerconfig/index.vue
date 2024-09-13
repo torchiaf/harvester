@@ -190,7 +190,8 @@ export default {
     @cancel="done"
   >
     <NameNsDescription
-      v-model:value="value"
+      :value="value"
+      @update:value="$emit('input', $event)"
       :mode="mode"
       :namespaced="isNamespaced"
     />

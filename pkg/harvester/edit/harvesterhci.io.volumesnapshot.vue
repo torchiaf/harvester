@@ -60,7 +60,7 @@ export default {
       :apply-hooks="applyHooks"
       @finish="save"
     >
-      <NameNsDescription :value="value" :namespaced="true" :mode="mode" />
+      <NameNsDescription :value="value" @update:value="$emit('input', $event)" :namespaced="true" :mode="mode" />
       <ResourceTabs
         v-model:value="value"
         class="mt-15"

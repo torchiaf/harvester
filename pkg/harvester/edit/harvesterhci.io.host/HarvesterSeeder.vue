@@ -342,7 +342,8 @@ export default {
 
         <template #content>
           <NameNsDescription
-            v-model:value="secret"
+            :value="value"
+            @update:value="$emit('input', $event)"
             :namespaced="true"
             mode="create"
           />

@@ -233,7 +233,8 @@ export default {
       @error="e=>errors = e"
     >
       <NameNsDescription
-        v-model:value="value"
+        :value="value"
+        @update:value="$emit('input', $event)"
         :mode="mode"
         :namespaced="!isCloud"
       />

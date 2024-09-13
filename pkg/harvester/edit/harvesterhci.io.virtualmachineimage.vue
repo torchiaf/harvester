@@ -280,7 +280,8 @@ export default {
   >
     <NameNsDescription
       ref="nd"
-      v-model:value="value"
+      :value="value"
+      @update:value="$emit('input', $event)"
       :mode="mode"
       :label="t('generic.name')"
       name-key="spec.displayName"
@@ -422,7 +423,7 @@ export default {
             />
             <input
               v-else
-              v-model:value="row[valueName]"
+              v-model="row[valueName]"
               :disabled="isView"
               :type="'text'"
               :placeholder="t('keyValue.valuePlaceholder')"

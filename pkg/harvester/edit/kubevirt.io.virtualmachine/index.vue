@@ -454,7 +454,8 @@ export default {
     />
 
     <NameNsDescription
-      v-model:value="value"
+      :value="value"
+      @update:value="$emit('input', $event)"
       :mode="mode"
       :has-extra="!isSingle"
       :name-label="nameLabel"
@@ -462,7 +463,7 @@ export default {
       :name-placeholder="isSingle ? 'nameNsDescription.name.placeholder' : 'harvester.virtualMachine.instance.multiple.nameNsDescription'"
       :extra-columns="isSingle ? [] :['type']"
     >
-      <template v-slot:type>
+      <template #type>
         <LabeledInput
           v-if="!isSingle"
           v-model.number="count"

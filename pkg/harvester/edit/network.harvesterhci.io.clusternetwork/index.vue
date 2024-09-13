@@ -66,6 +66,7 @@ export default {
   >
     <NameNsDescription
       :value="value"
+      @update:value="$emit('input', $event)"
       :mode="mode"
       :namespaced="false"
     />

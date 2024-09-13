@@ -220,7 +220,8 @@ export default {
     @finish="saveVMT"
   >
     <NameNsDescription
-      v-model:value="templateValue"
+      :value="value"
+      @update:value="$emit('input', $event)"
       :mode="realTemplateMode"
       name-label="harvester.vmTemplate.nameNsDescription.name"
       :namespaced="true"
