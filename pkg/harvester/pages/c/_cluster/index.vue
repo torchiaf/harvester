@@ -3,11 +3,11 @@ import { PRODUCT_NAME } from '../../../config/harvester';
 import { HCI } from '../../../types';
 
 export default {
-  middleware({ redirect, route }) {
-    return redirect({
+  beforeCreate() {
+    this.$router.replace({
       name:   `${ PRODUCT_NAME }-c-cluster-resource`,
       params: {
-        ...route.params,
+        ...this.$router.currentRoute.params,
         product:  PRODUCT_NAME,
         resource: HCI.DASHBOARD
       }

@@ -65,6 +65,27 @@ export function init($plugin, store) {
     weightType,
   } = $plugin.DSL(store, PRODUCT_NAME);
 
+  const isSingleVirtualCluster = process.env.rancherEnv === PRODUCT_NAME;
+
+  if (isSingleVirtualCluster) {
+    const home = {
+      name: `${PRODUCT_NAME}-c-cluster-resource`,
+      params: {
+        product:  PRODUCT_NAME,
+        resource: HCI.DASHBOARD
+      }
+    };
+
+    store.dispatch('setIsSingleProduct', {
+      logo: require(`@shell/assets/images/providers/harvester.svg`),
+      productNameKey: 'harvester.productLabel',
+      getVersionInfo: (store) => store.getters[`${PRODUCT_NAME}/byId`]?.(HCI.SETTING, 'server-version')?.value || 'unknown',
+      afterLoginRoute: home,
+      logoRoute: home,
+      supportCustomLogo: true
+    });
+  }
+
   product({
     inStore: 'harvester',
     removable: false,
