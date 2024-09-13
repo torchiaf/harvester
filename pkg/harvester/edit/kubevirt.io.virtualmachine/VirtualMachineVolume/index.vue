@@ -233,7 +233,7 @@ export default {
     },
 
     update() {
-      this.$emit('input', this.rows);
+      this.$emit('update:value', this.rows);
     },
 
     deleteVolume() {
@@ -267,13 +267,14 @@ export default {
       label-key="harvester.virtualMachine.volume.dragTip"
     />
     <draggable
-      v-model:value="rows"
+      v-model="rows"
       :disabled="isView"
       @end="update"
+      tag="transition-group"
+      :item-key="() => null"
     >
-      <transition-group>
-        <div
-          v-for="(volume, i) in rows" :key="i">
+      <template #item="{element: volume, index: i}">
+        <div :key="volume.name">
           <InfoBox class="box">
             <button
               v-if="!isView"
@@ -326,7 +327,7 @@ export default {
             <div>
               <component
                 :is="componentFor(volume.source)"
-                v-model:value="rows[i]"
+                :value="rows[i]"
                 :rows="rows"
                 :namespace="namespace"
                 :is-create="isCreate"
@@ -375,7 +376,7 @@ export default {
             />
           </InfoBox>
         </div>
-      </transition-group>
+      </template>
     </draggable>
     <Banner
       v-if="showVolumeTip"
