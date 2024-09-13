@@ -86,7 +86,7 @@ export default {
       ref="nd"
       :key="randomString"
       :value="value"
-      @update:value="$emit('input', $event)"
+      @update:value="$emit('update:value', $event)"
       :mode="mode"
     />
 

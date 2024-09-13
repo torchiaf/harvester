@@ -92,7 +92,7 @@ export default {
     confirmAdd() {
       if (this.inputValue && !this.value.includes(this.inputValue)) {
         this.tags.push(this.inputValue);
-        this.$emit('input', this.tags);
+        this.$emit('update:value', this.tags);
       }
 
       this.inputValue = '';
@@ -101,7 +101,7 @@ export default {
 
     onRemoveTag(tag) {
       this.tags = this.tags.filter(v => v !== tag);
-      this.$emit('input', this.tags);
+      this.$emit('update:value', this.tags);
     },
   }
 };

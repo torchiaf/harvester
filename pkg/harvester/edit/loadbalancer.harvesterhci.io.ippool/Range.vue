@@ -91,7 +91,7 @@ export default {
         return;
       }
 
-      this.$emit('input', this.rows);
+      this.$emit('update:value', this.rows);
     }
   },
 };
@@ -148,7 +148,7 @@ export default {
             </span>
             <input
               v-else
-              v-model:value="row.subnet"
+              v-model="row.subnet"
               type="text"
               @input="queueUpdate"
             />
@@ -161,7 +161,7 @@ export default {
             </span>
             <input
               v-else
-              v-model:value="row.gateway"
+              v-model="row.gateway"
               type="text"
               @input="queueUpdate"
             />
@@ -175,7 +175,7 @@ export default {
             </span>
             <input
               v-else
-              v-model:value="row.rangeStart"
+              v-model="row.rangeStart"
               type="text"
               @input="queueUpdate"
             />
@@ -189,7 +189,7 @@ export default {
             </span>
             <input
               v-else
-              v-model:value="row.rangeEnd"
+              v-model="row.rangeEnd"
               type="text"
               @input="queueUpdate"
             />

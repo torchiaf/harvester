@@ -139,7 +139,7 @@ export default {
     update() {
       const { namespace, project, guestCluster } = this.row;
 
-      this.$emit('input', {
+      this.$emit('update:value', {
         namespace,
         project,
         guestCluster,

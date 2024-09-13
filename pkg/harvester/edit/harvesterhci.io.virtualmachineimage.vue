@@ -281,7 +281,7 @@ export default {
     <NameNsDescription
       ref="nd"
       :value="value"
-      @update:value="$emit('input', $event)"
+      @update:value="$emit('update:value', $event)"
       :mode="mode"
       :label="t('generic.name')"
       name-key="spec.displayName"

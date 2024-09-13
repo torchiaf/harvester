@@ -210,7 +210,7 @@ export default {
     <NameNsDescription
       :namespaced="false"
       :value="value"
-      @update:value="$emit('input', $event)"
+      @update:value="$emit('update:value', $event)"
       :mode="mode"
       :register-before-hook="registerBeforeHook"
     />

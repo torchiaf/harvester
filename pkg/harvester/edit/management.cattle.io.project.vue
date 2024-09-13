@@ -214,7 +214,7 @@ export default {
   >
     <NameNsDescription
       :value="value"
-      @update:value="$emit('input', $event)"
+      @update:value="$emit('update:value', $event)"
       :name-editable="true"
       :mode="mode"
       :namespaced="false"

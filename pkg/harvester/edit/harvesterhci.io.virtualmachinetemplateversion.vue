@@ -221,7 +221,7 @@ export default {
   >
     <NameNsDescription
       :value="value"
-      @update:value="$emit('input', $event)"
+      @update:value="$emit('update:value', $event)"
       :mode="realTemplateMode"
       name-label="harvester.vmTemplate.nameNsDescription.name"
       :namespaced="true"

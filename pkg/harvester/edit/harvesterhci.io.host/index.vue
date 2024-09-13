@@ -516,7 +516,7 @@ export default {
     <div class="content">
       <NameNsDescription
         :value="value"
-        @update:value="$emit('input', $event)"
+        @update:value="$emit('update:value', $event)"
         :namespaced="false"
         :mode="mode"
       />

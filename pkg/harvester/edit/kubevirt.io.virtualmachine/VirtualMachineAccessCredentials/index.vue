@@ -118,7 +118,7 @@ export default {
     },
 
     update() {
-      this.$emit('input', this.rows);
+      this.$emit('update:value', this.rows);
     },
 
     updateNewUser(newUser) {

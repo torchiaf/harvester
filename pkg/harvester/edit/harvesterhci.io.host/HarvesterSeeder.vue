@@ -343,7 +343,7 @@ export default {
         <template #content>
           <NameNsDescription
             :value="value"
-            @update:value="$emit('input', $event)"
+            @update:value="$emit('update:value', $event)"
             :namespaced="true"
             mode="create"
           />

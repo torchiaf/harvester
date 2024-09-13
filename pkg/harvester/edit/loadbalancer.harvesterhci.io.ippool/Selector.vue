@@ -62,7 +62,7 @@ export default {
         return;
       }
 
-      this.$emit('input', this.selector);
+      this.$emit('update:value', this.selector);
     }
   },
 };

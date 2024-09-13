@@ -170,7 +170,7 @@ export default {
       <NameNsDescription
         v-if="!isView"
         :value="value"
-        @update:value="$emit('input', $event)"
+        @update:value="$emit('update:value', $event)"
         :mode="mode"
         label="generic.name"
         :register-before-hook="registerBeforeHook"

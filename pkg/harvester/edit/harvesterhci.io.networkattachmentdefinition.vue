@@ -178,7 +178,7 @@ export default {
     <NameNsDescription
       ref="nd"
       :value="value"
-      @update:value="$emit('input', $event)"
+      @update:value="$emit('update:value', $event)"
       :mode="mode"
     />
     <Tabbed v-bind="$attrs" class="mt-15" :side-tabs="true">
