@@ -207,6 +207,7 @@ harvester:
           =1 {core}
           other {cores}}
   tableHeaders:
+    imageEncryption: Encryption
     size: Size
     virtualSize: Virtual Size
     progress: Progress
@@ -767,6 +768,8 @@ harvester:
       basics: Basics
     url: URL
     size: Size
+    isEncryption: Encryption
+    encryptionSecret: Encryption Secret
     virtualSize: Virtual Size
     urlTip: 'Supports the <code>raw</code> and <code>qcow2</code> image formats which are supported by <a href="https://www.qemu.org/docs/master/system/images.html#disk-image-file-formats" target="_blank">qemu</a>. Bootable ISO images can also be used and are treated like <code>raw</code> images.'
     fileName: File Name
@@ -775,6 +778,11 @@ harvester:
     sourceType:
       download: URL
       upload: File
+      clone: Clone
+      encrypt: Encrypt
+      decrypt: Decrypt
+    sourceImage: Source Image
+    cryptoOperation: Crypto Operation
     warning:
       uploading: |-
         {count, plural,
@@ -1100,6 +1108,9 @@ harvester:
   storage:
     label: Storage
     useDefault: Use the default storage
+    volumeEncryption: Volume Encryption
+    secretName: Secret Name
+    secretNamespace: Secret Namespace
     migratable:
       label: Migratable
     numberOfReplicas:
