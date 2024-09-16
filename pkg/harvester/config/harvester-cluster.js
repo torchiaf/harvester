@@ -105,7 +105,7 @@ export function init($plugin, store) {
     to: {
       name: `${PRODUCT_NAME}-c-cluster-resource`,
       params: {
-        product: PRODUCT_NAME,
+        product:  PRODUCT_NAME,
         resource: HCI.DASHBOARD
       }
     },

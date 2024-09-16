@@ -30,7 +30,6 @@ export default {
   },
 
   async fetch() {
-    console.log('dfetchttt');
     const inStore = this.$store.getters['currentProduct'].inStore;
 
     const hash = await allHash({
@@ -43,7 +42,6 @@ export default {
   },
 
   data() {
-    console.log('ddataata');
     const resource = CAPI.RANCHER_CLUSTER;
 
     return {
