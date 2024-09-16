@@ -200,7 +200,7 @@ export default {
     <div class="mb-20">
       <DataTemplate
         ref="userTemplate"
-        v-model:value="userScript"
+        :value="userScript"
         type="user"
         :view-code="viewCode"
         :mode="mode"
@@ -215,7 +215,7 @@ export default {
     <div class="mb-20">
       <DataTemplate
         ref="networkTemplate"
-        v-model:value="networkScript"
+        :value="networkScript"
         type="network"
         :view-code="viewCode"
         :mode="mode"

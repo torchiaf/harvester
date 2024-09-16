@@ -378,7 +378,7 @@ export default {
     >
       <Tab name="basics" :label="t('harvester.host.tabs.basics')" :weight="4" class="bordered-table">
         <Basic
-          v-model:value="value"
+          :value="value"
           :metrics="metrics"
           :mode="mode"
         />

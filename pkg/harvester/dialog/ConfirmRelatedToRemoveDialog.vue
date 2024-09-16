@@ -146,7 +146,7 @@ export default {
       <div class="mb-10">
         <CopyToClipboardText :text="nameToMatch" />
       </div>
-      <input id="confirm" v-model:value="confirmName" type="text" />
+      <input id="confirm" v-model="confirmName" type="text" />
       <div class="text-info mt-20">
         {{ protip }}
       </div>

@@ -158,7 +158,8 @@ export default {
 
 <template>
   <ResourceTabs
-    v-model:value="value"
+    :value="value"
+    @update:value="$emit('input', $event)"
     :need-events="false"
     :need-related="false"
     :mode="mode"

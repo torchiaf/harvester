@@ -228,7 +228,7 @@ export default {
         <template v-slot:columns="scope">
           <div class="key">
             <input
-              v-model:value="scope.row.value"
+              v-model="scope.row.value"
               :placeholder="t('harvester.setting.storageNetwork.exclude.placeholder')"
               @update:value="update"
             />

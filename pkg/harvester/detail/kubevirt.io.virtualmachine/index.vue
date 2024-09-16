@@ -158,7 +158,7 @@ export default {
   <div>
     <Tabbed v-bind="$attrs" class="mt-15" :side-tabs="true" @changed="onTabChanged">
       <Tab name="basics" :label="t('harvester.virtualMachine.detail.tabs.basics')" class="bordered-table" :weight="7">
-        <OverviewBasics v-model:value="value" :vmi="vmi" mode="view" />
+        <OverviewBasics :value="value" :vmi="vmi" mode="view" />
       </Tab>
 
       <Tab name="disks" :label="t('harvester.tab.volume')" class="bordered-table" :weight="6">
@@ -176,7 +176,7 @@ export default {
       </Tab>
 
       <Tab name="keypairs" :label="t('harvester.virtualMachine.detail.tabs.keypairs')" class="bordered-table" :weight="3">
-        <OverviewKeypairs v-model:value="value" />
+        <OverviewKeypairs :value="value" />
       </Tab>
 
       <Tab
@@ -235,7 +235,7 @@ export default {
       </Tab>
 
       <Tab name="migration" :label="t('harvester.virtualMachine.detail.tabs.migration')">
-        <Migration v-model:value="value" :vmi-resource="vmi" />
+        <Migration :value="value" :vmi-resource="vmi" />
       </Tab>
 
       <Tab
