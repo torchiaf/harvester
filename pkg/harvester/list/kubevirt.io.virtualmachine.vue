@@ -1,9 +1,7 @@
 <script>
 import ResourceTable from '@shell/components/ResourceTable';
-import LinkDetail from '@shell/components/formatter/LinkDetail';
-
 import { STATE, AGE, NAME, NAMESPACE } from '@shell/config/table-headers';
-import { NODE, POD } from '@shell/config/types';
+import { PVC, PV, NODE, POD } from '@shell/config/types';
 
 import { allHash } from '@shell/utils/promise';
 import Loading from '@shell/components/Loading';
@@ -60,7 +58,6 @@ export default {
   components: {
     Loading,
     HarvesterVmState,
-    LinkDetail,
     ConsoleBar,
     ResourceTable
   },
@@ -77,6 +74,9 @@ export default {
     const _hash = {
       vms:     this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.VM }),
       pod:     this.$store.dispatch(`${ inStore }/findAll`, { type: POD }),
+      pvcs:    this.$store.dispatch(`${ inStore }/findAll`, { type: PVC }),
+      pvs:     this.$store.dispatch(`${ inStore }/findAll`, { type: PV }),
+      images:  this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.IMAGE }),
       restore: this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.RESTORE }),
       backups: this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.BACKUP }),
     };
@@ -169,6 +169,20 @@ export default {
     await this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.VMIM });
 
     this['allVMIs'] = vmis;
+  },
+
+  methods: {
+    lockIconTooltipMessage(row) {
+      if (row.isVMImageEncrypted && row.isVolumeEncrypted) {
+        return this.t('harvester.virtualMachine.lockIconTooltip.both');
+      } else if (row.isVMImageEncrypted) {
+        return this.t('harvester.virtualMachine.lockIconTooltip.image');
+      } else if (row.isVolumeEncrypted) {
+        return this.t('harvester.virtualMachine.lockIconTooltip.volume');
+      }
+
+      return '';
+    }
   }
 };
 </script>
@@ -194,11 +208,16 @@ export default {
 
       <template cell:name="scope">
         <div class="name-console">
-          <LinkDetail v-if="scope.row.type !== HCI.VMI" v-model:value="scope.row.metadata.name" :row="scope.row" />
+          <router-link
+            v-if="scope.row.type !== HCI.VMI"
+            :to="scope.row.detailLocation"
+          >
+            {{ scope.row.metadata.name }}
+            <i v-if="lockIconTooltipMessage(scope.row)" v-tooltip="lockIconTooltipMessage(scope.row)" class="icon icon-lock" />
+          </router-link>
           <span v-else>
             {{ scope.row.metadata.name }}
           </span>
-
           <ConsoleBar :resource="scope.row" class="console mr-10 ml-10" />
         </div>
       </template>
