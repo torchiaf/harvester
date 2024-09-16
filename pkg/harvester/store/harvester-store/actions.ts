@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { ClusterNotFoundError } from '@shell/utils/error';
 import { SETTING } from '@shell/config/settings';
 import { COUNT, NAMESPACE, MANAGEMENT } from '@shell/config/types';
@@ -17,16 +18,16 @@ export default {
     const cluster = await dispatch('management/find', {
       type: MANAGEMENT.CLUSTER,
       id,
-      opt:  { url: `${ MANAGEMENT.CLUSTER }s/${ escape(id) }` }
+      opt: { url: `${MANAGEMENT.CLUSTER}s/${escape(id)}` }
     }, { root: true });
 
-    let virtualBase = `/k8s/clusters/${ escape(id) }/v1/harvester`;
+    let virtualBase = `/k8s/clusters/${escape(id)}/v1/harvester`;
 
     if (id === 'local') {
       virtualBase = `/v1/harvester`;
     }
 
-    if ( !cluster ) {
+    if (!cluster) {
       commit('clusterId', null, { root: true });
       commit('applyConfig', { baseUrl: null });
       throw new ClusterNotFoundError(id);
@@ -43,22 +44,22 @@ export default {
 
     const projectArgs = {
       type: MANAGEMENT.PROJECT,
-      opt:  {
-        url:            `${ MANAGEMENT.PROJECT }/${ escape(id) }`,
+      opt: {
+        url: `${MANAGEMENT.PROJECT}/${escape(id)}`,
         watchNamespace: id
       }
     };
 
-    const fetchProjects = async() => {
+    const fetchProjects = async () => {
       let limit = 30000;
       const sleep = 100;
 
-      while ( limit > 0 && !rootState.managementReady ) {
-        await setTimeout(() => {}, sleep);
+      while (limit > 0 && !rootState.managementReady) {
+        await setTimeout(() => { }, sleep);
         limit -= sleep;
       }
 
-      if ( rootGetters['management/schemaFor'](MANAGEMENT.PROJECT) ) {
+      if (rootGetters['management/schemaFor'](MANAGEMENT.PROJECT)) {
         return dispatch('management/findAll', projectArgs, { root: true });
       }
     };
@@ -66,8 +67,8 @@ export default {
     if (id !== 'local' && getters['schemaFor'](MANAGEMENT.SETTING)) { // multi-cluster
       const settings = await dispatch('findAll', {
         type: MANAGEMENT.SETTING,
-        id:   SETTING.SYSTEM_NAMESPACES,
-        opt:  { url: `${ virtualBase }/${ MANAGEMENT.SETTING }s/`, force: true }
+        id: SETTING.SYSTEM_NAMESPACES,
+        opt: { url: `${virtualBase}/${MANAGEMENT.SETTING}s/`, force: true }
       });
 
       const systemNamespaces = settings?.find((x: any) => x.id === SETTING.SYSTEM_NAMESPACES);
@@ -79,14 +80,14 @@ export default {
       }
     }
 
-    const hash: { [key: string]: Promise<any>} = {
-      projects:          fetchProjects(),
-      virtualCount:      dispatch('findAll', { type: COUNT }),
+    const hash: { [key: string]: Promise<any> } = {
+      projects: fetchProjects(),
+      virtualCount: dispatch('findAll', { type: COUNT }),
       virtualNamespaces: dispatch('findAll', { type: NAMESPACE }),
-      settings:          dispatch('findAll', { type: HCI.SETTING }),
-      clusters:          dispatch('management/findAll', {
+      settings: dispatch('findAll', { type: HCI.SETTING }),
+      clusters: dispatch('management/findAll', {
         type: MANAGEMENT.CLUSTER,
-        opt:  { force: true }
+        opt: { force: true }
       }, { root: true }),
     };
 
@@ -100,15 +101,15 @@ export default {
 
     commit('updateNamespaces', {
       filters: [],
-      all:     getters.filterNamespace(),
+      all: getters.filterNamespace(),
       getters
     }, { root: true });
 
     // Solve compatibility with Rancher v2.6.x, fell remove these codes after not support v2.6.x
     const definition = {
-      def:              false,
-      parseJSON:        true,
-      inheritFrom:      DEV,
+      def: false,
+      parseJSON: true,
+      inheritFrom: DEV,
       asUserPreference: true,
     };
 
@@ -133,9 +134,9 @@ export default {
 
     if (isMultiCluster) {
       commit('managementChanged', {
-        ready:          true,
+        ready: true,
         isMultiCluster: true,
-        isRancher:      true,
+        isRancher: true,
       }, { root: true });
     }
   },

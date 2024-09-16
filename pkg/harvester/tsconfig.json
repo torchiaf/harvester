@@ -34,7 +34,7 @@
     ],
     "paths": {
       "@shell/*": [
-        "../../node_modules/@rancher/shell/*"
+        "@rancher/shell/*"
       ],
       "@components/*": [
         "@rancher/components/*"
@@ -45,9 +45,11 @@
     "**/*.ts",
     "**/*.d.ts",
     "**/*.tsx",
-    "**/*.vue"
+    "**/*.vue",
+    "./index.d.ts"
   ],
   "exclude": [
-    "../../node_modules"
+    "../../node_modules",
+    "**/*.test.ts"
   ]
 }

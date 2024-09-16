@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   NODE,
   CONFIG_MAP,

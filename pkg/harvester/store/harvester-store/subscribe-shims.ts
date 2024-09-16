@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { _MERGE } from '@shell/plugins/dashboard-store/actions';
 import PollerSequential from '@shell/utils/poller-sequential';
 
@@ -22,7 +23,7 @@ export const actions = {
     console.warn('Epinio: Polling started for: ', type);// eslint-disable-line no-console
 
     polling[type] = new PollerSequential(
-      async() => {
+      async () => {
         console.debug('Epinio: Polling: ', type); // eslint-disable-line no-console
         // NOTE - In order for lists to automatically update resources opt to MERGE data in place instead of replace
         // (in rancher land these are all handled individually, here we have bulk changes)

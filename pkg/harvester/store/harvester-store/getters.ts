@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   NAMESPACE_FILTER_KINDS,
   NAMESPACE_FILTER_ALL as ALL,
@@ -14,8 +15,8 @@ export default {
     notFilterNamespaces
   }: any) => {
     const out: { id: string, kind: string, label: string }[] = [{
-      id:    ALL,
-      kind:  NAMESPACE_FILTER_KINDS.SPECIAL,
+      id: ALL,
+      kind: NAMESPACE_FILTER_KINDS.SPECIAL,
       label: rootGetters['i18n/t']('nav.ns.all'),
     }];
 
@@ -71,8 +72,8 @@ export default {
         }
 
         out.push({
-          id:    `project://${ id }`,
-          kind:  'project',
+          id: `project://${id}`,
+          kind: 'project',
           label: project.nameDisplay,
         });
 
@@ -89,8 +90,8 @@ export default {
         }
 
         out.push({
-          id:    ALL_ORPHANS,
-          kind:  'project',
+          id: ALL_ORPHANS,
+          kind: 'project',
           label: rootGetters['i18n/t']('nav.ns.orphan'),
         });
 

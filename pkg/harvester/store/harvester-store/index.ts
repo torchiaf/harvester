@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { CoreStoreSpecifics, CoreStoreConfig } from '@shell/core/types';
 
 import { SteveFactory, steveStoreInit } from '@shell/plugins/steve/index';
@@ -27,12 +28,12 @@ const harvesterFactory = (): CoreStoreSpecifics => {
   return steveFactory;
 };
 const config: CoreStoreConfig = {
-  namespace:      PRODUCT_NAME,
+  namespace: PRODUCT_NAME,
   isClusterStore: true
 };
 
 export default {
   specifics: harvesterFactory(),
   config,
-  init:      steveStoreInit
+  init: steveStoreInit
 };

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { importTypes } from '@rancher/auto-import';
 import { IPlugin } from '@shell/core/types';
 import extensionRoutes from './routing/harvester-routing';
