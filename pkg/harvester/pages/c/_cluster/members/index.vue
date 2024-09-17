@@ -4,6 +4,7 @@ import { MANAGEMENT } from '@shell/config/types';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../../../config/harvester';
 export default {
   components: { ExplorerMembers },
+  inheritAttrs: false,
   computed:   {
     createLocationOverride() {
       return {

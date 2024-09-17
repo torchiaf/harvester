@@ -17,6 +17,7 @@ const schema = {
 export default {
   name:       'HarvesterSecret',
   components: { ResourceTable, Loading },
+  inheritAttrs: false,
 
   async fetch() {
     const inStore = this.$store.getters['currentProduct'].inStore;

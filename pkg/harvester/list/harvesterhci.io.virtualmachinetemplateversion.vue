@@ -12,6 +12,7 @@ export default {
   components: {
     ResourceTable, LiveData, Loading
   },
+  inheritAttrs: false,
 
   props: {
     schema: {

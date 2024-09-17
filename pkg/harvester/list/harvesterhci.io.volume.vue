@@ -24,6 +24,8 @@ export default {
     Loading, ResourceTable, HarvesterVolumeState
   },
 
+  inheritAttrs: false,
+
   async fetch() {
     const inStore = this.$store.getters['currentProduct'].inStore;
     const _hash = {
@@ -53,6 +55,8 @@ export default {
     if (!pvcSchema?.collectionMethods.find(x => x.toLowerCase() === 'post')) {
       this.$store.dispatch('type-map/configureType', { match: HCI.VOLUME, isCreatable: false });
     }
+
+    console.log('ppppppppppp', hash);
 
     this.rows = hash.pvcs;
   },
