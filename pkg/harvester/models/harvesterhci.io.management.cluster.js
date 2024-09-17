@@ -168,42 +168,8 @@ export default class HciCluster extends ProvCluster {
     return uiInfo ? this._supportedClusterPkgDetails(uiInfo, clusterId) : this._legacyClusterPkgDetails();
   }
 
-  async loadClusterPlugin() {
-    // Skip loading if it's built in
-    const plugins = this.$rootState.$plugin.getPlugins();
-    const loadedPkgs = Object.keys(plugins);
-
-    if (loadedPkgs.find((pkg) => pkg === HARVESTER_NAME)) {
-      console.info('Harvester plugin built is built in, skipping load from external sources'); // eslint-disable-line no-console
-
-      return;
-    }
-
-    // Determine the plugin name and the url it can be fetched from
-    const { pkgUrl, pkgName } = await this._pkgDetails();
-
-    console.info('Harvester plugin details: ', pkgName, pkgUrl); // eslint-disable-line no-console
-
-    // Skip loading if we've previously loaded the correct one
-    if (!!plugins[pkgName]) {
-      console.info('Harvester plugin already loaded, no need to load', pkgName); // eslint-disable-line no-console
-
-      return;
-    }
-
-    console.info('Attempting to load Harvester plugin', pkgName); // eslint-disable-line no-console
-
-    const res = await this.$rootState.$plugin.loadAsync(pkgName, pkgUrl);
-
-    console.info('Loaded Harvester plugin', pkgName); // eslint-disable-line no-console
-
-    return res;
-  }
-
   async goToCluster() {
-    await this.loadClusterPlugin()
-      .then(() => {
-        this.currentRouter().push({
+    this.currentRouter().push({
           name:   `${ VIRTUAL }-c-cluster-resource`,
           params: {
             cluster:  this.status.clusterName,
@@ -211,17 +177,5 @@ export default class HciCluster extends ProvCluster {
             resource: HCI.DASHBOARD // Go directly to dashboard to avoid blip of components on screen
           }
         });
-      })
-      .catch((err) => {
-        const message = typeof error === 'object' ? JSON.stringify(err) : err;
-
-        console.error('Failed to load harvester package: ', message); // eslint-disable-line no-console
-
-        this.$dispatch('growl/error', {
-          title:   this.t('harvesterManager.plugins.loadError'),
-          message,
-          timeout: 5000
-        }, { root: true });
-      });
   }
 }
