@@ -12,6 +12,8 @@ export default {
 
   components: { ResourceTable, FilterBySriov },
 
+  inheritAttrs: false,
+
   props: {
     schema: {
       type:     Object,
