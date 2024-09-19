@@ -103,7 +103,6 @@ export default {
       :schema="schema"
       :rows="rows"
       key-field="_key"
-      
     />
   </div>
 </template>

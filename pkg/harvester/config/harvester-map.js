@@ -23,7 +23,7 @@ export const InterfaceOption = [{
 
 export const SOURCE_TYPE = {
   NEW:           'New',
-  IMAGE:         'VM Image',
+  IMAGE:         'Virtual Machine Image',
   ATTACH_VOLUME: 'Existing Volume',
   CONTAINER:     'Container'
 };
@@ -41,7 +41,14 @@ export const ACCESS_CREDENTIALS = {
   INJECT_SSH: 'sshPublicKey'
 };
 
-export const RunStrategys = ['Always', 'RerunOnFailure', 'Manual', 'Halted'];
+export const runStrategies = ['Always', 'RerunOnFailure', 'Manual', 'Halted'];
+
+export const maintenanceStrategies = [
+  'Migrate',
+  'ShutdownAndRestartAfterEnable',
+  'ShutdownAndRestartAfterDisable',
+  'Shutdown'
+];
 
 export const VOLUME_DATA_SOURCE_KIND = {
   VolumeSnapshot:        'VolumeSnapshot',
@@ -55,10 +62,10 @@ export const FLOW_TYPE = {
 };
 
 export const ADD_ONS = {
-  HARVESTER_SEEDER:      'harvester-seeder',
-  PCI_DEVICE_CONTROLLER: 'pcidevices-controller',
-  RANCHER_LOGGING:       'rancher-logging',
-  RANCHER_MONITORING:    'rancher-monitoring',
-  VM_IMPORT_CONTROLLER:  'vm-import-controller',
-  NVIDIA_DRIVER_TOOLKIT_CONTROLLER: 'nvidia-driver-toolkit'
+  HARVESTER_SEEDER:                 'harvester-seeder',
+  PCI_DEVICE_CONTROLLER:            'pcidevices-controller',
+  NVIDIA_DRIVER_TOOLKIT_CONTROLLER: 'nvidia-driver-toolkit',
+  RANCHER_LOGGING:                  'rancher-logging',
+  RANCHER_MONITORING:               'rancher-monitoring',
+  VM_IMPORT_CONTROLLER:             'vm-import-controller',
 };

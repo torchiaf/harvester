@@ -104,7 +104,7 @@ export default {
         key-field="_key"
         
       >
-        <template cell:state="scope">
+        <template cell:state="scope" class="state-col">
           <div class="state">
             <HarvesterVmState class="vmstate" :row="scope.row" :all-cluster-network="allClusterNetwork" />
           </div>

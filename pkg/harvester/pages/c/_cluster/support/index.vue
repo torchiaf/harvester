@@ -7,6 +7,7 @@ import CommunityLinks from '@shell/components/CommunityLinks';
 import { SCHEMA } from '@shell/config/types';
 import HarvesterSupportBundle from '../../../../dialog/HarvesterSupportBundle';
 import { HCI } from '../../../../types';
+import { DOC_LINKS } from '../../../../config/doc-links';
 
 export default {
   components: {
@@ -71,13 +72,18 @@ export default {
       const { host, params } = this.internalPrefix;
 
       return `https://${ host }/k8s/clusters/${ params.cluster }/api/v1/namespaces/longhorn-system/services/http:longhorn-frontend:80/proxy/#/dashboard`;
-    }
+    },
+
+    rancherIntegrationLink() {
+      return DOC_LINKS.RANCHER_INTEGRATION_URL;
+    },
   },
 
   methods: {
     open() {
       this.$store.commit('harvester-common/toggleBundleModal', true);
-    }
+    },
+
   }
 };
 </script>
@@ -89,10 +95,7 @@ export default {
     <IndentedPanel>
       <div class="content mt-20">
         <div class="promo">
-          <div
-            v-if="showSupportBundle"
-            class="box mb-20 box-primary"
-          >
+          <div v-if="showSupportBundle" class="box mb-20 box-primary">
             <h2>
               {{ t('harvester.modal.bundle.title') }}
             </h2>
@@ -109,10 +112,7 @@ export default {
               </button>
             </div>
           </div>
-          <div
-            class="box box-primary"
-            :class="{'mb-20': dev }"
-          >
+          <div class="box box-primary" :class="{'mb-20': dev }">
             <h2>
               {{ t('harvester.support.kubeconfig.title') }}
             </h2>
@@ -129,41 +129,24 @@ export default {
               </button>
             </div>
           </div>
-          <div
-            v-if="dev"
-            class="row"
-          >
+          <div v-if="dev" class="row">
             <div class="col span-6 box box-primary">
               <h2>
-                <a
-                  rel="nofollow noopener noreferrer"
-                  target="_blank"
-                  :href="rancherLink"
-                >{{ t('harvester.support.internal.rancher.title') }} <i class="icon icon-external-link" /></a>
+                <a rel="nofollow noopener noreferrer" target="_blank" :href="rancherLink">{{ t('harvester.support.internal.rancher.title') }} <i class="icon icon-external-link" /></a>
               </h2>
               <div>
                 <p class="warning">
-                  <t
-                    k="harvester.support.internal.rancher.titleDescription"
-                    :raw="true"
-                  />
+                  <t k="harvester.support.internal.rancher.titleDescription" :raw="true" :url="rancherIntegrationLink" />
                 </p>
               </div>
             </div>
             <div class="col span-6 box box-primary">
               <h2>
-                <a
-                  rel="nofollow noopener noreferrer"
-                  target="_blank"
-                  :href="longhornLink"
-                >{{ t('harvester.support.internal.longhorn.title') }} <i class="icon icon-external-link" /></a>
+                <a rel="nofollow noopener noreferrer" target="_blank" :href="longhornLink">{{ t('harvester.support.internal.longhorn.title') }} <i class="icon icon-external-link" /></a>
               </h2>
               <div>
                 <p class="warning">
-                  <t
-                    k="harvester.support.internal.longhorn.titleDescription"
-                    :raw="true"
-                  />
+                  <t k="harvester.support.internal.longhorn.titleDescription" :raw="true" />
                 </p>
               </div>
             </div>
@@ -173,17 +156,9 @@ export default {
           <CommunityLinks :link-options="options" />
         </div>
         <div class="external">
-          <a
-            href="https://www.suse.com/suse-harvester/support-matrix/all-supported-versions"
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-          >{{ t('harvester.support.community.learnMore') }} <i class="icon icon-external-link" /></a>
+          <a href="https://www.suse.com/suse-harvester/support-matrix/all-supported-versions" target="_blank" rel="noopener noreferrer nofollow">{{ t('harvester.support.community.learnMore') }} <i class="icon icon-external-link" /></a>
           or
-          <a
-            href="https://www.suse.com/products/harvester/"
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-          >{{ t('harvester.support.community.pricing') }} <i class="icon icon-external-link" /></a>
+          <a href="https://www.suse.com/products/harvester/" target="_blank" rel="noopener noreferrer nofollow">{{ t('harvester.support.community.pricing') }} <i class="icon icon-external-link" /></a>
         </div>
       </div>
     </IndentedPanel>

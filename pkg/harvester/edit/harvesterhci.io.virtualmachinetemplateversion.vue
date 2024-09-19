@@ -18,7 +18,6 @@ import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations
 import CreateEditView from '@shell/mixins/create-edit-view';
 import { AFTER_SAVE_HOOKS } from '@shell/mixins/child-hook';
 import { HCI } from '../types';
-import { RunStrategys } from '../config/harvester-map';
 import VM_MIXIN from '../mixins/harvester-vm';
 import Reserved from './kubevirt.io.virtualmachine/VirtualMachineReserved';
 import Volume from './kubevirt.io.virtualmachine/VirtualMachineVolume';
@@ -74,7 +73,6 @@ export default {
       description:      '',
       defaultVersion:   null,
       isDefaultVersion: false,
-      RunStrategys,
     };
   },
 
@@ -263,7 +261,7 @@ export default {
       <Tab
         name="nodeScheduling"
         :label="t('workload.container.titles.nodeScheduling')"
-        :weight="-89"
+        :weight="-3"
       >
         <template #default="{active}">
           <NodeScheduling
@@ -274,7 +272,7 @@ export default {
         </template>
       </Tab>
 
-      <Tab :label="t('harvester.tab.vmScheduling')" name="vmScheduling" :weight="-90">
+      <Tab :label="t('harvester.tab.vmScheduling')" name="vmScheduling" :weight="-4">
         <template #default="{active}">
           <PodAffinity
             :mode="mode"
@@ -287,13 +285,42 @@ export default {
         </template>
       </Tab>
 
+      <Tab
+        :name="t('generic.labels')"
+        :label="t('harvester.tab.instanceLabel')"
+        :weight="-5"
+      >
+        <Labels
+          :default-container-class="'labels-and-annotations-container'"
+          :value="value"
+          :mode="mode"
+          :display-side-by-side="false"
+          :show-annotations="false"
+          :show-label-title="false"
+        >
+          <template #labels="{toggler}">
+            <KeyValue
+              key="labels"
+              :value="value.instanceLabels"
+              :protected-keys="value.systemLabels || []"
+              :toggle-filter="toggler"
+              :add-label="t('labels.addLabel')"
+              :mode="mode"
+              :read-allowed="false"
+              :value-can-be-empty="true"
+              @input="value.setInstanceLabels($event)"
+            />
+          </template>
+        </Labels>
+      </Tab>
+
       <Tab name="advanced" :label="t('harvester.tab.advanced')" :weight="-99">
         <div class="row mb-20">
           <div class="col span-6">
             <LabeledSelect
               v-model:value="runStrategy"
               label-key="harvester.virtualMachine.runStrategy"
-              :options="RunStrategys"
+              :options="runStrategies"
               :mode="mode"
             />
           </div>
@@ -309,19 +336,43 @@ export default {
         </div>
 
         <div class="row mb-20">
+          <div class="col span-6">
+            <LabeledSelect
+              v-model:value="maintenanceStrategy"
+              label-key="harvester.virtualMachine.maintenanceStrategy.label"
+              :options="maintenanceStrategies"
+              :get-option-label="getMaintenanceStrategyOptionLabel"
+              :mode="mode"
+            />
+          </div>
+          <div class="col span-6">
+            <Reserved
+              :reserved-memory="reservedMemory"
+              :mode="mode"
+              @updateReserved="updateReserved"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-20">
+          <div class="col span-6">
+            <Checkbox
+              v-model:value="cpuPinning"
+              class="check"
+              type="checkbox"
+              label-key="harvester.virtualMachine.cpuPinning.label"
+              :mode="mode"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-20">
           <a v-if="showAdvanced" v-t="'harvester.generic.showMore'" role="button" @click="toggleAdvanced" />
           <a v-else v-t="'harvester.generic.showMore'" role="button" @click="toggleAdvanced" />
         </div>
 
         <div v-if="showAdvanced">
           <div class="row mb-20">
-            <div class="col span-6">
-              <Reserved
-                :reserved-memory="reservedMemory"
-                :mode="mode"
-                @updateReserved="updateReserved"
-              />
-            </div>
             <div class="col span-6">
               <UnitInput
                 v-model:value="terminationGracePeriodSeconds"
@@ -385,35 +436,6 @@ export default {
           :label="t('harvester.virtualMachine.secureBoot')"
           :mode="mode"
         />
-      </Tab>
-
-      <Tab
-        :name="t('generic.labels')"
-        :label="t('harvester.tab.instanceLabel')"
-        :weight="-99"
-      >
-        <Labels
-          :default-container-class="'labels-and-annotations-container'"
-          :value="value"
-          :mode="mode"
-          :display-side-by-side="false"
-          :show-annotations="false"
-          :show-label-title="false"
-        >
-          <template #labels="{toggler}">
-            <KeyValue
-              key="labels"
-              :value="value.instanceLabels"
-              :protected-keys="value.systemLabels || []"
-              :toggle-filter="toggler"
-              :add-label="t('labels.addLabel')"
-              :mode="mode"
-              :read-allowed="false"
-              :value-can-be-empty="true"
-              @update:value="value.setInstanceLabels($event)"
-            />
-          </template>
-        </Labels>
       </Tab>
     </Tabbed>
   </CruResource>

@@ -28,7 +28,6 @@ import CreateEditView from '@shell/mixins/create-edit-view';
 
 import { parseVolumeClaimTemplates } from '@pkg/utils/vm';
 import VM_MIXIN from '../../mixins/harvester-vm';
-import { RunStrategys } from '../../config/harvester-map';
 import { HCI } from '../../types';
 import RestartVMDialog from '../../dialog/RestartVMDialog';
 import VirtualMachineVGpuDevices from './VirtualMachineVGpuDevices/index';
@@ -40,6 +39,8 @@ import Network from './VirtualMachineNetwork';
 import Volume from './VirtualMachineVolume';
 import SSHKey from './VirtualMachineSSHKey';
 import Reserved from './VirtualMachineReserved';
+import { Banner } from '@components/Banner';
+import MessageLink from '@shell/components/MessageLink';
 
 export default {
   name: 'HarvesterEditVM',
@@ -68,6 +69,8 @@ export default {
     UnitInput,
     VirtualMachineVGpuDevices,
     KeyValue,
+    Banner,
+    MessageLink
   },
 
   mixins: [CreateEditView, VM_MIXIN],
@@ -96,12 +99,18 @@ export default {
       isOpen:            false,
       hostname,
       isRestartImmediately,
-      RunStrategys,
     };
   },
 
   computed: {
     ...mapGetters({ t: 'i18n/t' }),
+
+    to() {
+      return {
+        name:   'harvester-c-cluster-resource',
+        params: { cluster: this.$store.getters['clusterId'], resource: HCI.HOST },
+      };
+    },
 
     machineTypeOptions() {
       return [{
@@ -173,6 +182,26 @@ export default {
     hasStartAction() {
       return this.value.hasAction('start');
     },
+
+    enableCpuPinningCheckbox() {
+      if (this.mode === 'create') {
+        return this.nodes.some(node => node.isCPUManagerEnabled); // any one of nodes has label cpuManager=true
+      }
+
+      return true;
+    },
+
+    showCpuPinningBanner() {
+      if (this.mode === 'edit') {
+        return this.cpuPinning !== !!this.cloneVM.spec.template.spec.domain.cpu.dedicatedCpuPlacement;
+      }
+
+      if (this.mode === 'create') {
+        return this.nodes.every(node => !node.isCPUManagerEnabled); // no node enabled CPU manager
+      }
+
+      return false;
+    }
   },
 
   watch: {
@@ -273,6 +302,15 @@ export default {
   },
 
   methods: {
+    cancelAction() {
+      const { fromPage = HCI.VM } = this.$route?.query; // default back to VM list page
+      const cancelOverride = {
+        name:   this.doneRoute,
+        params: { resource: fromPage }
+      };
+
+      this.$router.replace(cancelOverride);
+    },
     saveVM(buttonCb) {
       clear(this.errors);
 
@@ -437,12 +475,14 @@ export default {
     id="vm"
     :done-route="doneRoute"
     :resource="value"
+    :cancelEvent="true"
     :mode="mode"
     :can-yaml="isSingle ? true : false"
     :errors="errors"
     :generate-yaml="generateYaml"
     :apply-hooks="applyHooks"
     @finish="saveVM"
+    @cancel="cancelAction"
   >
     <RadioGroup
       v-if="isCreate"
@@ -606,44 +646,54 @@ export default {
         />
       </Tab>
 
-      <Tab
-        v-if="enabledSriovgpu"
-        :label="t('harvester.tab.vGpuDevices')"
-        name="vGpuDevices"
-        :weight="-6"
-      >
-        <VirtualMachineVGpuDevices
-          :mode="mode"
-          :value="spec.template.spec"
-          :vm="value"
-        />
+      <Tab v-if="enabledSriovgpu" :label="t('harvester.tab.vGpuDevices')" name="vGpuDevices" :weight="-6">
+        <VirtualMachineVGpuDevices :mode="mode" :value="spec.template.spec" :vm="value" />
+      </Tab>
+
+      <Tab v-if="isEdit" :label="t('harvester.tab.accessCredentials')" name="accessCredentials" :weight="-7">
+        <AccessCredentials v-model:value="accessCredentials" :mode="mode" :resource="value" :is-qemu-installed="isQemuInstalled" />
       </Tab>
 
       <Tab
-        v-if="isEdit"
-        :label="t('harvester.tab.accessCredentials')"
-        name="accessCredentials"
-        :weight="-7"
+        name="instanceLabel"
+        :label="t('harvester.tab.instanceLabel')"
+        :weight="-8"
       >
-        <AccessCredentials
-          v-model:value="accessCredentials"
+        <Labels
+          :default-container-class="'labels-and-annotations-container'"
+          :value="value"
           :mode="mode"
-          :resource="value"
-          :is-qemu-installed="isQemuInstalled"
-        />
+          :display-side-by-side="false"
+          :show-annotations="false"
+          :show-label-title="false"
+        >
+          <template #labels="{toggler}">
+            <KeyValue
+              key="labels"
+              :value="value.instanceLabels"
+              :protected-keys="value.systemLabels || []"
+              :toggle-filter="toggler"
+              :add-label="t('labels.addLabel')"
+              :mode="mode"
+              :read-allowed="false"
+              :value-can-be-empty="true"
+              @update:value="value.setInstanceLabels($event)"
+            />
+          </template>
+        </Labels>
       </Tab>
 
       <Tab
         name="advanced"
         :label="t('harvester.tab.advanced')"
-        :weight="-8"
+        :weight="-9"
       >
         <div class="row mb-20">
           <div class="col span-6">
             <LabeledSelect
               v-model:value="runStrategy"
               label-key="harvester.virtualMachine.runStrategy"
-              :options="RunStrategys"
+              :options="runStrategies"
               :mode="mode"
             />
           </div>
@@ -659,24 +709,30 @@ export default {
         </div>
 
         <div class="row mb-20">
-          <a
-            v-if="showAdvanced"
-            v-t="'harvester.generic.showMore'"
-            role="button"
-            @click="toggleAdvanced"
-          />
-          <a
-            v-else
-            v-t="'harvester.generic.showMore'"
-            role="button"
-            @click="toggleAdvanced"
-          />
+          <div class="col span-6">
+            <LabeledSelect
+              v-model:value="maintenanceStrategy"
+              label-key="harvester.virtualMachine.maintenanceStrategy.label"
+              :options="maintenanceStrategies"
+              :get-option-label="getMaintenanceStrategyOptionLabel"
+              :mode="mode"
+            />
+          </div>
+          <div class="col span-6">
+            <Reserved
+              :reserved-memory="reservedMemory"
+              :mode="mode"
+              @updateReserved="updateReserved"
+            />
+          </div>
         </div>
 
-        <div
-          v-if="showAdvanced"
-          class="mb-20"
-        >
+        <div class="row mb-20">
+          <a v-if="showAdvanced" v-t="'harvester.generic.showMore'" role="button" @click="toggleAdvanced" />
+          <a v-else v-t="'harvester.generic.showMore'" role="button" @click="toggleAdvanced" />
+        </div>
+
+        <div v-if="showAdvanced" class="mb-20">
           <div class="row mb-20">
             <div class="col span-6">
               <LabeledInput
@@ -698,13 +754,6 @@ export default {
           </div>
 
           <div class="row mb-20">
-            <div class="col span-6">
-              <Reserved
-                :reserved-memory="reservedMemory"
-                :mode="mode"
-                @updateReserved="updateReserved"
-              />
-            </div>
             <div class="col span-6">
               <UnitInput
                 v-model:value="terminationGracePeriodSeconds"
@@ -728,6 +777,16 @@ export default {
           @updateUserData="updateUserData"
           @updateNetworkData="updateNetworkData"
           @updateDataTemplateId="updateDataTemplateId"
+        />
+
+        <Checkbox
+          v-model:value="cpuPinning"
+          :disabled="!enableCpuPinningCheckbox"
+          class="check"
+          type="checkbox"
+          tooltip-key="harvester.virtualMachine.cpuPinning.tooltip"
+          label-key="harvester.virtualMachine.cpuPinning.label"
+          :mode="mode"
         />
 
         <Checkbox
@@ -773,35 +832,21 @@ export default {
           :label="t('harvester.virtualMachine.secureBoot')"
           :mode="mode"
         />
-      </Tab>
-
-      <Tab
-        name="instanceLabel"
-        :label="t('harvester.tab.instanceLabel')"
-        :weight="-99"
-      >
-        <Labels
-          :default-container-class="'labels-and-annotations-container'"
-          :value="value"
-          :mode="mode"
-          :display-side-by-side="false"
-          :show-annotations="false"
-          :show-label-title="false"
+        <Banner
+          v-if="showCpuPinningBanner"
+          color="warning"
         >
-          <template #labels="{toggler}">
-            <KeyValue
-              key="labels"
-              :value="value.instanceLabels"
-              :protected-keys="value.systemLabels || []"
-              :toggle-filter="toggler"
-              :add-label="t('labels.addLabel')"
-              :mode="mode"
-              :read-allowed="false"
-              :value-can-be-empty="true"
-              @update:value="value.setInstanceLabels($event)"
-            />
-          </template>
-        </Labels>
+          <MessageLink
+            v-if="mode === 'create'"
+            :to="to"
+            prefix-label="harvester.virtualMachine.advancedOptions.cpuManager.prefix"
+            middle-label="harvester.virtualMachine.advancedOptions.cpuManager.middle"
+            suffix-label="harvester.virtualMachine.advancedOptions.cpuManager.suffix"
+          />
+          <span v-if="mode==='edit'">
+            {{ t('harvester.virtualMachine.cpuPinning.restartVMMessage') }}
+          </span>
+        </Banner>
       </Tab>
     </Tabbed>
 

@@ -35,12 +35,22 @@ export default {
       version:          '',
       enableLogging:    true,
       readyReleaseNote: false,
-      isOpen:           false,
+      isOpen:           false
     };
   },
 
   computed: {
     ...mapGetters(['currentCluster']),
+
+    latestUpgrade() {
+      return this.upgrade?.find(u => u.isLatestUpgrade);
+    },
+
+    isUpgradeInProgress() {
+      return this.latestUpgrade &&
+        !this.latestUpgrade.isUpgradeSucceeded &&
+        !this.latestUpgrade.isUpgradeFailed;
+    },
 
     versionOptions() {
       const versions = this.$store.getters['harvester/all'](HCI.VERSION);
@@ -133,7 +143,7 @@ export default {
         />
       </h1>
       <button
-        v-if="versionOptions.length"
+        v-if="versionOptions.length && !isUpgradeInProgress"
         type="button"
         class="btn bg-warning btn-sm"
         @click="open"

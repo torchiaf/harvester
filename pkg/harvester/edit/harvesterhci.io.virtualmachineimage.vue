@@ -162,6 +162,7 @@ export default {
           buttonCb(false);
         }
       } else {
+        this.value.spec.url = this.value.spec.url?.trim() || '';
         this.save(buttonCb);
       }
     },
@@ -277,6 +278,7 @@ export default {
     :can-yaml="showEditAsYaml ? true : false"
     :apply-hooks="applyHooks"
     @finish="saveImage"
+    @error="e=>errors=e"
   >
     <NameNsDescription
       ref="nd"

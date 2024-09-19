@@ -25,10 +25,10 @@ import { _EDIT } from '@shell/config/query-params';
 import { sortBy } from '@shell/utils/sort';
 import { Banner } from '@components/Banner';
 import { HCI } from '../../types';
-import DiskTags from '../../components/DiskTags';
 import HarvesterDisk from './HarvesterDisk';
 import HarvesterSeeder from './HarvesterSeeder';
 import HarvesterKsmtuned from './HarvesterKsmtuned';
+import Tags from '../../components/DiskTags';
 
 export const LONGHORN_SYSTEM = 'longhorn-system';
 
@@ -46,7 +46,7 @@ export default {
     ButtonDropdown,
     KeyValue,
     Banner,
-    DiskTags,
+    Tags,
     Loading,
     HarvesterSeeder,
     MessageLink,
@@ -478,10 +478,11 @@ export default {
 
       const disks = this.longhornNode?.spec?.disks || {};
 
+      // update each disk tags and scheduling
       this.newDisks.map((disk) => {
         (disks[disk.name] || {}).tags = disk.tags;
+        (disks[disk.name] || {}).allowScheduling = disk.allowScheduling;
       });
-
       let count = 0;
 
       const retrySave = async() => {
@@ -505,7 +506,9 @@ export default {
         }
       };
 
-      await retrySave();
+      if (this.longhornNode) {
+        await retrySave();
+      }
     },
   },
 };
@@ -547,7 +550,7 @@ export default {
             class="row mb-20"
           >
             <div class="col span-12">
-              <DiskTags
+              <Tags
                 v-model:value="longhornNode.spec.tags"
                 :label="t('harvester.host.tags.label')"
                 :add-label="t('harvester.host.tags.addLabel')"
@@ -650,7 +653,6 @@ export default {
             :value="filteredLabels"
             :add-label="t('labels.addLabel')"
             :mode="mode"
-            :title="t('labels.labels.title')"
             :read-allowed="false"
             :value-can-be-empty="true"
             @update:value="updateHostLabels"

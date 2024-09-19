@@ -81,6 +81,10 @@ export default {
       backups: this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.BACKUP }),
     };
 
+    if (this.$store.getters[`${ inStore }/schemaFor`](HCI.RESOURCE_QUOTA)) {
+      _hash.resourceQuotas = this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.RESOURCE_QUOTA });
+    }
+
     if (this.$store.getters[`${ inStore }/schemaFor`](NODE)) {
       _hash.nodes = this.$store.dispatch(`${ inStore }/findAll`, { type: NODE });
       this.hasNode = true;
@@ -116,7 +120,7 @@ export default {
     headers() {
       const restoreCol = {
         name:      'restoreProgress',
-        labelKey:  'tableHeaders.restore',
+        labelKey:  'harvester.tableHeaders.restore',
         value:     'restoreProgress',
         align:     'left',
         formatter: 'HarvesterBackupProgressBar',
@@ -128,7 +132,7 @@ export default {
         value:     'nodeName',
         sort:      ['realAttachNodeName'],
         formatter: 'HarvesterHost',
-        labelKey:  'tableHeaders.node'
+        labelKey:  'harvester.tableHeaders.vm.node'
       };
 
       const cols = clone(VM_HEADERS);
@@ -137,7 +141,7 @@ export default {
         cols.splice(-1, 0, nodeCol);
       }
 
-      if (this.hasRestoredVMs) {
+      if (this.hasBackUpRestoreInProgress) {
         cols.splice(-1, 0, restoreCol);
       }
 
@@ -150,8 +154,11 @@ export default {
       return [...this.allVMs, ...matchVMIs];
     },
 
-    hasRestoredVMs() {
-      return !!this.rows.find(r => !!r.restoreResource);
+    /**
+     * We want to show the progress bar only for Backup's restore; snapshot's restore is immediate.
+     */
+    hasBackUpRestoreInProgress() {
+      return !!this.rows.find(r => r.restoreResource && !r.restoreResource.fromSnapshot && !r.restoreResource.isComplete);
     }
   },
 
@@ -179,7 +186,7 @@ export default {
       key-field="_key"
       
     >
-      <template cell:state="scope">
+      <template cell:state="scope" class="state-col">
         <div class="state">
           <HarvesterVmState class="vmstate" :row="scope.row" :all-node-network="allNodeNetworks" :all-cluster-network="allClusterNetworks" />
         </div>

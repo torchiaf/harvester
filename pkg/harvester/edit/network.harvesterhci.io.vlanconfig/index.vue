@@ -314,12 +314,21 @@ export default {
       } else if (selector[HOSTNAME] && Object.keys(selector).length === 1) {
         const matchNode = allNodes.find(n => n.id === selector[HOSTNAME]);
 
-        this.matchingNodes = {
-          matched: 1,
-          total:   allNodes.length,
-          none:    false,
-          sample:  matchNode ? matchNode.nameDisplay : selector[HOSTNAME],
-        };
+        if (matchNode) {
+          this.matchingNodes = {
+            matched: 1,
+            total:   allNodes.length,
+            none:    false,
+            sample:  matchNode.nameDisplay,
+          };
+        } else {
+          this.matchingNodes = {
+            matched: 0,
+            total:   0,
+            none:    true,
+            sample:  null,
+          };
+        }
       } else {
         const match = matching(allNodes, selector);
 

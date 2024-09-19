@@ -34,15 +34,7 @@ export default {
   },
 
   data() {
-    const categorySettings = this.settings.filter((s) => {
-      if (this.category !== 'advanced') {
-        return (CATEGORY[this.category] || []).find(item => item === s.id);
-      } else if (this.category === 'advanced') {
-        const allCategory = Object.keys(CATEGORY);
-
-        return !allCategory.some(category => (CATEGORY[category] || []).find(item => item === s.id));
-      }
-    }) || [];
+    const categorySettings = this.filterCategorySettings();
 
     return {
       HCI_SETTING,
@@ -52,7 +44,27 @@ export default {
 
   computed: { ...mapGetters({ t: 'i18n/t' }) },
 
+  watch: {
+    settings: {
+      deep: true,
+      handler() {
+        this['categorySettings'] = this.filterCategorySettings();
+      }
+    }
+  },
+
   methods: {
+    filterCategorySettings() {
+      return this.settings.filter((s) => {
+        if (this.category !== 'advanced') {
+          return (CATEGORY[this.category] || []).find(item => item === s.id);
+        } else if (this.category === 'advanced') {
+          const allCategory = Object.keys(CATEGORY);
+
+          return !allCategory.some(category => (CATEGORY[category] || []).find(item => item === s.id));
+        }
+      }) || [];
+    },
     showActionMenu(e, setting) {
       const actionElement = e.srcElement;
 
@@ -104,13 +116,16 @@ export default {
 
 <template>
   <div>
-    <div  v-for="(setting, i) in categorySettings" class="advanced-setting mb-20" :key="i" >
+    <div v-for="(setting, i) in categorySettings" :key="i">
       <div class="header">
         <div class="title">
           <h1>
             {{ setting.id }}
             <span v-if="setting.customized" class="modified">
               Modified
+            </span>
+            <span v-if="setting.technicalPreview" v-clean-tooltip="t('advancedSettings.technicalPreview')" class="technical-preview">
+              Technical Preview
             </span>
           </h1>
           <h2 v-clean-html="t(setting.description, {}, true)">
@@ -196,6 +211,14 @@ export default {
 .modified {
   margin-left: 10px;
   border: 1px solid var(--primary);
+  border-radius: 5px;
+  padding: 2px 10px;
+  font-size: 12px;
+}
+
+.technical-preview {
+  margin-left: 10px;
+  border: 1px solid var(--warning);
   border-radius: 5px;
   padding: 2px 10px;
   font-size: 12px;

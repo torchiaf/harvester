@@ -140,15 +140,24 @@ export default {
 
     onImageChange() {
       const imageResource = this.$store.getters['harvester/all'](HCI.IMAGE)?.find( I => this.value.image === I.id);
+      const isIsoImage = /iso$/i.test(imageResource?.imageSuffix);
+      const imageSize = Math.max(imageResource?.status?.size, imageResource?.status?.virtualSize);
 
-      if (this.idx === 0) {
-        if (/iso$/i.test(imageResource?.imageSuffix)) {
-          this.value['type'] = 'cd-rom';
-          this.value['bus'] = 'sata';
-        } else {
-          this.value['type'] = 'disk';
-          this.value['bus'] = 'virtio';
+      if (isIsoImage) {
+        this.value['type'] = 'cd-rom';
+        this.value['bus'] = 'sata';
+      } else {
+        this.value['type'] = 'disk';
+        this.value['bus'] = 'virtio';
+      }
+
+      if (imageSize) {
+        let imageSizeGiB = Math.ceil(imageSize / 1024 / 1024 / 1024);
+
+        if (!isIsoImage) {
+          imageSizeGiB = Math.max(imageSizeGiB, 10);
         }
+        this.value['size'] = `${ imageSizeGiB }Gi`;
       }
 
       this.update();

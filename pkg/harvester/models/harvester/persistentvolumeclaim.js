@@ -20,12 +20,10 @@ export default class HciPv extends HarvesterResource {
     const storageClassName =
       realMode === _CLONE ? this.spec.storageClassName : '';
 
-    this['spec'] = {
-      accessModes,
+    this['spec'] = {accessModes,
       storageClassName,
       volumeName: '',
-      resources:  { requests: { storage } }
-    };
+      resources:  { requests: { storage } }};
   }
 
   get availableActions() {
@@ -98,7 +96,6 @@ export default class HciPv extends HarvesterResource {
   }
 
   get stateDisplay() {
-    const ownedBy = this?.metadata?.annotations?.[HCI_ANNOTATIONS.OWNED_BY];
     const volumeError = this.relatedPV?.metadata?.annotations?.[HCI_ANNOTATIONS.VOLUME_ERROR];
     const degradedVolume = volumeError === DEGRADED_ERROR;
     const status = this?.status?.phase === 'Bound' && !volumeError && this.isLonghornVolumeReady ? 'Ready' : 'Not Ready';
@@ -107,7 +104,7 @@ export default class HciPv extends HarvesterResource {
 
     if (findBy(conditions, 'type', 'Resizing')?.status === 'True') {
       return 'Resizing';
-    } else if (ownedBy && !volumeError) {
+    } else if (!!this.attachVM && !volumeError) {
       return 'In-use';
     } else if (degradedVolume) {
       return 'Degraded';
@@ -179,17 +176,19 @@ export default class HciPv extends HarvesterResource {
   }
 
   get attachVM() {
-    const allVMs = this.$rootGetters['harvester/all'](HCI.VM);
-    const ownedBy =
-      get(this, `metadata.annotations."${ HCI_ANNOTATIONS.OWNED_BY }"`) || '';
+    const allVMs = this.$rootGetters['harvester/all'](HCI.VM) || [];
 
-    if (!ownedBy) {
+    const findAttachVM = (vm) => {
+      const attachVolumes = vm.spec.template?.spec?.volumes || [];
+
+      if (vm.namespace === this.namespace && attachVolumes.length > 0) {
+        return attachVolumes.find(vol => vol.persistentVolumeClaim?.claimName === this.name);
+      }
+
       return null;
-    }
+    };
 
-    const ownedId = JSON.parse(ownedBy)[0]?.refs?.[0];
-
-    return allVMs.find(D => D.id === ownedId);
+    return allVMs.find(findAttachVM);
   }
 
   get isAvailable() {

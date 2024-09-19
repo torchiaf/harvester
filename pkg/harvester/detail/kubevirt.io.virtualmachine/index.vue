@@ -11,6 +11,7 @@ import NodeScheduling from '@shell/components/form/NodeScheduling';
 import PodAffinity from '@shell/components/form/PodAffinity';
 import KeyValue from '@shell/components/form/KeyValue';
 import Labels from '@shell/components/form/Labels';
+import LabelValue from '@shell/components/LabelValue';
 import { HCI } from '../../types';
 import VM_MIXIN from '../../mixins/harvester-vm';
 
@@ -22,6 +23,7 @@ import Events from './VirtualMachineTabs/VirtualMachineEvents';
 import Migration from './VirtualMachineTabs/VirtualMachineMigration';
 import OverviewBasics from './VirtualMachineTabs/VirtualMachineBasics';
 import OverviewKeypairs from './VirtualMachineTabs/VirtualMachineKeypairs';
+import { formatSi } from '@shell/utils/units';
 
 const VM_METRICS_DETAIL_URL = '/api/v1/namespaces/cattle-monitoring-system/services/http:rancher-monitoring-grafana:80/proxy/d/harvester-vm-detail-1/vm-info-detail?orgId=1';
 
@@ -33,6 +35,7 @@ export default {
     Tabbed,
     Events,
     OverviewBasics,
+    LabelValue,
     Volume,
     Network,
     OverviewKeypairs,
@@ -57,14 +60,17 @@ export default {
 
   data() {
     return {
-      switchToCloud: false,
+      hasResourceQuotaSchema: false,
+      switchToCloud:          false,
       VM_METRICS_DETAIL_URL,
-      showVmMetrics: false,
+      showVmMetrics:          false,
     };
   },
 
   async created() {
     const inStore = this.$store.getters['currentProduct'].inStore;
+
+    this.hasResourceQuotaSchema = !!this.$store.getters[`${ inStore }/schemaFor`](HCI.RESOURCE_QUOTA);
 
     const hash = {
       pods:     this.$store.dispatch(`${ inStore }/findAll`, { type: POD }),
@@ -74,6 +80,10 @@ export default {
       vmis:     this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.VMI }),
       restore:  this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.RESTORE }),
     };
+
+    if (this.hasResourceQuotaSchema) {
+      hash.resourceQuotas = this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.RESOURCE_QUOTA });
+    }
 
     await allHash(hash);
 
@@ -87,6 +97,22 @@ export default {
 
   computed: {
     ...mapGetters(['currentCluster']),
+
+    totalSnapshotSize() {
+      if (this.value.snapshotSizeQuota === undefined || this.value.snapshotSizeQuota === null) {
+        return ' - ';
+      }
+
+      if (this.value.snapshotSizeQuota === 0) {
+        return '0';
+      }
+
+      return formatSi(this.value.snapshotSizeQuota, {
+        increment: 1024,
+        addSuffix: true,
+        suffix:    'i',
+      });
+    },
 
     vmi() {
       const inStore = this.$store.getters['currentProduct'].inStore;
@@ -175,8 +201,15 @@ export default {
         <Network v-model:value="networkRows" mode="view" />
       </Tab>
 
-      <Tab name="keypairs" :label="t('harvester.virtualMachine.detail.tabs.keypairs')" class="bordered-table" :weight="3">
+      <Tab name="keypairs" :label="t('harvester.virtualMachine.detail.tabs.keypairs')" class="bordered-table" :weight="4">
         <OverviewKeypairs :value="value" />
+      </Tab>
+
+      <Tab v-if="hasResourceQuotaSchema" name="quotas" :label="t('harvester.tab.quotas')" :weight="3">
+        <LabelValue
+          :name="t('harvester.snapshot.totalSnapshotSize')"
+          :value="totalSnapshotSize"
+        />
       </Tab>
 
       <Tab

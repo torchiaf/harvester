@@ -17,7 +17,7 @@ import { STORAGE_CLASS, LONGHORN } from '@shell/config/types';
 import { allHash } from '@shell/utils/promise';
 import { clone } from '@shell/utils/object';
 import { CSI_DRIVER } from '../../types';
-import DiskTags from '../../components/DiskTags';
+import Tags from '../../components/DiskTags';
 
 const LONGHORN_DRIVER = 'driver.longhorn.io';
 
@@ -34,7 +34,7 @@ export default {
     Tab,
     Tabbed,
     Loading,
-    DiskTags,
+    Tags,
   },
 
   mixins: [CreateEditView],
@@ -304,7 +304,7 @@ export default {
                 />
               </div>
               <div class="col span-8 value">
-                <DiskTags
+                <Tags
                   v-model:value="scope.row.value.values"
                   :add-label="t('generic.add')"
                   :mode="modeOverride"

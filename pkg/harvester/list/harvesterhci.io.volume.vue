@@ -56,8 +56,6 @@ export default {
       this.$store.dispatch('type-map/configureType', { match: HCI.VOLUME, isCreatable: false });
     }
 
-    console.log('ppppppppppp', hash);
-
     this.rows = hash.pvcs;
   },
 
@@ -151,23 +149,23 @@ export default {
     
   >
     <template
-      cell:state="scope"
-    >
+cell:state="scope"
+>
       <div class="state">
         <HarvesterVolumeState
-          class="vmstate"
-          :row="scope.row"
-        />
+class="vmstate"
+:row="scope.row"
+/>
       </div>
     </template>
     <template
-      cell:AttachedVM="scope"
-    >
+cell:AttachedVM="scope"
+>
       <div>
         <router-link
-          v-if="getVMName(scope.row)"
-          :to="goTo(scope.row)"
-        >
+v-if="getVMName(scope.row)"
+:to="goTo(scope.row)"
+>
           {{ getVMName(scope.row) }}
         </router-link>
       </div>

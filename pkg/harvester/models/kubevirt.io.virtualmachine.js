@@ -133,7 +133,7 @@ export default class VirtVm extends HarvesterResource {
       {
         action:  'softrebootVM',
         enabled: !!this.actions?.softreboot,
-        icon:    'icon icon-refresh',
+        icon:    'icon icon-pipeline',
         label:   this.t('harvester.action.softreboot')
       },
       {
@@ -152,8 +152,14 @@ export default class VirtVm extends HarvesterResource {
       {
         action:  'takeVMSnapshot',
         enabled: !!this.actions?.backup,
-        icon:    'icon icon-backup',
+        icon:    'icon icon-snapshot',
         label:   this.t('harvester.action.vmSnapshot')
+      },
+      {
+        action:  'editVMQuota',
+        enabled: !!this.actions?.updateResourceQuota && !!this.actions.deleteResourceQuota,
+        icon:    'icon icon-storage',
+        label:   this.t('harvester.action.editVMQuota')
       },
       {
         action:  'restoreVM',
@@ -328,6 +334,14 @@ export default class VirtVm extends HarvesterResource {
     this.$dispatch('promptModal', {
       resources,
       component: 'HarvesterVMSnapshotDialog'
+    });
+  }
+
+  editVMQuota(resources = this) {
+    this.$dispatch('promptModal', {
+      resources,
+      snapshotSizeQuota: this.snapshotSizeQuota,
+      component:         'HarvesterQuotaDialog'
     });
   }
 
@@ -541,6 +555,17 @@ export default class VirtVm extends HarvesterResource {
     return null;
   }
 
+  get nsResourceQuota() {
+    const inStore = this.productInStore;
+    const allResQuotas = this.$rootGetters[`${ inStore }/all`](HCI.RESOURCE_QUOTA);
+
+    return allResQuotas.find( RQ => RQ.namespace === this.metadata.namespace);
+  }
+
+  get snapshotSizeQuota() {
+    return this.nsResourceQuota?.spec?.snapshotLimit?.vmTotalSnapshotSizeQuota?.[this.metadata.name];
+  }
+
   get vmi() {
     const inStore = this.productInStore;
 
@@ -646,6 +671,10 @@ export default class VirtVm extends HarvesterResource {
     return null;
   }
 
+  get isTerminating() {
+    return !!this?.metadata?.deletionTimestamp;
+  }
+
   get otherState() {
     const state = (this.vmi &&
       [VMIPhase.Scheduling, VMIPhase.Scheduled].includes(
@@ -685,18 +714,21 @@ export default class VirtVm extends HarvesterResource {
 
     const allRestore = this.$rootGetters[`${ inStore }/all`](HCI.RESTORE);
 
-    return allRestore.find(O => O.id === id);
+    const res = allRestore.find(O => O.id === id);
+
+    if (res) {
+      const allBackups = this.$rootGetters[`${ inStore }/all`](HCI.BACKUP);
+
+      res.fromSnapshot = !!allBackups
+        .filter(b => b.spec?.type !== BACKUP_TYPE.BACKUP)
+        .find(s => s.id === `${ res.spec?.virtualMachineBackupNamespace }/${ res.spec?.virtualMachineBackupName }`);
+    }
+
+    return res;
   }
 
   get restoreProgress() {
-    const inStore = this.productInStore;
-    const allBackups = this.$rootGetters[`${ inStore }/all`](HCI.BACKUP);
-
-    const isSnapshotRestore = !!allBackups
-      .filter(b => b.spec?.type !== BACKUP_TYPE.BACKUP)
-      .find(s => s.id === `${ this.restoreResource?.spec?.virtualMachineBackupNamespace }/${ this.restoreResource?.spec?.virtualMachineBackupName }`);
-
-    if (isSnapshotRestore) {
+    if (this.isVMError || this.isTerminating) {
       return {};
     }
 
@@ -726,7 +758,7 @@ export default class VirtVm extends HarvesterResource {
       return 'Restoring';
     }
 
-    if (this?.metadata?.deletionTimestamp) {
+    if (this.isTerminating) {
       return 'Terminating';
     }
 

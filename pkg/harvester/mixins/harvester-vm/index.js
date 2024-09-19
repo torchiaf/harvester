@@ -18,7 +18,7 @@ import {
 import { HOSTNAME } from '@shell/config/labels-annotations';
 import { HCI as HCI_ANNOTATIONS } from '@pkg/harvester/config/labels-annotations';
 import { uniq } from '@shell/utils/array';
-import { ADD_ONS, SOURCE_TYPE, ACCESS_CREDENTIALS } from '../../config/harvester-map';
+import { ADD_ONS, SOURCE_TYPE, ACCESS_CREDENTIALS, maintenanceStrategies, runStrategies } from '../../config/harvester-map';
 import { HCI_SETTING } from '../../config/settings';
 import { HCI } from '../../types';
 import { parseVolumeClaimTemplates } from '../../utils/vm';
@@ -136,6 +136,9 @@ export default {
       spec:                          null,
       osType:                        'linux',
       sshKey:                        [],
+      maintenanceStrategies,
+      maintenanceStrategy:           'Migrate',
+      runStrategies,
       runStrategy:                   'RerunOnFailure',
       installAgent:                  true,
       hasCreateVolumes:              [],
@@ -164,6 +167,7 @@ export default {
       enabledSriovgpu:               false,
       immutableMode:                 this.realMode === _CREATE ? _CREATE : _VIEW,
       terminationGracePeriodSeconds: '',
+      cpuPinning:                    false,
     };
   },
 
@@ -316,6 +320,11 @@ export default {
         };
       }
 
+      if (!vm.metadata.labels) {
+        vm.metadata.labels = {};
+      }
+      const maintenanceStrategy = vm.metadata.labels?.[HCI_ANNOTATIONS.VM_MAINTENANCE_MODE_STRATEGY] || 'Migrate';
+
       const runStrategy = spec.runStrategy || 'RerunOnFailure';
       const machineType = value.machineType;
       const cpu = spec.template.spec.domain?.cpu?.cores;
@@ -352,6 +361,7 @@ export default {
       const efiEnabled = this.isEfiEnabled(spec);
       const tpmEnabled = this.isTpmEnabled(spec);
       const secureBoot = this.isSecureBoot(spec);
+      const cpuPinning = this.isCpuPinning(spec);
 
       const secretRef = this.getSecret(spec);
       const accessCredentials = this.getAccessCredentials(spec);
@@ -362,6 +372,7 @@ export default {
       }
 
       this['spec'] = spec;
+      this['maintenanceStrategy'] = maintenanceStrategy;
       this['runStrategy'] = runStrategy;
       this['secretRef'] = secretRef;
       this['accessCredentials'] = accessCredentials;
@@ -382,6 +393,7 @@ export default {
       this['efiEnabled'] = efiEnabled;
       this['tpmEnabled'] = tpmEnabled;
       this['secureBoot'] = secureBoot;
+      this['cpuPinning'] = cpuPinning;
 
       this['hasCreateVolumes'] = hasCreateVolumes;
       this['networkRows'] = networkRows;
@@ -401,15 +413,37 @@ export default {
       let out = [];
 
       if (_disks.length === 0) {
+        let bus = 'virtio';
+        let type = HARD_DISK;
+        let size = '10Gi';
+
+        const imageResource = this.images.find( I => this.imageId === I.id);
+        const isIsoImage = /iso$/i.test(imageResource?.imageSuffix);
+        const imageSize = Math.max(imageResource?.status?.size, imageResource?.status?.virtualSize);
+
+        if (isIsoImage) {
+          bus = 'sata';
+          type = CD_ROM;
+        }
+
+        if (imageSize) {
+          let imageSizeGiB = Math.ceil(imageSize / 1024 / 1024 / 1024);
+
+          if (!isIsoImage) {
+            imageSizeGiB = Math.max(imageSizeGiB, 10);
+          }
+          size = `${ imageSizeGiB }Gi`;
+        }
+
         out.push({
           id:               randomStr(5),
           source:           SOURCE_TYPE.IMAGE,
           name:             'disk-0',
           accessMode:       'ReadWriteMany',
-          bus:              'virtio',
+          bus,
           volumeName:       '',
-          size:             '10Gi',
-          type:             HARD_DISK,
+          size,
+          type,
           storageClassName: '',
           image:            this.imageId,
           volumeMode:       'Block',
@@ -574,6 +608,12 @@ export default {
       } else {
         vm.metadata.annotations[HCI_ANNOTATIONS.VM_RESERVED_MEMORY] = this.reservedMemory;
       }
+
+      if (this.maintenanceStrategy === 'Migrate') {
+        delete vm.metadata.labels[HCI_ANNOTATIONS.VM_MAINTENANCE_MODE_STRATEGY];
+      } else {
+        vm.metadata.labels[HCI_ANNOTATIONS.VM_MAINTENANCE_MODE_STRATEGY] = this.maintenanceStrategy;
+      }
     },
 
     parseDiskRows(disk) {
@@ -681,27 +721,24 @@ export default {
           spec = this.multiVMScheduler(spec);
         }
 
-        this.value.metadata['annotations'] = {
-          ...this.value.metadata.annotations,
+        this.value.metadata['annotations'] = {...this.value.metadata.annotations,
           [HCI_ANNOTATIONS.VOLUME_CLAIM_TEMPLATE]: JSON.stringify(volumeClaimTemplates),
-          [HCI_ANNOTATIONS.NETWORK_IPS]:           JSON.stringify(this.value.networkIps)
-        };
+          [HCI_ANNOTATIONS.NETWORK_IPS]:           JSON.stringify(this.value.networkIps)};
 
-        this.value.metadata['labels'] = {
-          ...this.value.metadata.labels,
+        this.value.metadata['labels'] = {...this.value.metadata.labels,
           [HCI_ANNOTATIONS.CREATOR]: 'harvester',
-          [HCI_ANNOTATIONS.OS]:      this.osType
-        };
+          [HCI_ANNOTATIONS.OS]:      this.osType};
 
         this.value['spec'] = spec;
         this['spec'] = spec;
       } else if (this.resource === HCI.VM_VERSION) {
         this.value.spec.vm['spec'] = spec;
-        this.value.spec.vm.metadata['annotations'] = { ...this.value.spec.vm.metadata.annotations, [HCI_ANNOTATIONS.VOLUME_CLAIM_TEMPLATE]: JSON.stringify(volumeClaimTemplates) };
-        this.value.spec.vm.metadata['labels'] = {
-          ...this.value.spec.vm.metadata.labels,
-          [HCI_ANNOTATIONS.OS]: this.osType
+        this.value.spec.vm.metadata['annotations'] = {
+          ...this.value.spec.vm.metadata.annotations,
+          [HCI_ANNOTATIONS.VOLUME_CLAIM_TEMPLATE]: JSON.stringify(volumeClaimTemplates),
         };
+        this.value.spec.vm.metadata['labels'] = {...this.value.spec.vm.metadata.labels,
+          [HCI_ANNOTATIONS.OS]: this.osType,};
         this['spec'] = spec;
       }
     },
@@ -817,6 +854,10 @@ export default {
         this.spec.template.metadata.annotations[HCI_ANNOTATIONS.DYNAMIC_SSHKEYS_USERS] = JSON.stringify(Array.from(new Set(users)));
         this.spec.template.metadata.annotations[HCI_ANNOTATIONS.DYNAMIC_SSHKEYS_NAMES] = JSON.stringify(annotations);
       }
+    },
+
+    getMaintenanceStrategyOptionLabel(opt) {
+      return this.t(`harvester.virtualMachine.maintenanceStrategy.options.${ opt.label || opt }`);
     },
 
     getInitUserData(config) {
@@ -1339,6 +1380,14 @@ export default {
       }
     },
 
+    setCpuPinning(value) {
+      if (value) {
+        set(this.spec.template.spec.domain.cpu, 'dedicatedCpuPlacement', true);
+      } else {
+        delete this.spec.template.spec.domain.cpu['dedicatedCpuPlacement'];
+      }
+    },
+
     setTPM(tpmEnabled) {
       if (tpmEnabled) {
         set(this.spec.template.spec.domain.devices, 'tpm', {});
@@ -1460,6 +1509,10 @@ export default {
 
     secureBoot(val) {
       this.setBootMethod({ efi: this.efiEnabled, secureBoot: val });
+    },
+
+    cpuPinning(value) {
+      this.setCpuPinning(value);
     },
 
     tpmEnabled(val) {

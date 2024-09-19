@@ -5,7 +5,7 @@ import { BadgeState } from '@components/BadgeState';
 import { Banner } from '@components/Banner';
 import { RadioGroup, RadioButton } from '@components/Form/Radio';
 import HarvesterDisk from '../../mixins/harvester-disk';
-import DiskTags from '../../components/DiskTags';
+import Tags from '../../components/DiskTags';
 import { HCI } from '../../types';
 import { LONGHORN_SYSTEM } from './index';
 
@@ -17,7 +17,7 @@ export default {
     Banner,
     RadioGroup,
     RadioButton,
-    DiskTags,
+    Tags,
   },
 
   mixins: [
@@ -44,6 +44,18 @@ export default {
     return {};
   },
   computed: {
+    targetDisk() {
+      return this.disks.find(disk => disk.name === this.value.name);
+    },
+    schedulableTooltipMessage() {
+      const { name, path } = this.value;
+
+      if (this.targetDisk && !this.targetDisk.allowScheduling && name && path) {
+        return this.t('harvester.host.disk.allowScheduling.tooltip', { name, path });
+      } else {
+        return this.schedulableCondition.message;
+      }
+    },
     allowSchedulingOptions() {
       return [{
         label: this.t('generic.enabled'),
@@ -171,7 +183,7 @@ export default {
     <div v-if="!value.isNew">
       <div class="row">
         <div class="col span-12">
-          <DiskTags
+          <Tags
             v-model:value="value.tags"
             :label="t('harvester.host.disk.tags.label')"
             :add-label="t('harvester.host.disk.tags.addLabel')"
@@ -181,6 +193,16 @@ export default {
       </div>
       <div class="row mt-10">
         <div class="col span-12">
+          <div class="pull-left">
+            <RadioGroup
+              v-model:value="value.allowScheduling"
+              name="diskScheduling"
+              :label="t('harvester.host.disk.allowScheduling.label')"
+              :mode="mode"
+              :options="allowSchedulingOptions"
+              :row="true"
+            />
+          </div>
           <div class="pull-right">
             {{ t('harvester.host.disk.conditions') }}:
             <BadgeState
@@ -191,9 +213,9 @@ export default {
               class="mr-10 ml-10 state"
             />
             <BadgeState
-              v-clean-tooltip="schedulableCondition.message"
-              :color="schedulableCondition.status === 'True' ? 'bg-success' : 'bg-error' "
-              :icon="schedulableCondition.status === 'True' ? 'icon-checkmark' : 'icon-warning' "
+              v-clean-tooltip="schedulableTooltipMessage"
+              :color="schedulableCondition.status === 'True' && targetDisk?.allowScheduling ? 'bg-success' : 'bg-error' "
+              :icon="schedulableCondition.status === 'True' && targetDisk?.allowScheduling ? 'icon-checkmark' : 'icon-warning' "
               label="Schedulable"
               class="mr-10 state"
             />

@@ -28,12 +28,12 @@ const harvesterFactory = (): CoreStoreSpecifics => {
   return steveFactory;
 };
 const config: CoreStoreConfig = {
-  namespace: PRODUCT_NAME,
+  namespace:      PRODUCT_NAME,
   isClusterStore: true
 };
 
 export default {
   specifics: harvesterFactory(),
   config,
-  init: steveStoreInit
+  init:      steveStoreInit
 };
