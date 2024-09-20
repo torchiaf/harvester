@@ -25,6 +25,8 @@ import { HCI } from '../../types';
 import NodeSelector from './NodeSelector';
 
 export default {
+  emits: ['update:value'],
+  
   components: {
     CruResource,
     NameNsDescription,

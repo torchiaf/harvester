@@ -13,6 +13,9 @@ import { STORAGE_CLASS } from '@shell/config/types';
 
 export default {
   name:       'HarvesterRestoreSnapshotDialog',
+  
+  emits: ['close'],
+
   components: {
     AsyncButton,
     Banner,

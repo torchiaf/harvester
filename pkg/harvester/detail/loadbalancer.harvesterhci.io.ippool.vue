@@ -7,6 +7,8 @@ import { allHash } from '@shell/utils/promise';
 import { NETWORK_HEADERS } from '@pkg/harvester/list/harvesterhci.io.networkattachmentdefinition.vue';
 
 export default {
+  emits: ['input'],
+  
   components: {
     ResourceTabs,
     Tab,

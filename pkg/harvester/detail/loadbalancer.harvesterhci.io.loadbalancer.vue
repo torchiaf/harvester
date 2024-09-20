@@ -10,6 +10,8 @@ import { matching } from '@shell/utils/selector';
 import { IP_POOL_HEADERS } from '../product';
 
 export default {
+  emits: ['input'],
+  
   components: {
     ResourceTabs,
     Tab,

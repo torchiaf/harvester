@@ -6,6 +6,8 @@ import LabeledInput from '@components/Form/LabeledInput/LabeledInput.vue';
 export default {
   name: 'HarvesterFilterLabel',
 
+  emits: ['changeRows'],
+
   components: {
     Select,
     ArrayList,

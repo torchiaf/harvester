@@ -11,6 +11,8 @@ import { BACKUP_TYPE } from '../config/types';
 export default {
   name: 'HarvesterVMSnapshotDialog',
 
+  emits: ['close'],
+
   components: {
     AsyncButton,
     Card,

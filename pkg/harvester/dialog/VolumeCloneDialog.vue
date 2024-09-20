@@ -9,6 +9,9 @@ import { Checkbox } from '@components/Form/Checkbox';
 
 export default {
   name:       'HarvesterPvcCloneDialog',
+
+  emits: ['close'],
+
   components: {
     AsyncButton, Banner, Card, LabeledInput, Checkbox
   },

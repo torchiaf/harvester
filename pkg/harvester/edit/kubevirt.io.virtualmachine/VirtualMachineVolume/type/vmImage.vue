@@ -12,6 +12,8 @@ import { VOLUME_TYPE, InterfaceOption } from '../../../../config/harvester-map';
 export default {
   name: 'HarvesterEditVMImage',
 
+  emits: ['update'],
+
   components: {
     UnitInput, LabeledInput, LabeledSelect, InputOrDisplay
   },

@@ -9,6 +9,8 @@ import { BadgeState } from '@components/BadgeState';
 import { ucFirst } from '@shell/utils/string';
 
 export default {
+  emits: ['close'],
+  
   components: {
     Card,
     Checkbox,

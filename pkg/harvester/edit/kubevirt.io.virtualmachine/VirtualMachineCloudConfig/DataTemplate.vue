@@ -13,6 +13,8 @@ const _NONE = '_NONE';
 export default {
   components: { YamlEditor, LabeledSelect },
 
+  emits: ['updateTemplateId', 'show', 'update'],
+
   props: {
     mode: {
       type:    String,

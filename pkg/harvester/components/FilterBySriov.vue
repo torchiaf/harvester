@@ -4,6 +4,8 @@ import LabeledSelect from '@shell/components/form/LabeledSelect.vue';
 export default {
   name: 'HarvesterFilterLabel',
 
+  emits: ['change-rows'],
+
   components: { LabeledSelect },
 
   props: {

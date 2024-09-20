@@ -15,6 +15,8 @@ import CopyToClipboardText from '@shell/components/CopyToClipboardText';
 export default {
   name: 'ConfirmRelatedToRemoveDialog',
 
+  emits: ['close'],
+
   components: {
     AsyncButton,
     Banner,

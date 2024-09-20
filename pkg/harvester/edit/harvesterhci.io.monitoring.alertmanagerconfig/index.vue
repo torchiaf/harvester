@@ -15,6 +15,8 @@ import ActionMenu from '@shell/components/ActionMenu';
 import { _CREATE, _EDIT, _VIEW, _CONFIG } from '@shell/config/query-params';
 
 export default {
+  emits: ['update:value'],
+  
   components: {
     ActionMenu,
     CruResource,

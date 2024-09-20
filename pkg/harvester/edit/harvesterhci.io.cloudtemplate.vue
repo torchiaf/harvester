@@ -12,6 +12,8 @@ import { HCI } from '@pkg/harvester/config/labels-annotations';
 export default {
   name: 'HarvesterEditCloudTemplate',
 
+  emits: ['update:value'],
+
   components: {
     Tab,
     Tabbed,

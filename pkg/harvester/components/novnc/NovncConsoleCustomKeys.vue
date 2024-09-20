@@ -7,6 +7,8 @@ import ModalWithCard from '@shell/components/ModalWithCard';
 const PREFERED_SHORTCUT_KEYS = 'prefered-shortcut-keys';
 
 export default {
+  emits: ['close'],
+  
   components: {
     ModalWithCard, Banner, AsyncButton
   },

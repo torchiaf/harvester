@@ -11,6 +11,8 @@ import { isEmpty } from '@shell/utils/object';
 import { HCI } from '@pkg/harvester/config/labels-annotations';
 
 export default {
+  emits: ['input'],
+  
   components: {
     ResourceTabs,
     Tab,

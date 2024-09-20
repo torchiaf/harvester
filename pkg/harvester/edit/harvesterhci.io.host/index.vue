@@ -34,6 +34,9 @@ export const LONGHORN_SYSTEM = 'longhorn-system';
 
 export default {
   name:       'HarvesterEditNode',
+
+  emits: ['update:value'],
+
   components: {
     Footer,
     Tabbed,

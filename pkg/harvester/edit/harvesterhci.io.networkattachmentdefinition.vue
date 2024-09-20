@@ -16,6 +16,8 @@ const AUTO = 'auto';
 const MANUAL = 'manual';
 
 export default {
+  emits: ['update:value'],
+  
   components: {
     Tab,
     Tabbed,

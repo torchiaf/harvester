@@ -45,6 +45,8 @@ import MessageLink from '@shell/components/MessageLink';
 export default {
   name: 'HarvesterEditVM',
 
+  emits: ['update:value'],
+
   components: {
     Tab,
     Tabbed,

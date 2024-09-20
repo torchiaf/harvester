@@ -12,6 +12,8 @@ import CreateEditView from '@shell/mixins/create-edit-view';
 export default {
   name: 'HarvesterEditKeypair',
 
+  emits: ['update:value'],
+
   components: {
     Tab,
     Tabbed,

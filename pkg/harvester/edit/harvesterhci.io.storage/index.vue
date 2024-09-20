@@ -24,6 +24,8 @@ const LONGHORN_DRIVER = 'driver.longhorn.io';
 export default {
   name: 'HarvesterStorage',
 
+  emits: ['update:value'],
+
   components: {
     ArrayList,
     CruResource,

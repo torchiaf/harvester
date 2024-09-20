@@ -12,6 +12,8 @@ import LabeledSelect from '@shell/components/form/LabeledSelect';
 import { HCI } from '../types';
 
 export default {
+  emits: ['close'],
+  
   components: {
     AsyncButton, Banner, Card, LabeledSelect
   },

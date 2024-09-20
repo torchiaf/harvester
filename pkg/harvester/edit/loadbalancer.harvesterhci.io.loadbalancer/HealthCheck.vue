@@ -4,6 +4,8 @@ import LabeledSelect from '@shell/components/form/LabeledSelect';
 import RadioGroup from '@components/Form/Radio/RadioGroup';
 
 export default {
+  emits: ['enabled'],
+  
   components: {
     LabeledInput,
     LabeledSelect,

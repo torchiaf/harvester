@@ -23,6 +23,8 @@ const AUDIT_ONLY = 'Audit Only';
 const OUTPUT_TYPE = [LOGGING_EVENT, AUDIT_ONLY];
 
 export default {
+  emits: ['update:value'],
+
   components: {
     Banner, CruResource, Labels, LabeledSelect, NameNsDescription, Tab, Tabbed, YamlEditor
   },

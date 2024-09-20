@@ -6,6 +6,8 @@ import { mapGetters } from 'vuex';
 import { HCI } from '@pkg/harvester/types';
 
 export default {
+  emits: ['update:value', 'remove'],
+  
   components: { Select },
 
   props: {

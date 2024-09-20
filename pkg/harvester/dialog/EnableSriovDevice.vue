@@ -8,6 +8,8 @@ import { escapeHtml } from '@shell/utils/string';
 export default {
   name: 'HarvesterEnableSriovDevice',
 
+  emits: ['close'],
+
   components: {
     LabeledInput,
     AsyncButton,

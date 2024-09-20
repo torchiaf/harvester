@@ -8,6 +8,8 @@ import { escapeHtml } from '@shell/utils/string';
 export default {
   name: 'HarvesterEnableVGpuDevice',
 
+  emits: ['close'],
+
   components: {
     AsyncButton,
     Card,

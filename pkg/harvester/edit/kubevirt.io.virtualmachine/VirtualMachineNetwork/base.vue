@@ -29,6 +29,9 @@ const MODEL = [{
 
 export default {
   name:       'HarvesterEditNetwork',
+
+  emits: ['update'],
+  
   components: {
     LabeledInput, LabeledSelect, InputOrDisplay
   },

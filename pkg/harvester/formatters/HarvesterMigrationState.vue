@@ -3,6 +3,8 @@ import { BadgeState } from '@components/BadgeState';
 import { HCI } from '../types';
 
 export default {
+  emits: ['state-changed'],
+  
   components: { BadgeState },
 
   props: {

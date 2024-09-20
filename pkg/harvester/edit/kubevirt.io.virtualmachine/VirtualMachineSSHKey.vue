@@ -15,6 +15,8 @@ import { HCI } from '../../types';
 const _NEW = '_NEW';
 
 export default {
+  emits: ['update:sshKey'],
+  
   components: {
     LabeledInput,
     ModalWithCard,

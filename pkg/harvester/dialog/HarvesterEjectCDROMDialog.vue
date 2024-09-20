@@ -10,6 +10,8 @@ import { exceptionToErrorsArray } from '@shell/utils/error';
 export default {
   name: 'HarvesterEjectCDROMModal',
 
+  emits: ['close'],
+
   components: {
     AsyncButton,
     Card,

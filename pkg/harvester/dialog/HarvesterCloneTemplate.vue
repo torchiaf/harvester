@@ -11,6 +11,8 @@ import { LabeledInput } from '@components/Form/LabeledInput';
 export default {
   name: 'HarvesterCloneTemplateModal',
 
+  emits: ['close'],
+
   components: {
     AsyncButton,
     Banner,

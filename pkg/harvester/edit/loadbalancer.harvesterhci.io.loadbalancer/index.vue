@@ -25,6 +25,8 @@ const PROJECT_SELECTOR = 'loadbalancer.harvesterhci.io/project';
 export default {
   name: 'HarvesterLoadBalancer',
 
+  emits: ['update:value'],
+
   components: {
     NameNsDescription,
     ResourceTabs,

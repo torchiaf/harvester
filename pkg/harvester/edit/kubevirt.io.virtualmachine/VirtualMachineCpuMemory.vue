@@ -4,6 +4,9 @@ import InputOrDisplay from '@shell/components/InputOrDisplay';
 
 export default {
   name:       'HarvesterEditCpuMemory',
+
+  emits: ['updateCpuMemory'],
+  
   components: { UnitInput, InputOrDisplay },
 
   props: {

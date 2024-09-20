@@ -5,6 +5,8 @@ import Tag from '@shell/components/Tag';
 export default {
   name: 'Tags',
 
+  emits: ['update:value'],
+
   components: { Tag },
 
   props: {

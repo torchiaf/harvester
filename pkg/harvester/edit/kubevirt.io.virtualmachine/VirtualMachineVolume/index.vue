@@ -19,6 +19,8 @@ import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../../config/harvester';
 import { HCI } from '../../../types';
 
 export default {
+  emits: ['update:value'],
+  
   components: {
     Banner, BadgeStateFormatter, Sortable, InfoBox, LabeledInput, UnitInput, LabeledSelect, ModalWithCard
   },

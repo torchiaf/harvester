@@ -13,6 +13,8 @@ import LabeledSelect from '@shell/components/form/LabeledSelect';
 export default {
   name: 'HotplugModal',
 
+  emits: ['close'],
+
   components: {
     AsyncButton, Card, LabeledInput, LabeledSelect, Banner
   },

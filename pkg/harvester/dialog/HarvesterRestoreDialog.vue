@@ -14,6 +14,8 @@ import { HCI } from '../types';
 export default {
   name: 'HarvesterRestoreModal',
 
+  emits: ['close'],
+
   components: {
     AsyncButton,
     Banner,

@@ -10,6 +10,8 @@ import CreateEditView from '@shell/mixins/create-edit-view';
 export default {
   name: 'EditClusterNetwork',
 
+  emits: ['update:value'],
+
   components: {
     CruResource,
     NameNsDescription,

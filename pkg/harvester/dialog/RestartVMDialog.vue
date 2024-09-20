@@ -5,6 +5,8 @@ import { Card } from '@components/Card';
 import { Banner } from '@components/Banner';
 import { exceptionToErrorsArray } from '@shell/utils/error';
 export default {
+  emits: ['close'],
+  
   components: {
     Card,
     AsyncButton,

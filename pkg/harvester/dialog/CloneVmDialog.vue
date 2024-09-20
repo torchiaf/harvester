@@ -11,6 +11,8 @@ import { LabeledInput } from '@components/Form/LabeledInput';
 export default {
   name: 'CloneVMModal',
 
+  emits: ['close'],
+
   components: {
     AsyncButton, Banner, Checkbox, Card, LabeledInput
   },

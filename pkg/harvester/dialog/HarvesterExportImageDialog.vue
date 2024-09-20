@@ -14,6 +14,8 @@ import { allHash } from '@shell/utils/promise';
 export default {
   name: 'HarvesterExportImageDialog',
 
+  emits: ['close'],
+
   components: {
     AsyncButton, Banner, Card, LabeledInput, LabeledSelect
   },

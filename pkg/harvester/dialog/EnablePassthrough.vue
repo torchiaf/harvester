@@ -8,6 +8,8 @@ import { HCI } from '../types';
 export default {
   name: 'HarvesterEnablePassthrough',
 
+  emits: ['close'],
+
   components: {
     AsyncButton,
     Card,

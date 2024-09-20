@@ -9,6 +9,8 @@ import { LabeledInput } from '@components/Form/LabeledInput';
 export default {
   name: 'HarvesterBackupModal',
 
+  emits: ['close'],
+
   components: {
     AsyncButton,
     Card,

@@ -6,6 +6,9 @@ import { VOLUME_TYPE, InterfaceOption } from '../../../../config/harvester-map';
 
 export default {
   name:       'HarvesterEditContainer',
+
+  emits: ['update'],
+
   components: {
     LabeledInput, LabeledSelect, InputOrDisplay
   },

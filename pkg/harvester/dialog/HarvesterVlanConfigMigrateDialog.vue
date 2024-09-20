@@ -11,6 +11,8 @@ import AsyncButton from '@shell/components/AsyncButton';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 
 export default {
+  emits: ['close'],
+  
   components: {
     AsyncButton,
     Banner,

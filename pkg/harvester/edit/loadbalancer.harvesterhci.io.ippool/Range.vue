@@ -4,6 +4,8 @@ import { _EDIT, _VIEW } from '@shell/config/query-params';
 import { removeAt } from '@shell/utils/array';
 
 export default {
+  emits: ['update:value'],
+  
   props: {
     value: {
       type:    Array,

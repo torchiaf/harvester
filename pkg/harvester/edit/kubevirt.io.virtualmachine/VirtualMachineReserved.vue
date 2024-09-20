@@ -3,6 +3,9 @@ import UnitInput from '@shell/components/form/UnitInput';
 
 export default {
   name:       'HarvesterReserved',
+
+  emits: ['updateReserved'],
+  
   components: { UnitInput },
 
   props: {

@@ -6,6 +6,8 @@ import { clone } from '@shell/utils/object';
 import Select from '@shell/components/form/Select';
 
 export default {
+  emits: ['update:value'],
+  
   components: { Select },
   props:      {
     value: {

@@ -16,6 +16,8 @@ const _NEW = '_NEW';
 export default {
   name: 'HarvesterSeeder',
 
+  emits: ['update:value'],
+
   components: {
     Checkbox,
     LabeledInput,

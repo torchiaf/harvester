@@ -25,6 +25,8 @@ const rawORqcow2 = 'raw_qcow2';
 export default {
   name: 'EditImage',
 
+  emits: ['update:value'],
+
   components: {
     Tab,
     Tabbed,

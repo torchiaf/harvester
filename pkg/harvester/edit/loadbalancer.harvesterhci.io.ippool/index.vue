@@ -13,6 +13,8 @@ import Selector from './Selector';
 export default {
   name: 'HarvesterIPPool',
 
+  emits: ['update:value'],
+
   components: {
     NameNsDescription,
     ResourceTabs,

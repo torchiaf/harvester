@@ -7,6 +7,8 @@ import HarvesterDisk from '../../mixins/harvester-disk';
 import { RadioGroup } from '@components/Form/Radio';
 
 export default {
+  emits: ['update:value'],
+  
   components: {
     LabelValue,
     BadgeState,

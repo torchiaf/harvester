@@ -23,6 +23,8 @@ import { ucFirst } from '@shell/utils/string';
 export default {
   name: 'CruSecret',
 
+  emits: ['update:value'],
+
   components: {
     LabeledInput,
     LabeledSelect,

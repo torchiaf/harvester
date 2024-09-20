@@ -10,6 +10,8 @@ import { findBy } from '@shell/utils/array';
 import { HCI } from '../../types';
 
 export default {
+  emits: ['updateMatchingNICs', 'updateMatchingNodes'],
+  
   components: {
     RadioGroup,
     LabeledSelect,

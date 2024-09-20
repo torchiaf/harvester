@@ -1,6 +1,8 @@
 <script>
 export default {
   name: 'NovncConsoleItem',
+  
+  emits: ['send-keys', 'update'],
 
   props: {
     items: {

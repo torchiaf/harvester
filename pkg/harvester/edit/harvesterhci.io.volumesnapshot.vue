@@ -11,6 +11,9 @@ import { HCI } from '../types';
 
 export default {
   name:       'HarvesterSnapshot',
+
+  emits: ['update:value'],
+
   components: {
     LabeledInput,
     Tab,

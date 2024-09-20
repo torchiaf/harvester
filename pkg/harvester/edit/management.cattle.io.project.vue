@@ -20,6 +20,8 @@ import { HARVESTER_NAME as HARVESTER } from '@shell/config/features';
 import { Banner } from '@components/Banner';
 
 export default {
+  emits: ['update:value'],
+  
   components: {
     ContainerResourceLimit, CruResource, Labels, LabeledSelect, NameNsDescription, ProjectMembershipEditor, ResourceQuota, Tabbed, Tab, Banner
   },

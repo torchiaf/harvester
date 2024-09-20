@@ -4,6 +4,9 @@ import AccessCredentialsUsers from '../AccessCredentialsUsers';
 
 export default {
   name:       'HarvesterEditVolume',
+
+  emits: ['update', 'update:newUser'],
+
   components: { SSHKey, AccessCredentialsUsers },
 
   props: {

@@ -29,6 +29,8 @@ import SSHKey from './kubevirt.io.virtualmachine/VirtualMachineSSHKey';
 export default {
   name: 'HarvesterEditVMTemplate',
 
+  emits: ['update:value'],
+
   components: {
     Tab,
     SSHKey,

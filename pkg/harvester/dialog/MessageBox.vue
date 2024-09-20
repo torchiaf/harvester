@@ -5,6 +5,8 @@ import { Card } from '@components/Card';
 export default {
   name: 'HarvesterHotUnplugModal',
 
+  emits: ['close'],
+
   components: { Card },
 
   props: {

@@ -11,6 +11,8 @@ import Socket, {
 } from '@shell/utils/socket';
 
 export default {
+  emits: ['close'],
+
   props: {
     value: {
       type:     Object,

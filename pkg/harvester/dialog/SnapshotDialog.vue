@@ -7,6 +7,9 @@ import AsyncButton from '@shell/components/AsyncButton';
 import { LabeledInput } from '@components/Form/LabeledInput';
 export default {
   name:       'HarvesterSnapshotDialog',
+
+  emits: ['close'],
+
   components: {
     AsyncButton, Banner, Card, LabeledInput
   },

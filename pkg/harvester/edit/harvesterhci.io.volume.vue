@@ -23,6 +23,8 @@ import { HCI, VOLUME_SNAPSHOT } from '../types';
 export default {
   name: 'HarvesterVolume',
 
+  emits: ['update:value'],
+
   components: {
     Tab,
     UnitInput,

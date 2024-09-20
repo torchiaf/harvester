@@ -7,6 +7,8 @@ import { mapGetters } from 'vuex';
 import PriorityRow from './PriorityRow';
 
 export default {
+  emits: ['update:value'],
+  
   components: { PriorityRow },
 
   props: {

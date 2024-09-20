@@ -9,6 +9,8 @@ import AsyncButton from '@shell/components/AsyncButton';
 export default {
   name: 'HarvesterHotUnplugModal',
 
+  emits: ['close'],
+
   components: {
     AsyncButton,
     Card,

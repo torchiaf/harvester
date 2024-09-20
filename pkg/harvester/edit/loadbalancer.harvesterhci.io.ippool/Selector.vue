@@ -9,6 +9,8 @@ import { _EDIT } from '@shell/config/query-params';
 import Priority from './Priority';
 
 export default {
+  emits: ['update:value'],
+  
   components: {
     LabeledSelect,
     LabeledInput,

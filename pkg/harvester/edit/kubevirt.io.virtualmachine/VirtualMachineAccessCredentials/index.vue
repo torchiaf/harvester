@@ -13,6 +13,8 @@ import { ACCESS_CREDENTIALS } from '../../../config/harvester-map';
 const _NEW = '_NEW';
 
 export default {
+  emits: ['update:value'],
+  
   components: {
     Banner,
     InfoBox
