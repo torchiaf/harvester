@@ -1,5 +1,5 @@
 <script>
-import draggable from 'vuedraggable';
+import { Sortable } from "sortablejs-vue3";
 import InfoBox from '@shell/components/InfoBox';
 import { Banner } from '@components/Banner';
 import BadgeStateFormatter from '@shell/components/formatter/BadgeStateFormatter';
@@ -20,7 +20,7 @@ import { HCI } from '../../../types';
 
 export default {
   components: {
-    Banner, BadgeStateFormatter, draggable, InfoBox, LabeledInput, UnitInput, LabeledSelect, ModalWithCard
+    Banner, BadgeStateFormatter, Sortable, InfoBox, LabeledInput, UnitInput, LabeledSelect, ModalWithCard
   },
 
   props: {
@@ -266,12 +266,11 @@ export default {
       color="info"
       label-key="harvester.virtualMachine.volume.dragTip"
     />
-    <draggable
-      v-model="rows"
-      :disabled="isView"
+    <Sortable
+      :list="rows"
+      :options="{disabled: isView}"
       @end="update"
-      tag="transition-group"
-      :item-key="() => null"
+      item-key="id"
     >
       <template #item="{element: volume, index: i}">
         <div :key="volume.name">
@@ -377,7 +376,7 @@ export default {
           </InfoBox>
         </div>
       </template>
-    </draggable>
+    </Sortable>
     <Banner
       v-if="showVolumeTip"
       color="warning"
