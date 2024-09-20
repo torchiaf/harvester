@@ -60,7 +60,7 @@ export default {
     </div>
     <div class="state">
       <VolumeState :row="row" />
-      <v-popover
+      <v-dropdown
         v-if="!!warningMessage"
         trigger="hover"
         offset="16"
@@ -74,7 +74,7 @@ export default {
             {{ warningMessage }}
           </p>
         </template>
-      </v-popover>
+      </v-dropdown>
     </div>
   </span>
 </template>

@@ -183,7 +183,7 @@ export default {
 </script>
 <template>
   <div v-if="enabled && isShow" class="upgrade">
-    <v-popover
+    <v-dropdown
       v-clean-tooltip="{
         placement: 'bottom-left',
       }"
@@ -287,7 +287,7 @@ export default {
           </button>
         </div>
       </template>
-    </v-popover>
+    </v-dropdown>
   </div>
 </template>
 

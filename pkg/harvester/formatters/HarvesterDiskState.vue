@@ -76,7 +76,7 @@ export default {
       :color="stateBackground"
       :label="stateDisplay"
     />
-    <v-popover
+    <v-dropdown
       v-if="warningMessage.length"
       trigger="hover"
       offset="16"
@@ -91,7 +91,7 @@ export default {
           {{ index + 1 }}. {{ message }}
         </p>
       </template>
-    </v-popover>
+    </v-dropdown>
   </div>
 </template>
 

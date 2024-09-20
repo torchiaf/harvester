@@ -172,7 +172,7 @@ export default {
           <BadgeState
             :row="row"
           />
-          <v-popover
+          <v-dropdown
             v-if="row.clusterNetworkErrorMessage"
             trigger="hover"
             offset="16"
@@ -186,7 +186,7 @@ export default {
                 {{ row.clusterNetworkErrorMessage }}
               </p>
             </template>
-          </v-popover>
+          </v-dropdown>
         </div>
       </template>
     </ResourceTable>

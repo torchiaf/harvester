@@ -125,7 +125,7 @@ export default {
       </span>
     </template>
 
-    <v-popover
+    <v-dropdown
       trigger="click"
       placement="bottom-end"
     >
@@ -211,7 +211,7 @@ export default {
           </div>
         </div>
       </template>
-    </v-popover>
+    </v-dropdown>
   </div>
 </template>
 

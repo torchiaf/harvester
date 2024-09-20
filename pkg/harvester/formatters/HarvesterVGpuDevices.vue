@@ -56,7 +56,7 @@ export default {
       <span v-if="index < rows.visible.length - 1">, </span>
     </span>
 
-    <v-popover
+    <v-dropdown
       trigger="click"
       placement="top"
     >
@@ -70,7 +70,7 @@ export default {
         </a>
       </span>
 
-      <template v-slot:popover>
+      <template #popper>
         <div class="vgpu-popup">
           <div>
             <span
@@ -86,7 +86,7 @@ export default {
           </div>
         </div>
       </template>
-    </v-popover>
+    </v-dropdown>
   </div>
 </template>
 

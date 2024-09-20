@@ -125,7 +125,7 @@ export default {
     <HarvesterMigrationState v-show="isMigrating" :vm-resource="row" @state-changed="migrationStateChanged" />
     <div v-show="!isMigrating" class="state">
       <VMState :row="row" />
-      <v-popover
+      <v-dropdown
         v-if="warningMessage.length"
         ref="popover"
         trigger="manual"
@@ -158,7 +158,7 @@ export default {
             </p>
           </div>
         </template>
-      </v-popover>
+      </v-dropdown>
     </div>
   </span>
 </template>

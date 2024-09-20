@@ -74,7 +74,7 @@ export default {
       {{ parentSriov }} <i class="icon icon-close" @click="remove()" />
     </span>
 
-    <v-popover
+    <v-dropdown
       trigger="click"
       placement="bottom-end"
     >
@@ -86,7 +86,7 @@ export default {
         </button>
       </slot>
 
-      <template v-slot:popover>
+      <template #popper>
         <div class="filter-popup">
           <div>
             <LabeledSelect
@@ -98,7 +98,7 @@ export default {
           </div>
         </div>
       </template>
-    </v-popover>
+    </v-dropdown>
   </div>
 </template>
 

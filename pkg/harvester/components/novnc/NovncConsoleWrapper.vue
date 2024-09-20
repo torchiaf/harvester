@@ -278,7 +278,7 @@ export default {
   <div id="app">
     <div class="vm-console">
       <div class="combination-keys">
-        <v-popover
+        <v-dropdown
           ref="popover"
           placement="top"
           trigger="click"
@@ -289,16 +289,16 @@ export default {
             {{ t("harvester.virtualMachine.detail.console.shortcutKeys") }}
           </button>
 
-          <template v-slot:popover>
+          <template #popper>
             <novnc-console-item :items="keymap" :path="keysRecord" :pos="0" @update="update" @send-keys="sendKeys" />
           </template>
-        </v-popover>
+        </v-dropdown>
 
         <button v-if="hasSoftRebootAction" class="btn btn-sm bg-primary" @click="softReboot">
           {{ t("harvester.action.softreboot") }}
         </button>
 
-        <v-popover
+        <v-dropdown
           v-if="!hideCustomKeysBar"
           ref="customKeyPopover"
           placement="top"
@@ -309,7 +309,7 @@ export default {
             {{ t("harvester.virtualMachine.detail.console.customShortcutKeys") }}
           </button>
 
-          <template v-slot:popover>
+          <template #popper>
             <div>
               <button class="btn btn-sm bg-primary" @click="showKeysModal">
                 {{ t("harvester.virtualMachine.detail.console.management") }}
@@ -324,7 +324,7 @@ export default {
               </button>
             </div>
           </template>
-        </v-popover>
+        </v-dropdown>
 
         <NovncConsoleCustomKeys v-if="renderKeysModal" ref="keysModal" :current-user="currentUser" @close="hideKeysModal" />
       </div>

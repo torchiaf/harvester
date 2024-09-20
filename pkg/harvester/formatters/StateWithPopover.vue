@@ -25,7 +25,7 @@ export default {
       <State
         :row="row"
       />
-      <v-popover
+      <v-dropdown
         v-if="warningMessages.length > 0"
         trigger="hover"
         offset="16"
@@ -34,14 +34,14 @@ export default {
           <i class="icon icon-warning icon-lg text-warning" />
         </span>
 
-        <template v-slot:popover>
+        <template #popper>
           <p
             v-for="(message, index) in warningMessages" :key="index">
             {{ index + 1 }}.
             {{ message.text }}
           </p>
         </template>
-      </v-popover>
+      </v-dropdown>
     </div>
   </span>
 </template>
