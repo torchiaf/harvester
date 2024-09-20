@@ -8,6 +8,9 @@ import { PVC } from '@shell/config/types';
 import { formatSi, parseSi } from '@shell/utils/units';
 import { HCI } from '../../../../types';
 import { VOLUME_TYPE, InterfaceOption } from '../../../../config/harvester-map';
+import { _VIEW } from '@shell/config/query-params';
+import LabelValue from '@shell/components/LabelValue';
+import { ucFirst } from '@shell/utils/string';
 
 export default {
   name: 'HarvesterEditVMImage',
@@ -15,7 +18,7 @@ export default {
   emits: ['update'],
 
   components: {
-    UnitInput, LabeledInput, LabeledSelect, InputOrDisplay
+    UnitInput, LabeledInput, LabeledSelect, InputOrDisplay, LabelValue
   },
 
   props: {
@@ -75,6 +78,14 @@ export default {
   },
 
   computed: {
+    encryptionValue() {
+      return ucFirst(String(this.value.isEncrypted));
+    },
+
+    isView() {
+      return this.mode === _VIEW;
+    },
+
     imagesOption() {
       return this.images.filter(c => c.isReady).sort((a, b) => a.creationTimestamp > b.creationTimestamp ? -1 : 1).map( (I) => {
         return {
@@ -272,7 +283,7 @@ export default {
     <div class="row mb-20">
       <div
         data-testid="input-hevi-bus"
-        class="col span-3"
+        class="col span-6"
       >
         <InputOrDisplay
           :name="t('harvester.virtualMachine.volume.bus')"
@@ -287,6 +298,15 @@ export default {
             @update:value="update"
           />
         </InputOrDisplay>
+      </div>
+      <div
+        v-if="isView"
+        class="col span-6"
+      >
+        <LabelValue
+          :name="t('harvester.virtualMachine.volume.encryption')"
+          :value="encryptionValue"
+        />
       </div>
     </div>
   </div>

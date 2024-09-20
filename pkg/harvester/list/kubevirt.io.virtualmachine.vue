@@ -173,15 +173,15 @@ export default {
 
   methods: {
     lockIconTooltipMessage(row) {
-      if (row.isVMImageEncrypted && row.isVolumeEncrypted) {
-        return this.t('harvester.virtualMachine.lockIconTooltip.both');
-      } else if (row.isVMImageEncrypted) {
-        return this.t('harvester.virtualMachine.lockIconTooltip.image');
-      } else if (row.isVolumeEncrypted) {
-        return this.t('harvester.virtualMachine.lockIconTooltip.volume');
+      const message = '';
+
+      if (row.encryptedVolumeType === 'all') {
+        return this.t('harvester.virtualMachine.volume.lockTooltip.all');
+      } else if (row.encryptedVolumeType === 'partial') {
+        return this.t('harvester.virtualMachine.volume.lockTooltip.partial');
       }
 
-      return '';
+      return message;
     }
   }
 };
@@ -213,7 +213,12 @@ export default {
             :to="scope.row.detailLocation"
           >
             {{ scope.row.metadata.name }}
-            <i v-if="lockIconTooltipMessage(scope.row)" v-tooltip="lockIconTooltipMessage(scope.row)" class="icon icon-lock" />
+            <i
+              v-if="lockIconTooltipMessage(scope.row)"
+              v-tooltip="lockIconTooltipMessage(scope.row)"
+              class="icon icon-lock"
+              :class="{'green-icon': scope.row.encryptedVolumeType === 'all', 'yellow-icon': scope.row.encryptedVolumeType === 'partial'}"
+            />
           </router-link>
           <span v-else>
             {{ scope.row.metadata.name }}
@@ -232,6 +237,14 @@ export default {
   .vmstate {
     margin-right: 6px;
   }
+}
+
+.green-icon {
+  color: var(--success);
+}
+
+.yellow-icon {
+  color: var(--warning);
 }
 
 .name-console {

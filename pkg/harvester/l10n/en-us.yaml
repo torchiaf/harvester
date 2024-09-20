@@ -596,6 +596,10 @@ harvester:
       addContainer: Add Container
       setFirst: Set as root volume
       saveVolume: Update Volume
+      encryption: Encryption
+      lockTooltip:
+        all: All volumes are encrypted
+        partial: Partial volumes are encrypted
       title:
         vmImage: Image Volume
         existingVolume: Existing Volume
@@ -640,10 +644,6 @@ harvester:
       userTips: The user to be added must already exist; otherwise, the credentials will not take effect.
       duplicatedUser: User already exists.
       invalidUser: Invalid Username.
-    lockIconTooltip:
-      image: Encrypted Image
-      volume: Encrypted Volume
-      both: Encrypted Image and Encrypted Volume
     input:
       name: Name
       memory: Memory
