@@ -133,7 +133,7 @@ export default {
   watch: {
     value: {
       handler(neu) {
-        const rows = neu.map((V) => {
+        const rows = clone(neu).map((V) => {
           if (!this.isCreate && V.source !== SOURCE_TYPE.CONTAINER && !V.newCreateId) {
             V.to = {
               name:   `${ HARVESTER_PRODUCT }-c-cluster-resource-namespace-id`,
