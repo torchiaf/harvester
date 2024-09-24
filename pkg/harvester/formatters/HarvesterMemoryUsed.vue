@@ -105,7 +105,7 @@ export default {
     >
       <template #title="{amountTemplateValues, formattedPercentage}">
         <span>
-          {{ t('clusterIndexPage.hardwareResourceGauge.reserved') }}
+          {{ t('harvester.formatters.hardwareResourceGauge.reserved') }}
         </span>
         <span class="precent-data">
           {{ t('node.detail.glance.consumptionGauge.amount', amountTemplateValues) }}
@@ -126,7 +126,7 @@ export default {
       >
         <template #title="{amountTemplateValues, formattedPercentage}">
           <span>
-            {{ t('clusterIndexPage.hardwareResourceGauge.used') }}
+            {{ t('harvester.formatters.hardwareResourceGauge.used') }}
           </span>
           <span class="precent-data">
             {{ t('node.detail.glance.consumptionGauge.amount', amountTemplateValues) }}

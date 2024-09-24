@@ -192,6 +192,20 @@ harvester:
     powerOn: Power On
     reboot: Reboot
     forceStop: Force Stop
+  formatters:
+    hardwareResourceGauge:
+      allocated: Allocated
+      consumption: "{useful} of {total} {units} {suffix}"
+      cores: CPU
+      pods: Pods
+      ram: Memory
+      used: Used
+      reserved: Reserved
+      units:
+        cores: |-
+          {count, plural,
+          =1 {core}
+          other {cores}}
   tableHeaders:
     size: Size
     virtualSize: Virtual Size
