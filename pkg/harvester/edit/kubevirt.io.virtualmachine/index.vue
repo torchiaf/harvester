@@ -413,7 +413,10 @@ export default {
 
       return new Promise((resolve) => {
         this.isOpen = true;
-        this.$refs.restartDialog.resolve = resolve;
+
+        this.$nextTick(() => {
+          this.$refs.restartDialog.resolve = resolve;
+        });
       });
     },
 
@@ -854,6 +857,7 @@ export default {
 
     <RestartVMDialog
       v-if="isOpen"
+      ref="restartDialog"
       :vm="value"
     />
   </CruResource>

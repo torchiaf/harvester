@@ -4,10 +4,13 @@ import AsyncButton from '@shell/components/AsyncButton';
 import { Card } from '@components/Card';
 import { Banner } from '@components/Banner';
 import { exceptionToErrorsArray } from '@shell/utils/error';
+import AppModal from '@shell/components/AppModal';
+
 export default {
   emits: ['close'],
   
   components: {
+    AppModal,
     Card,
     AsyncButton,
     Banner,
@@ -31,7 +34,6 @@ export default {
       try {
         this.vm.doActionGrowl('restart', {});
         buttonDone(true);
-        this.resolve();
         this.close();
       } catch (err) {
         console.error(err); // eslint-disable-line
@@ -56,44 +58,41 @@ export default {
       class="prompt-restart"
       :show-highlight-border="false"
     >
-      <h4
-        slot="title"
-        v-clean-html="t('harvester.modal.restart.title')"
-        class="text-default-text"
-      />
-
-      <template slot="body">
-        <slot name="body">
-          <div
-            v-clean-html="t('harvester.modal.restart.tip')"
-            class="pl-10 pr-10"
-          >
-          </div>
-        </slot>
+      <template #title>
+        <h4
+          v-clean-html="t('harvester.modal.restart.title')"
+          class="text-default-text"
+        />
       </template>
 
-      <div
-        slot="actions"
-        class="bottom"
-      >
-        <Banner
-          v-for="(err, i) in errors" :key="i" color="error"
-          :label="err"
+      <template #body>
+        <div
+          v-clean-html="t('harvester.modal.restart.tip')"
+          class="pl-10 pr-10"
         />
-        <div class="buttons">
-          <button
-            class="btn role-secondary mr-10"
-            @click="close"
-          >
-            {{ t('harvester.modal.restart.cancel') }}
-          </button>
+      </template>
 
-          <AsyncButton
-            mode="restart"
-            @click="apply"
+      <template #actions>
+        <div class="bottom">
+          <Banner
+            v-for="(err, i) in errors" :key="i" color="error"
+            :label="err"
           />
+          <div class="buttons">
+            <button
+              class="btn role-secondary mr-10"
+              @click="close"
+            >
+              {{ t('harvester.modal.restart.cancel') }}
+            </button>
+
+            <AsyncButton
+              mode="restart"
+              @click="apply"
+            />
+          </div>
         </div>
-      </div>
+      </template>
     </Card>
   </app-modal>
 </template>
