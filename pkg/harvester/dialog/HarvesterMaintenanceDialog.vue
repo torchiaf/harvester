@@ -132,18 +132,20 @@ export default {
       </div>
     </template>
 
-    <div slot="actions" class="actions">
-      <div class="buttons">
-        <button class="btn role-secondary mr-10" @click="close">
-          {{ t('generic.cancel') }}
-        </button>
+    <template #actions>
+      <div class="actions">
+        <div class="buttons">
+          <button class="btn role-secondary mr-10" @click="close">
+            {{ t('generic.cancel') }}
+          </button>
 
-        <AsyncButton
-          mode="apply"
-          @click="apply"
-        />
+          <AsyncButton
+            mode="apply"
+            @click="apply"
+          />
+        </div>
       </div>
-    </div>
+    </template>
   </Card>
 </template>
 

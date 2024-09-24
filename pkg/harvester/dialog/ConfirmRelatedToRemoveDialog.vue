@@ -132,28 +132,34 @@ export default {
 
 <template>
   <Card class="prompt-related" :show-highlight-border="false">
-    <h4 slot="title" class="text-default-text">
-      {{ t('promptRemove.title') }}
-    </h4>
-    <div slot="body" class="pl-10 pr-10">
-      <span
-        v-clean-html="t(warningMessageKey, { type, names: resourceNames }, true)"
-      ></span>
+    <template #title>
+      <h4 class="text-default-text">
+        {{ t('promptRemove.title') }}
+      </h4>
+    </template>
 
-      <div class="mt-10 mb-10">
+    <template #body>
+      <div class="pl-10 pr-10">
         <span
-          v-clean-html="t('promptRemove.confirmName', { nameToMatch: escapeHtml(nameToMatch) }, true)"
+          v-clean-html="t(warningMessageKey, { type, names: resourceNames }, true)"
         ></span>
+
+        <div class="mt-10 mb-10">
+          <span
+            v-clean-html="t('promptRemove.confirmName', { nameToMatch: escapeHtml(nameToMatch) }, true)"
+          ></span>
+        </div>
+        <div class="mb-10">
+          <CopyToClipboardText :text="nameToMatch" />
+        </div>
+        <input id="confirm" v-model="confirmName" type="text" />
+        <div class="text-info mt-20">
+          {{ protip }}
+        </div>
+        <Banner v-for="(error, i) in errors" :key="i"/>
       </div>
-      <div class="mb-10">
-        <CopyToClipboardText :text="nameToMatch" />
-      </div>
-      <input id="confirm" v-model="confirmName" type="text" />
-      <div class="text-info mt-20">
-        {{ protip }}
-      </div>
-      <Banner v-for="(error, i) in errors" :key="i"/>
-    </div>
+    </template>
+
     <template #actions>
       <button class="btn role-secondary mr-10" @click="close">
         {{ t('generic.cancel') }}

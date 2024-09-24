@@ -153,7 +153,7 @@ export default {
       />
     </template>
 
-    <div slot="actions" class="actions">
+    <template #actions class="actions">
       <div class="buttons">
         <button class="btn role-secondary mr-10" @click="close">
           {{ t('generic.cancel') }}
@@ -167,7 +167,7 @@ export default {
       </div>
 
       <Banner v-for="(err, i) in errors" :key="i"/>
-    </div>
+    </template>
   </Card>
 </template>
 

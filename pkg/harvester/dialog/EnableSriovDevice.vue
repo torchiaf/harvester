@@ -67,7 +67,7 @@ export default {
 
 <template>
   <Card :show-highlight-border="false">
-    <template v-slot:title>
+    <template #title>
       <h4
         v-clean-html="t('promptRemove.title')"
         class="text-default-text"
@@ -84,7 +84,7 @@ export default {
       />
     </template>
 
-    <template v-slot:actions>
+    <template #actions>
       <div class="buttons actions">
         <button class="btn role-secondary mr-10" @click="close">
           {{ t('generic.cancel') }}

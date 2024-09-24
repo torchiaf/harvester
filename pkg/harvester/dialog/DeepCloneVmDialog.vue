@@ -104,22 +104,24 @@ export default {
       />
     </template>
 
-    <div slot="actions" class="actions">
-      <div class="buttons">
-        <button class="btn role-secondary mr-10" @click="close">
-          {{ t('generic.cancel') }}
-        </button>
+    <template #actions>
+      <div class="actions">
+        <div class="buttons">
+          <button class="btn role-secondary mr-10" @click="close">
+            {{ t('generic.cancel') }}
+          </button>
 
-        <AsyncButton
-          mode="create"
-          :action-label="cloneData ? t('harvester.modal.cloneVM.action.create') : t('harvester.modal.cloneVM.action.clone')"
-          :disabled="cloneData && !name"
-          @click="create"
-        />
+          <AsyncButton
+            mode="create"
+            :action-label="cloneData ? t('harvester.modal.cloneVM.action.create') : t('harvester.modal.cloneVM.action.clone')"
+            :disabled="cloneData && !name"
+            @click="create"
+          />
+        </div>
+
+        <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
       </div>
-
-      <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
-    </div>
+    </template>
   </Card>
 </template>
 

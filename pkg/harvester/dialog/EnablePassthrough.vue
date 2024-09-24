@@ -85,25 +85,28 @@ export default {
 
 <template>
   <Card :show-highlight-border="false">
-    <h4
-      slot="title"
-      v-clean-html="t('promptRemove.title')"
-      class="text-default-text"
-    />
+    <template #title>
+      <h4
+        v-clean-html="t('promptRemove.title')"
+        class="text-default-text"
+      />
+    </template>
 
     <template #body>
       {{ t('harvester.pci.enablePassthroughWarning') }}
     </template>
 
-    <div slot="actions" class="actions">
-      <div class="buttons">
-        <button class="btn role-secondary mr-10" @click="close">
-          {{ t('generic.cancel') }}
-        </button>
+    <template #actions>
+      <div class="actions">
+        <div class="buttons">
+          <button class="btn role-secondary mr-10" @click="close">
+            {{ t('generic.cancel') }}
+          </button>
 
-        <AsyncButton mode="enable" @click="save" />
+          <AsyncButton mode="enable" @click="save" />
+        </div>
       </div>
-    </div>
+    </template>
   </Card>
 </template>
 

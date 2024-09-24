@@ -127,9 +127,11 @@ export default {
 </script>
 <template>
   <Card :show-highlight-border="false">
+
     <template #title>
       {{ t('harvester.modal.restoreSnapshot.title') }}
     </template>
+
     <template #body>
       <LabeledInput
         v-model:value="name"
@@ -145,19 +147,22 @@ export default {
         required
       />
     </template>
-    <div slot="actions" class="actions">
-      <div class="buttons">
-        <button class="btn role-secondary mr-10" @click="close">
-          {{ t('generic.cancel') }}
-        </button>
-        <AsyncButton
-          mode="create"
-          :disabled="disableSave"
-          @click="save"
-        />
+
+    <template #actions>
+      <div class="actions">
+        <div class="buttons">
+          <button class="btn role-secondary mr-10" @click="close">
+            {{ t('generic.cancel') }}
+          </button>
+          <AsyncButton
+            mode="create"
+            :disabled="disableSave"
+            @click="save"
+          />
+        </div>
+        <Banner v-for="(err, i) in errors" :key="i"/>
       </div>
-      <Banner v-for="(err, i) in errors" :key="i"/>
-    </div>
+    </template>
   </Card>
 </template>
 <style lang="scss" scoped>

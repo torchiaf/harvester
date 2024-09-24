@@ -81,29 +81,32 @@ export default {
 
 <template>
   <Card ref="modal" name="modal" :show-highlight-border="false">
-    <h4
-      slot="title"
-      v-clean-html="t('harvester.virtualMachine.unplug.title', { name: diskName })"
-      class="text-default-text"
-    />
+    <template #title>
+      <h4
+        v-clean-html="t('harvester.virtualMachine.unplug.title', { name: diskName })"
+        class="text-default-text"
+      />
+    </template>
 
-    <div slot="actions" class="actions">
-      <div class="buttons">
-        <button type="button" class="btn role-secondary mr-10" @click="close">
-          {{ t('generic.cancel') }}
-        </button>
+    <template #actions>
+      <div class="actions">
+        <div class="buttons">
+          <button type="button" class="btn role-secondary mr-10" @click="close">
+            {{ t('generic.cancel') }}
+          </button>
 
-        <AsyncButton
-          mode="apply"
-          :action-label="t('harvester.virtualMachine.unplug.actionLabel')"
-          :waiting-label="t('harvester.virtualMachine.unplug.actionLabel')"
-          :success-label="t('harvester.virtualMachine.unplug.actionLabel')"
-          @click="save"
-        />
+          <AsyncButton
+            mode="apply"
+            :action-label="t('harvester.virtualMachine.unplug.actionLabel')"
+            :waiting-label="t('harvester.virtualMachine.unplug.actionLabel')"
+            :success-label="t('harvester.virtualMachine.unplug.actionLabel')"
+            @click="save"
+          />
+        </div>
+
+        <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
       </div>
-
-      <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
-    </div>
+    </template>
   </Card>
 </template>
 

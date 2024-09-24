@@ -36,24 +36,25 @@ export default {
 
 <template>
   <Card ref="modal" name="modal" :show-highlight-border="false">
-    <h4
-      slot="title"
-      class="text-default-text"
-    >
-      {{ t('generic.tip') }}
-    </h4>
+    <template #title>
+      <h4 class="text-default-text">
+        {{ t('generic.tip') }}
+      </h4>
+    </template>
 
     <template #body>
       <p v-clean-html="t(modalData.contentKey)"></p>
     </template>
 
-    <div slot="actions" class="actions">
-      <div class="buttons">
-        <button type="button" class="btn role-secondary mr-10" @click="ok">
-          {{ t('generic.ok') }}
-        </button>
+    <template #actions>
+      <div class="actions">
+        <div class="buttons">
+          <button type="button" class="btn role-secondary mr-10" @click="ok">
+            {{ t('generic.ok') }}
+          </button>
+        </div>
       </div>
-    </div>
+    </template>
   </Card>
 </template>
 

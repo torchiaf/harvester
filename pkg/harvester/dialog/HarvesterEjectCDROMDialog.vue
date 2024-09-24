@@ -128,22 +128,24 @@ export default {
       </Banner>
     </template>
 
-    <div slot="actions" class="actions">
-      <div class="buttons">
-        <button class="btn role-secondary mr-10" @click="close">
-          {{ t('generic.cancel') }}
-        </button>
+    <template #actions>
+      <div class="actions">
+        <div class="buttons">
+          <button class="btn role-secondary mr-10" @click="close">
+            {{ t('generic.cancel') }}
+          </button>
 
-        <AsyncButton
-          mode="delete"
-          :disabled="!diskNames.length"
-          class="btn bg-error ml-10"
-          @click="remove"
-        />
+          <AsyncButton
+            mode="delete"
+            :disabled="!diskNames.length"
+            class="btn bg-error ml-10"
+            @click="remove"
+          />
+        </div>
+
+        <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
       </div>
-
-      <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
-    </div>
+    </template>
   </Card>
 </template>
 

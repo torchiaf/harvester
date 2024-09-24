@@ -112,7 +112,12 @@ export default {
 
 <template>
   <Card ref="modal" name="modal" :show-highlight-border="false">
-    <h4 slot="title" v-clean-html="t('harvester.modal.hotplug.title')" class="text-default-text" />
+    <template #title>
+      <h4
+        v-clean-html="t('harvester.modal.hotplug.title')"
+        class="text-default-text"
+      />
+    </template>
 
     <template #body>
       <LabeledInput
@@ -130,21 +135,23 @@ export default {
       />
     </template>
 
-    <div slot="actions" class="actions">
-      <div class="buttons">
-        <button type="button" class="btn role-secondary mr-10" @click="close">
-          {{ t('generic.cancel') }}
-        </button>
+    <template #actions>
+      <div class="actions">
+        <div class="buttons">
+          <button type="button" class="btn role-secondary mr-10" @click="close">
+            {{ t('generic.cancel') }}
+          </button>
 
-        <AsyncButton
-          mode="apply"
-          :disabled="!diskName || !volumeName"
-          @click="save"
-        />
+          <AsyncButton
+            mode="apply"
+            :disabled="!diskName || !volumeName"
+            @click="save"
+          />
+        </div>
+
+        <Banner v-for="(err, i) in errors" :key="i"/>
       </div>
-
-      <Banner v-for="(err, i) in errors" :key="i"/>
-    </div>
+    </template>
   </Card>
 </template>
 
