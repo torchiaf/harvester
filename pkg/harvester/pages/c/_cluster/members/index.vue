@@ -1,9 +1,9 @@
 <script>
-import ExplorerMembers from '@shell/components/ExplorerMembers';
+import Members from '@pkg/components/Members';
 import { MANAGEMENT } from '@shell/config/types';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../../../config/harvester';
 export default {
-  components: { ExplorerMembers },
+  components: { Members },
   inheritAttrs: false,
   computed:   {
     createLocationOverride() {
@@ -20,4 +20,4 @@ export default {
 };
 </script>
 
-<template><ExplorerMembers :create-location-override="createLocationOverride" v-bind="$attrs" /></template>
+<template><Members :create-location-override="createLocationOverride" v-bind="$attrs" /></template>
