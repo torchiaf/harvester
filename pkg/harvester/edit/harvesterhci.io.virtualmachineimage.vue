@@ -62,12 +62,32 @@ export default {
 
     this['storageClassName'] = this.storageClassName || defaultStorage?.metadata?.name || 'longhorn';
     this.images = this.$store.getters[`${ inStore }/all`](HCI.IMAGE);
-    this.selectedImage = this.images.find(i => i.name === this.value.name) || null;
+
+    const { securityParameters } = this.value.spec;
+
+    // edit and view mode should show the source image
+    if (securityParameters) {
+      // image ns/name = image.id
+      const sourceImage = `${ securityParameters.sourceImageNamespace }/${ securityParameters.sourceImageName }`;
+
+      this.selectedImage = this.images.find(image => image.id === sourceImage);
+    }
   },
 
   data() {
+    // pass from Encrypt Image / Decrypt Image actions
+    const { image, sourceType, cryptoOperation } = this.$route.query || {};
+
     if ( !this.value.spec ) {
-      this.value['spec'] = { sourceType: DOWNLOAD };
+      this.value['spec'] = { sourceType: sourceType || DOWNLOAD };
+    }
+
+    if (image && cryptoOperation) {
+      this.value.spec.securityParameters =  {
+        cryptoOperation,
+        sourceImageName:      image.metadata.name,
+        sourceImageNamespace: image.metadata.namespace
+      }
     }
 
     if (!this.value.metadata.name) {
@@ -75,7 +95,7 @@ export default {
     }
 
     return {
-      selectedImage: null,
+      selectedImage: image || null,
       images:        [],
       url:           this.value.spec.url,
       files:         [],
@@ -147,22 +167,27 @@ export default {
         options = this.images.filter(image => image.isEncrypted);
       }
 
-      return options.map(image => image.spec.displayName);
+      return options.map(image => image.displayNameWithNamespace);
     },
-    sourceImageName: {
+    sourceImage: {
       get() {
-        return this.selectedImage?.spec.displayName;
+        if (this.selectedImage) {
+          return this.selectedImage.displayNameWithNamespace;
+        }
+
+        return '';
       },
-      set(imageDisplayName) {
-        this.selectedImage = this.images.find(i => i.spec.displayName === imageDisplayName);
+      set(neu) {
+        this.selectedImage = this.images.find(i => i.displayNameWithNamespace === neu);
         // sourceImageName should bring the name of the image
         this.value.spec.securityParameters.sourceImageName = this.selectedImage?.metadata.name || '';
+        this.value.spec.securityParameters.sourceImageNamespace = this.selectedImage?.metadata.namespace || '';
       }
     },
     sourceType: {
       get() {
         if (this.value.spec.sourceType === CLONE) {
-          return this.value.spec.securityParameters.cryptoOperation;
+          return this.value.spec?.securityParameters?.cryptoOperation;
         } else {
           return this.value.spec.sourceType;
         }
@@ -186,15 +211,6 @@ export default {
   },
 
   watch: {
-    'value.metadata.namespace'(neu) {
-      if (this.value.spec.sourceType === CLONE) {
-        this.$set(this.value.spec, 'securityParameters', {
-          cryptoOperation:      this.value.spec.securityParameters.cryptoOperation,
-          sourceImageName:      '',
-          sourceImageNamespace: neu
-        });
-      }
-    },
     'value.spec.url'(neu) {
       const url = neu.trim();
 
@@ -451,7 +467,7 @@ export default {
 
             <LabeledSelect
               v-if="value.spec.sourceType === 'clone'"
-              v-model="sourceImageName"
+              v-model="sourceImage"
               :options="sourceImageOptions"
               :label="t('harvester.image.sourceImage')"
               :mode="mode"

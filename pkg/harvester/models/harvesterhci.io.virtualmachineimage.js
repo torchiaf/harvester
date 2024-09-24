@@ -58,6 +58,20 @@ export default class HciVmImage extends HarvesterResource {
         disabled: !this.isReady,
       },
       {
+        action:   'encryptImage',
+        enabled:  !this.isEncrypted,
+        icon:     'icon icon-lock',
+        label:    this.t('harvester.action.encryptImage'),
+        disabled: !this.isReady,
+      },
+      {
+        action:   'decryptImage',
+        enabled:  this.isEncrypted,
+        icon:     'icon icon-unlock',
+        label:    this.t('harvester.action.decryptImage'),
+        disabled: !this.isReady,
+      },
+      {
         action:  'download',
         enabled: this.links?.download,
         icon:    'icon icon-download',
@@ -65,6 +79,36 @@ export default class HciVmImage extends HarvesterResource {
       },
       ...out
     ];
+  }
+
+  encryptImage() {
+    const router = this.currentRouter();
+
+    router.push({
+      name:   `${ HARVESTER_PRODUCT }-c-cluster-resource-create`,
+      params: { resource: HCI.IMAGE },
+      query:  {
+        image:           this,
+        fromPage:        HCI.IMAGE,
+        sourceType:      'clone',
+        cryptoOperation: 'encrypt'
+      }
+    });
+  }
+
+  decryptImage() {
+    const router = this.currentRouter();
+
+    router.push({
+      name:   `${ HARVESTER_PRODUCT }-c-cluster-resource-create`,
+      params: { resource: HCI.IMAGE },
+      query:  {
+        image:           this,
+        fromPage:        HCI.IMAGE,
+        sourceType:      'clone',
+        cryptoOperation: 'decrypt'
+      }
+    });
   }
 
   applyDefaults(resources = this, realMode) {
@@ -149,6 +193,10 @@ export default class HciVmImage extends HarvesterResource {
     this.spec.securityParameters?.cryptoOperation === 'encrypt' &&
     !!this.spec.securityParameters?.sourceImageName &&
     !!this.spec.securityParameters?.sourceImageNamespace;
+  }
+
+  get displayNameWithNamespace() {
+    return `${ this.metadata.namespace }/${ this.spec.displayName }`;
   }
 
   get imageMessage() {
