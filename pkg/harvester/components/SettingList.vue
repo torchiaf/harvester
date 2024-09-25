@@ -116,7 +116,7 @@ export default {
 
 <template>
   <div>
-    <div v-for="(setting, i) in categorySettings" :key="i">
+    <div v-for="(setting, i) in categorySettings" :key="i" class="advanced-setting mb-20">
       <div class="header">
         <div class="title">
           <h1>
