@@ -126,8 +126,10 @@ export default {
     </template>
 
     <v-dropdown
+      popperClass="filter-label"
       trigger="click"
       placement="bottom-end"
+      :distance="20"
     >
       <slot name="header">
         <button ref="actionDropDown" class="btn bg-primary mr-10">
@@ -137,7 +139,7 @@ export default {
         </button>
       </slot>
 
-      <template slot="popover">
+      <template #popper>
         <div class="filter-popup">
           <div>
             <ArrayList
@@ -245,5 +247,11 @@ export default {
 
 .required {
   color: var(--error);
+}
+</style>
+
+<style lang="scss">
+.filter-label .v-popper__arrow-container {
+  display: none;
 }
 </style>
