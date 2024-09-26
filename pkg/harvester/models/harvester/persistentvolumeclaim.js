@@ -214,7 +214,7 @@ export default class HciPv extends HarvesterResource {
   }
 
   get isEncrypted() {
-    return Boolean(this.relatedPV?.spec.csi.volumeAttributes.encrypted) || false;
+    return this.relatedPV?.spec.csi.volumeAttributes.encrypted === 'true';
   }
 
   get longhornVolume() {
