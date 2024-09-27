@@ -173,13 +173,13 @@ v-if="getVMName(scope.row)"
     <template #col:name="{row}">
       <td>
         <span>
-          <n-link
+          <router-link
             v-if="row?.detailLocation"
             :to="row.detailLocation"
           >
             {{ row.nameDisplay }}
             <i v-if="row.isEncrypted" class="icon icon-lock" />
-          </n-link>
+          </router-link>
           <span v-else>
             {{ row.nameDisplay }}
           </span>

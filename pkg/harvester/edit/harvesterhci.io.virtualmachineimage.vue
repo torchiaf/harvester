@@ -467,7 +467,7 @@ export default {
 
             <LabeledSelect
               v-if="value.spec.sourceType === 'clone'"
-              v-model="sourceImage"
+              v-model:value="sourceImage"
               :options="sourceImageOptions"
               :label="t('harvester.image.sourceImage')"
               :mode="mode"
