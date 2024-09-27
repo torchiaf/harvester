@@ -1,5 +1,4 @@
 import { clone } from '@shell/utils/object';
-import Secret from '@shell/models/secret';
 import { HCI } from '../../types';
 import { PRODUCT_NAME as HARVESTER_PRODUCT } from '../../config/harvester';
 import Secret from '@shell/models/secret';

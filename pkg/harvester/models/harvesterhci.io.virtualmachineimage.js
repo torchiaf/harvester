@@ -88,7 +88,7 @@ export default class HciVmImage extends HarvesterResource {
       name:   `${ HARVESTER_PRODUCT }-c-cluster-resource-create`,
       params: { resource: HCI.IMAGE },
       query:  {
-        image:           this,
+        image:           JSON.stringify({metadata: { name: this.metadata.name, namespace: this.metadata.namespace }}),
         fromPage:        HCI.IMAGE,
         sourceType:      'clone',
         cryptoOperation: 'encrypt'
@@ -103,7 +103,7 @@ export default class HciVmImage extends HarvesterResource {
       name:   `${ HARVESTER_PRODUCT }-c-cluster-resource-create`,
       params: { resource: HCI.IMAGE },
       query:  {
-        image:           this,
+        image:           JSON.stringify({metadata: { name: this.metadata.name, namespace: this.metadata.namespace }}),
         fromPage:        HCI.IMAGE,
         sourceType:      'clone',
         cryptoOperation: 'decrypt'

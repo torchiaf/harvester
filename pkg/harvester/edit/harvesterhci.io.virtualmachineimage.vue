@@ -83,10 +83,12 @@ export default {
     }
 
     if (image && cryptoOperation) {
+      const imageObject = JSON.parse(image);
+
       this.value.spec.securityParameters =  {
         cryptoOperation,
-        sourceImageName:      image.metadata.name,
-        sourceImageNamespace: image.metadata.namespace
+        sourceImageName:      imageObject.metadata.name,
+        sourceImageNamespace: imageObject.metadata.namespace
       }
     }
 
@@ -95,7 +97,7 @@ export default {
     }
 
     return {
-      selectedImage: image || null,
+      selectedImage: null,
       images:        [],
       url:           this.value.spec.url,
       files:         [],

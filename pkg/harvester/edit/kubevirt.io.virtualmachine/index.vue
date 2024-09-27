@@ -15,11 +15,8 @@ import Labels from '@shell/components/form/Labels';
 
 import NodeScheduling from '@shell/components/form/NodeScheduling';
 import PodAffinity from '@shell/components/form/PodAffinity';
-import AccessCredentials from './VirtualMachineAccessCredentials';
-import PciDevices from './VirtualMachinePciDevices/index';
 import VGpuDevices from './VirtualMachineVGpuDevices/index';
 import UsbDevices from './VirtualMachineUSBDevices/index';
-import RestartVMDialog from '../../dialog/RestartVMDialog';
 import KeyValue from '@shell/components/form/KeyValue';
 
 import { clear } from '@shell/utils/array';
@@ -35,7 +32,6 @@ import { parseVolumeClaimTemplates } from '@pkg/utils/vm';
 import VM_MIXIN from '../../mixins/harvester-vm';
 import { HCI } from '../../types';
 import RestartVMDialog from '../../dialog/RestartVMDialog';
-import VirtualMachineVGpuDevices from './VirtualMachineVGpuDevices/index';
 import PciDevices from './VirtualMachinePciDevices/index';
 import AccessCredentials from './VirtualMachineAccessCredentials';
 import CloudConfig from './VirtualMachineCloudConfig';
