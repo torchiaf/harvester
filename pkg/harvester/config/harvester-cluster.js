@@ -14,6 +14,7 @@ import {
 import { HCI, VOLUME_SNAPSHOT } from '../types';
 import {
   STATE,
+  NAME_UNLINKED,
   NAME as NAME_COL,
   AGE,
   NAMESPACE as NAMESPACE_COL,
@@ -243,6 +244,22 @@ export function init($plugin, store) {
     route: { name: `${PRODUCT_NAME}-c-cluster-projectsnamespaces` },
     exact: true,
   });
+
+  if (isSingleVirtualCluster) {
+    headers(NAMESPACE, [STATE, NAME_UNLINKED, AGE]);
+    basicType([NAMESPACE]);
+    virtualType({
+      labelKey:   'harvester.namespace.label',
+      name:       NAMESPACE,
+      namespaced: true,
+      weight:     89,
+      route:      {
+        name:   `${ PRODUCT_NAME }-c-cluster-resource`,
+        params: { resource: NAMESPACE }
+      },
+      exact: false,
+    });
+  }
 
   basicType([
     HCI.ALERTMANAGERCONFIG
