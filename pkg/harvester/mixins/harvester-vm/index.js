@@ -301,6 +301,7 @@ export default {
       } = config;
 
       const vm = this.resourceType === HCI.VM ? value : this.resourceType === HCI.BACKUP ? this.value.status?.source : value.spec.vm;
+      const volumeBackups = this.resourceType === HCI.BACKUP ? this.value.status?.volumeBackups : null;
 
       const spec = vm?.spec;
 
@@ -335,7 +336,8 @@ export default {
       const sshKey = this.getSSHFromAnnotation(spec) || [];
 
       const imageId = this.getRootImageId(vm) || '';
-      const diskRows = this.getDiskRows(vm);
+      const diskRows = this.getDiskRows(vm, volumeBackups);
+
       const networkRows = this.getNetworkRows(vm, { fromTemplate, init });
       const hasCreateVolumes = this.getHasCreatedVolumes(spec) || [];
 
@@ -404,7 +406,7 @@ export default {
       this.refreshYamlEditor();
     },
 
-    getDiskRows(vm) {
+    getDiskRows(vm, volBackups) {
       const namespace = vm.metadata.namespace;
       const _volumes = vm.spec.template.spec.volumes || [];
       const _disks = vm.spec.template.spec.domain.devices.disks || [];
@@ -422,6 +424,7 @@ export default {
         const isIsoImage = /iso$/i.test(imageResource?.imageSuffix);
         const imageSize = Math.max(imageResource?.status?.size, imageResource?.status?.virtualSize);
         const isEncrypted = imageResource?.isEncrypted || false;
+        const volumeBackups = volBackups?.find(vBackup => vBackup.volumeName === 'disk-0') || null ;
 
         if (isIsoImage) {
           bus = 'sata';
@@ -449,7 +452,8 @@ export default {
           storageClassName: '',
           image:            this.imageId,
           volumeMode:       'Block',
-          isEncrypted
+          isEncrypted,
+          volumeBackups,
         });
       } else {
         out = _disks.map( (DISK, index) => {
@@ -531,6 +535,7 @@ export default {
           const volumeStatus = pvc?.relatedPV?.metadata?.annotations?.[HCI_ANNOTATIONS.VOLUME_ERROR];
 
           const isEncrypted = pvc?.isEncrypted || false;
+          const volumeBackups = volBackups?.find(vBackup => vBackup.volumeName === DISK.name) || null;
 
           return {
             id:         randomStr(5),
@@ -551,7 +556,8 @@ export default {
             volumeStatus,
             dataSource,
             namespace,
-            isEncrypted
+            isEncrypted,
+            volumeBackups,
           };
         });
       }
@@ -1393,6 +1399,14 @@ export default {
         set(this.spec.template.spec.domain.cpu, 'dedicatedCpuPlacement', true);
       } else {
         delete this.spec.template.spec.domain.cpu['dedicatedCpuPlacement'];
+      }
+    },
+
+    setCpuPinning(value) {
+      if (value) {
+        set(this.spec.template.spec.domain.cpu, 'dedicatedCpuPlacement', true);
+      } else {
+        this.$delete(this.spec.template.spec.domain.cpu, 'dedicatedCpuPlacement');
       }
     },
 

@@ -53,4 +53,5 @@ export const HCI = {
   NODE_CPU_MANAGER_UPDATE_STATUS: 'harvesterhci.io/cpu-manager-update-status',
   CPU_MANAGER:                    'cpumanager',
   VM_DEVICE_ALLOCATION_DETAILS:   'harvesterhci.io/deviceAllocationDetails',
+  SVM_BACKUP_ID:                  'harvesterhci.io/svmbackupId',
 };

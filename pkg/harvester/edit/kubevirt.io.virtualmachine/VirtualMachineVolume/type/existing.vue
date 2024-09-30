@@ -1,9 +1,10 @@
 <script>
 import UnitInput from '@shell/components/form/UnitInput';
 import { LabeledInput } from '@components/Form/LabeledInput';
+import LabelValue from '@shell/components/LabelValue';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 import InputOrDisplay from '@shell/components/InputOrDisplay';
-
+import { Banner } from '@components/Banner';
 import { sortBy } from '@shell/utils/sort';
 import { PVC } from '@shell/config/types';
 import { _CREATE } from '@shell/config/query-params';
@@ -17,7 +18,7 @@ export default {
   emits: ['update'],
 
   components: {
-    UnitInput, LabeledInput, LabeledSelect, InputOrDisplay
+    UnitInput, LabeledInput, LabeledSelect, InputOrDisplay, LabelValue, Banner
   },
 
   props: {
@@ -275,7 +276,6 @@ export default {
           />
         </InputOrDisplay>
       </div>
-
       <div
         data-testid="input-hee-bus"
         class="col span-6"
@@ -296,6 +296,27 @@ export default {
           />
         </InputOrDisplay>
       </div>
+      <div
+        v-if="value.volumeBackups"
+        class="col span-6"
+      >
+        <InputOrDisplay
+          :name="t('harvester.virtualMachine.volume.readyToUse')"
+          :value="value.volumeBackups.readyToUse"
+          :mode="mode"
+        >
+          <LabelValue
+            :name="t('harvester.virtualMachine.volume.readyToUse')"
+            :value="value.volumeBackups.readyToUse"
+          />
+        </InputOrDisplay>
+      </div>
     </div>
+    <Banner
+      v-if="value.volumeBackups && value.volumeBackups.error && value.volumeBackups.error.message"
+      color="error"
+      class="mb-20"
+      :label="value.volumeBackups.error.message"
+    />
   </div>
 </template>

@@ -1,7 +1,6 @@
 <script>
 import { isEqual } from 'lodash';
 import { mapGetters } from 'vuex';
-
 import Tabbed from '@shell/components/Tabbed';
 import Tab from '@shell/components/Tabbed/Tab';
 import { Checkbox } from '@components/Form/Checkbox';

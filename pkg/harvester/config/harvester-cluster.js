@@ -398,6 +398,7 @@ export function init($plugin, store) {
 
   basicType(
     [
+      HCI.SCHEDULE_VM_BACKUP,
       HCI.BACKUP,
       HCI.SNAPSHOT,
       HCI.VM_SNAPSHOT,
@@ -443,6 +444,20 @@ export function init($plugin, store) {
       params: { resource: TEMPLATE }
     },
     exact: false
+  });
+
+  configureType(HCI.SCHEDULE_VM_BACKUP, { showListMasthead: false, showConfigView: false });
+  virtualType({
+    labelKey:   'harvester.schedule.label',
+    name:       HCI.SCHEDULE_VM_BACKUP,
+    namespaced: true,
+    weight:     201,
+    route:      {
+      name:   `${ PRODUCT_NAME }-c-cluster-resource`,
+      params: { resource: HCI.SCHEDULE_VM_BACKUP }
+    },
+    exact:      false,
+    ifHaveType: HCI.SCHEDULE_VM_BACKUP,
   });
 
   configureType(HCI.BACKUP, { showListMasthead: false, showConfigView: false });

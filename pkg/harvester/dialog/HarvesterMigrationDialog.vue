@@ -171,7 +171,6 @@ export default {
           @click="apply"
         />
       </div>
-
       <Banner v-for="(err, i) in errors" :key="i" color="error" :label="err" />
     </template>
   </Card>

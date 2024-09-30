@@ -4,7 +4,7 @@ import UnitInput from '@shell/components/form/UnitInput';
 import InputOrDisplay from '@shell/components/InputOrDisplay';
 import { LabeledInput } from '@components/Form/LabeledInput';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
-
+import { Banner } from '@components/Banner';
 import { PVC, STORAGE_CLASS } from '@shell/config/types';
 import { formatSi, parseSi } from '@shell/utils/units';
 import { VOLUME_TYPE, InterfaceOption } from '../../../../config/harvester-map';
@@ -18,7 +18,7 @@ export default {
   emits: ['update'],
 
   components: {
-    InputOrDisplay, Loading, LabeledInput, LabeledSelect, UnitInput, LabelValue
+    InputOrDisplay, Loading, LabeledInput, LabeledSelect, UnitInput, LabelValue, Banner
   },
 
   props: {
@@ -68,9 +68,16 @@ export default {
       return ucFirst(String(this.value.isEncrypted));
     },
 
+    readyToUse() {
+      const val = String(this.value.volumeBackups?.readyToUse || false);
+
+      return ucFirst(val);
+    },
+
     isView() {
       return this.mode === _VIEW;
     },
+
     pvcsResource() {
       const allPVCs = this.$store.getters['harvester/all'](PVC) || [];
 
@@ -221,7 +228,6 @@ export default {
         </InputOrDisplay>
       </div>
     </div>
-
     <div class="row mb-20">
       <div
         data-testid="input-hev-bus"
@@ -248,5 +254,19 @@ export default {
         />
       </div>
     </div>
+    <div class="row mb-20">
+      <div v-if="value.volumeBackups && isView" class="col span-3">
+        <LabelValue
+          :name="t('harvester.virtualMachine.volume.readyToUse')"
+          :value="readyToUse"
+        />
+      </div>
+    </div>
+    <Banner
+      v-if="value.volumeBackups && value.volumeBackups.error && value.volumeBackups.error.message"
+      color="error"
+      class="mb-20"
+      :label="value.volumeBackups.error.message"
+    />
   </div>
 </template>

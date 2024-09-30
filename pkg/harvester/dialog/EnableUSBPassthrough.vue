@@ -1,12 +1,14 @@
 <script>
-import { HCI } from '../types';
 import { mapGetters } from 'vuex';
 import { Card } from '@components/Card';
 import AsyncButton from '@shell/components/AsyncButton';
 import { escapeHtml } from '@shell/utils/string';
+import { HCI } from '../types';
 
 export default {
   name: 'HarvesterEnableUSBPassthrough',
+
+  emits: ['close'],
 
   components: {
     AsyncButton,
@@ -83,25 +85,28 @@ export default {
 
 <template>
   <Card :show-highlight-border="false">
-    <h4
-      slot="title"
-      v-clean-html="t('promptRemove.title')"
-      class="text-default-text"
-    />
-
-    <template #body>
-      <t k="harvester.usb.enablePassthroughWarning" :raw="true" />
+    <template #title>
+      <h4
+        v-clean-html="t('promptRemove.title')"
+        class="text-default-text"
+      />
     </template>
 
-    <div slot="actions" class="actions">
-      <div class="buttons">
-        <button class="btn role-secondary mr-10" @click="close">
-          {{ t('generic.cancel') }}
-        </button>
+    <template #body>
+      {{ t('harvester.usb.enablePassthroughWarning') }}
+    </template>
 
-        <AsyncButton mode="enable" @click="save" />
+    <template #actions>
+      <div class="actions">
+        <div class="buttons">
+          <button class="btn role-secondary mr-10" @click="close">
+            {{ t('generic.cancel') }}
+          </button>
+
+          <AsyncButton mode="enable" @click="save" />
+        </div>
       </div>
-    </div>
+    </template>
   </Card>
 </template>
 

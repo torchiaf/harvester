@@ -147,7 +147,7 @@ export default {
       >
         <template #title="{formattedPercentage}">
           <span>
-            {{ t('harvester.formatters.hardwareResourceGauge.allocated') }}
+            {{ t('harvester.dashboard.hardwareResourceGauge.allocated') }}
           </span>
           <span class="precent-data">
             {{ t('node.detail.glance.consumptionGauge.amount', allocatedAmountTemplateValues) }}
