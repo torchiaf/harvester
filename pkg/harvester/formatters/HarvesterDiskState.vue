@@ -85,7 +85,7 @@ export default {
         <i class="icon icon-warning icon-lg text-warning" />
       </span>
 
-      <template slot="popover">
+      <template #popper>
         <p
           v-for="(message, index) in warningMessage" :key="index">
           {{ index + 1 }}. {{ message }}

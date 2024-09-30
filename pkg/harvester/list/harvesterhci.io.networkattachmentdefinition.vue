@@ -181,7 +181,7 @@ export default {
               <i class="icon icon-warning icon-lg text-warning" />
             </span>
 
-            <template slot="popover">
+            <template #popper>
               <p>
                 {{ row.clusterNetworkErrorMessage }}
               </p>
