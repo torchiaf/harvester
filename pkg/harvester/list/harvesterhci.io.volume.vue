@@ -146,27 +146,16 @@ export default {
     :rows="rows"
     :schema="schema"
     key-field="_key"
-    
   >
-    <template
-cell:state="scope"
->
+    <template #cell:state="{row}">
       <div class="state">
-        <HarvesterVolumeState
-class="vmstate"
-:row="scope.row"
-/>
+        <HarvesterVolumeState class="vmstate" :row="row" />
       </div>
     </template>
-    <template
-cell:AttachedVM="scope"
->
+    <template #cell:AttachedVM="{row}">
       <div>
-        <router-link
-v-if="getVMName(scope.row)"
-:to="goTo(scope.row)"
->
-          {{ getVMName(scope.row) }}
+        <router-link v-if="getVMName(row)" :to="goTo(row)">
+          {{ getVMName(row) }}
         </router-link>
       </div>
     </template>
