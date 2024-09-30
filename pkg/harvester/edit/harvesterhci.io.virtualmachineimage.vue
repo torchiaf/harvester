@@ -198,14 +198,14 @@ export default {
       set(neu) {
         if (neu === DECRYPT || neu === ENCRYPT) {
           this.value.spec.sourceType = CLONE;
-          this.$set(this.value.spec, 'securityParameters', {
+          this.value.spec['securityParameters'] = {
             cryptoOperation:      neu,
             sourceImageName:      '',
             sourceImageNamespace: this.value.metadata.namespace
-          });
+          };
           this.selectedImage = null;
         } else {
-          this.$delete(this.value.spec, 'securityParameters');
+          delete this.value.spec['securityParameters'];
           this.value.spec.sourceType = neu;
         }
       }

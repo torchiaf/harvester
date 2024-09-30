@@ -76,9 +76,9 @@ export default {
       const name = `restore-${ this.backupName }-${ randomStr(5).toLowerCase() }`;
 
       if (!this.backupName) {
-        this.$set(this, 'errors', [
+        this['errors'] = [
           this.t('harvester.modal.restore.message.backup')
-        ]);
+        ];
         buttonCb(false);
 
         return;

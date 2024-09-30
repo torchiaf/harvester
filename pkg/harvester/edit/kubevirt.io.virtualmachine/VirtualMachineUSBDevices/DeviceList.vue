@@ -112,7 +112,7 @@ export default {
     },
 
     changeRows(filterRows) {
-      this.$set(this, 'filterRows', filterRows);
+      this['filterRows'] = filterRows;
     },
 
     sortGenerationFn() {

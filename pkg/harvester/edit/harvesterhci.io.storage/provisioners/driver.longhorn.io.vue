@@ -156,10 +156,10 @@ export default {
 
     volumeEncryption: {
       set(neu) {
-        this.$set(this.value, 'parameters', {
+        this.value['parameters'] = {
           ...this.value.parameters,
           encrypted: neu
-        });
+        };
       },
 
       get() {
@@ -182,7 +182,7 @@ export default {
       set(selectedSecret) {
         const [namespace, name] = selectedSecret.split('/');
 
-        this.$set(this.value, 'parameters', {
+        this.value['parameters'] = {
           ...this.value.parameters,
           [CSI_PROVISIONER_SECRET_NAME]:       name,
           [CSI_NODE_PUBLISH_SECRET_NAME]:      name,
@@ -190,7 +190,7 @@ export default {
           [CSI_PROVISIONER_SECRET_NAMESPACE]:  namespace,
           [CSI_NODE_PUBLISH_SECRET_NAMESPACE]: namespace,
           [CSI_NODE_STAGE_SECRET_NAMESPACE]:   namespace
-        });
+        };
       }
     },
 

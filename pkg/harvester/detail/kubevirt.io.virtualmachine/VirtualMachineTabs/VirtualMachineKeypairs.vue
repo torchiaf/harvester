@@ -31,10 +31,10 @@ export default {
     toggleShow(idx) {
       const ssh = this.sshKeys[idx];
 
-      this.$set(this.sshKeys, idx, {
+      this.sshKeys[idx] = {
         ...ssh,
         showKey: !ssh.showKey
-      });
+      };
     },
 
     getKeys() {

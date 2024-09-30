@@ -1406,7 +1406,7 @@ export default {
       if (value) {
         set(this.spec.template.spec.domain.cpu, 'dedicatedCpuPlacement', true);
       } else {
-        this.$delete(this.spec.template.spec.domain.cpu, 'dedicatedCpuPlacement');
+        delete this.spec.template.spec.domain.cpu['dedicatedCpuPlacement'];
       }
     },
 
