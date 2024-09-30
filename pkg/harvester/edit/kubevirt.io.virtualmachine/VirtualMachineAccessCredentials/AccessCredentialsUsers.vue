@@ -26,7 +26,7 @@ export default {
       }
     },
 
-    resource: {
+    resourceType: {
       type:    Object,
       default: () => {
         return {};

@@ -75,7 +75,7 @@ export default {
       required: true,
     },
 
-    resource: {
+    resourceType: {
       type:    String,
       default: ''
     }
@@ -266,7 +266,7 @@ export default {
 
     needNewSecret() {
       // When creating a template it is always necessary to create a new secret.
-      return this.resource === HCI.VM_VERSION || this.isCreate;
+      return this.resourceType === HCI.VM_VERSION || this.isCreate;
     },
 
     defaultTerminationSetting() {
@@ -300,7 +300,7 @@ export default {
         value, existUserData, fromTemplate = false, init = false
       } = config;
 
-      const vm = this.resource === HCI.VM ? value : this.resource === HCI.BACKUP ? this.value.status?.source : value.spec.vm;
+      const vm = this.resourceType === HCI.VM ? value : this.resourceType === HCI.BACKUP ? this.value.status?.source : value.spec.vm;
 
       const spec = vm?.spec;
 
@@ -341,7 +341,7 @@ export default {
 
       let { userData = undefined, networkData = undefined } = this.getCloudInitNoCloud(spec);
 
-      if (this.resource === HCI.BACKUP) {
+      if (this.resourceType === HCI.BACKUP) {
         const secretBackups = this.value.status?.secretBackups;
 
         if (secretBackups) {
@@ -609,7 +609,7 @@ export default {
       this.spec.template.spec.terminationGracePeriodSeconds = this.terminationGracePeriodSeconds;
 
       // parse reserved memory
-      const vm = this.resource === HCI.VM ? this.value : this.value.spec.vm;
+      const vm = this.resourceType === HCI.VM ? this.value : this.value.spec.vm;
 
       if (!this.reservedMemory) {
         delete vm.metadata.annotations[HCI_ANNOTATIONS.VM_RESERVED_MEMORY];
@@ -724,7 +724,7 @@ export default {
         delete spec.template.spec.volumes;
       }
 
-      if (this.resource === HCI.VM) {
+      if (this.resourceType === HCI.VM) {
         if (!this.isSingle) {
           spec = this.multiVMScheduler(spec);
         }
@@ -739,7 +739,7 @@ export default {
 
         this.value['spec'] = spec;
         this['spec'] = spec;
-      } else if (this.resource === HCI.VM_VERSION) {
+      } else if (this.resourceType === HCI.VM_VERSION) {
         this.value.spec.vm['spec'] = spec;
         this.value.spec.vm.metadata['annotations'] = {
           ...this.value.spec.vm.metadata.annotations,
@@ -1177,7 +1177,7 @@ export default {
     getOwnerReferencesFromVM(resource) {
       const name = resource.metadata.name;
       const kind = resource.kind;
-      const apiVersion = this.resource === HCI.VM ? 'kubevirt.io/v1' : 'harvesterhci.io/v1beta1';
+      const apiVersion = this.resourceType === HCI.VM ? 'kubevirt.io/v1' : 'harvesterhci.io/v1beta1';
       const uid = resource?.metadata?.uid;
 
       return [{
@@ -1491,7 +1491,7 @@ export default {
 
     secretRef: {
       handler(secret) {
-        if (secret && this.resource !== HCI.BACKUP) {
+        if (secret && this.resourceType !== HCI.BACKUP) {
           this.secretName = secret?.metadata.name;
         }
       },

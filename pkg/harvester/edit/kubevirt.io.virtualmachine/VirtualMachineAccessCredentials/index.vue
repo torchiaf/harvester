@@ -28,7 +28,7 @@ export default {
       }
     },
 
-    resource: {
+    resourceType: {
       type:    Object,
       default: () => {
         return {};
@@ -74,7 +74,7 @@ export default {
     },
 
     historyUsersOptions() {
-      const out = JSON.parse(this.resource?.spec?.template?.metadata?.annotations?.[HCI_ANNOTATIONS.DYNAMIC_SSHKEYS_USERS] || '[]');
+      const out = JSON.parse(this.resourceType?.spec?.template?.metadata?.annotations?.[HCI_ANNOTATIONS.DYNAMIC_SSHKEYS_USERS] || '[]');
 
       out.unshift({
         label: this.t('harvester.virtualMachine.accessCredentials.injectSSH.addUser'),
@@ -107,7 +107,7 @@ export default {
         sshkeys:     [],
         username:    '',
         newPassword: '',
-        secretName:  this.generateSecretName(this.resource.metadata.name),
+        secretName:  this.generateSecretName(this.resourceType.metadata.name),
       };
 
       this.rows.push(neu);
@@ -169,7 +169,7 @@ export default {
             :is="componentFor(row.source)"
             v-model:value="rows[i]"
             :rows="rows"
-            :resource="resource"
+            :resourceType="resourceType"
             :user-options="userOptions"
             :mode="mode"
             :idx="i"

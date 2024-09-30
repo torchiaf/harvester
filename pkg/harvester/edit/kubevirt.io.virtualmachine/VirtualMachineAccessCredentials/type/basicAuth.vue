@@ -15,7 +15,7 @@ export default {
       default: 'create'
     },
 
-    resource: {
+    resourceType: {
       type:    Object,
       default: () => {
         return {};
@@ -68,7 +68,7 @@ export default {
     <div class="col span-6">
       <AccessCredentialsUsers
         v-model:value="value.username"
-        :resource="resource"
+        :resourceType="resourceType"
         :user-options="userOptions"
         :multiple="false"
         :mode="mode"

@@ -10,7 +10,7 @@ export default {
   components: { ButtonDropdown },
 
   props: {
-    resource: {
+    resourceType: {
       type:     Object,
       required: true,
       default:  () => {
@@ -23,7 +23,7 @@ export default {
     ...mapGetters({ t: 'i18n/t' }),
 
     isOff() {
-      return this.resource.stateDisplay === OFF;
+      return this.resourceType.stateDisplay === OFF;
     },
 
     options() {
@@ -46,10 +46,10 @@ export default {
     },
 
     show(type) {
-      let uid = this.resource.metadata?.ownerReferences?.[0]?.uid;
+      let uid = this.resourceType.metadata?.ownerReferences?.[0]?.uid;
 
       if (uid === undefined) {
-        uid = this.resource.metadata.uid;
+        uid = this.resourceType.metadata.uid;
       }
 
       const host = window.location.host;

@@ -15,7 +15,7 @@ export default {
       default: 'create'
     },
 
-    resource: {
+    resourceType: {
       type:    Object,
       default: () => {
         return {};
@@ -65,7 +65,7 @@ export default {
       <div class="col span-6">
         <AccessCredentialsUsers
           v-model:value="value.users"
-          :resource="resource"
+          :resourceType="resourceType"
           :user-options="userOptions"
           :mode="mode"
           :multiple="true"
@@ -77,7 +77,7 @@ export default {
         <SSHKey
           v-model:value="value.sshkeys"
           class="mb-20"
-          :namespace="resource.metadata.namespace"
+          :namespace="resourceType.metadata.namespace"
           :mode="mode"
           :searchable="false"
           @update:sshKey="updateSSH"
