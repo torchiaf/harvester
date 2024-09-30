@@ -7,7 +7,7 @@ import { allHash } from '@shell/utils/promise';
 import { KEY, VALUE } from '@shell/config/table-headers';
 import { VM_HEADERS } from '@pkg/harvester/list/kubevirt.io.virtualmachine';
 import { matching } from '@shell/utils/selector';
-import { IP_POOL_HEADERS } from '../product';
+import { IP_POOL_HEADERS } from '../config/harvester-cluster';
 
 export default {
   emits: ['input'],
