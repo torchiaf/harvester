@@ -149,7 +149,7 @@ export default {
               :initial-empty-row="true"
               @update:value="filterRows"
             >
-              <template v-slot:column-headers>
+              <template #column-headers>
                 <div class="box">
                   <div class="key">
                     {{ t('generic.key') }}
@@ -161,7 +161,7 @@ export default {
                   <div />
                 </div>
               </template>
-              <template v-slot:columns="scope">
+              <template #columns="scope">
                 <div class="key">
                   <Select
                     ref="select"

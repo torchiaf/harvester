@@ -217,7 +217,7 @@ export default {
           prefix-label="harvester.backup.message.errorTip.prefix"
           middle-label="harvester.backup.message.errorTip.middle"
         >
-          <template v-slot:suffix>
+          <template #suffix>
             {{ t('harvester.backup.message.errorTip.suffix') }} {{ errorMessage }}
           </template>
         </MessageLink>

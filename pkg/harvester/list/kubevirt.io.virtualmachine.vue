@@ -200,13 +200,13 @@ export default {
       key-field="_key"
       
     >
-      <template cell:state="scope" class="state-col">
+      <template #cell:state="scope" class="state-col">
         <div class="state">
           <HarvesterVmState class="vmstate" :row="scope.row" :all-node-network="allNodeNetworks" :all-cluster-network="allClusterNetworks" />
         </div>
       </template>
 
-      <template cell:name="scope">
+      <template #cell:name="scope">
         <div class="name-console">
           <router-link
             v-if="scope.row.type !== HCI.VMI"
@@ -223,7 +223,7 @@ export default {
           <span v-else>
             {{ scope.row.metadata.name }}
           </span>
-          <ConsoleBar :resource="scope.row" class="console mr-10 ml-10" />
+          <ConsoleBar :resourceType="scope.row" class="console mr-10 ml-10" />
         </div>
       </template>
     </ResourceTable>

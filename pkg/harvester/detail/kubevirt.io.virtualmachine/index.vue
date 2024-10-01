@@ -251,7 +251,7 @@ export default {
       </Tab>
 
       <Tab :label="t('harvester.tab.accessCredentials')" class="bordered-table" name="accessCredentials" :weight="2.2">
-        <AccessCredentials mode="view" :value="accessCredentials" :resource="value" />
+        <AccessCredentials mode="view" :value="accessCredentials" :resourceType="value" />
       </Tab>
 
       <Tab name="cloudConfig" :label="t('harvester.virtualMachine.detail.tabs.cloudConfig')" class="bordered-table" :weight="2">

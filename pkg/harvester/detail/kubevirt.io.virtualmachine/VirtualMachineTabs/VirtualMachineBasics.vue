@@ -134,7 +134,7 @@ export default {
 
 <template>
   <div>
-    <VMConsoleBar :resource="value" class="consoleBut" />
+    <VMConsoleBar :resourceType="value" class="consoleBut" />
     <div class="overview-basics">
       <div class="row">
         <div class="col span-6">

@@ -661,7 +661,7 @@ export default {
       </Tab>
 
       <Tab v-if="isEdit" :label="t('harvester.tab.accessCredentials')" name="accessCredentials" :weight="-8">
-        <AccessCredentials v-model:value="accessCredentials" :mode="mode" :resource="value" :is-qemu-installed="isQemuInstalled" />
+        <AccessCredentials v-model:value="accessCredentials" :mode="mode" :resourceType="value" :is-qemu-installed="isQemuInstalled" />
       </Tab>
 
       <Tab

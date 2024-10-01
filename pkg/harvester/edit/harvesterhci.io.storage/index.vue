@@ -283,7 +283,7 @@ export default {
           :show-header="true"
           :mode="modeOverride"
         >
-          <template v-slot:column-headers>
+          <template #column-headers>
             <div class="box">
               <div class="row">
                 <div class="col span-4 key">
@@ -296,7 +296,7 @@ export default {
               </div>
             </div>
           </template>
-          <template v-slot:columns="scope">
+          <template #columns="scope">
             <div class="row custom-headers">
               <div class="col span-4 key">
                 <LabeledInput

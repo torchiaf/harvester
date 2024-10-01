@@ -222,14 +222,14 @@ export default {
         :add-label="t('harvester.setting.storageNetwork.exclude.addIp')"
         @update:value="update"
       >
-        <template v-slot:column-headers>
+        <template #column-headers>
           <div class="box">
             <div class="key">
               {{ t('harvester.setting.storageNetwork.exclude.label') }}
             </div>
           </div>
         </template>
-        <template v-slot:columns="scope">
+        <template #columns="scope">
           <div class="key">
             <input
               v-model="scope.row.value"

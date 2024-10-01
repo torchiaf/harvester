@@ -64,7 +64,7 @@ export default {
       :schema="schema"
       :headers="headers"
     >
-      <template cell:name="scope">
+      <template #cell:name="scope">
         <div class="cell-name">
           <LinkDetail v-model:value="scope.row.displayName" :row="scope.row" />
 
