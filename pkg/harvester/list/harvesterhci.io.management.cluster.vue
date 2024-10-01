@@ -82,7 +82,7 @@ export default {
     },
 
     typeDisplay() {
-      return this.t(`typeLabel."${ HCI.CLUSTER }"`, { count: this.row?.length || 0 });
+      return this.t(`typeLabel."${ HCI.CLUSTER }"`, { count: this.rows?.length || 0 });
     },
   },
 
