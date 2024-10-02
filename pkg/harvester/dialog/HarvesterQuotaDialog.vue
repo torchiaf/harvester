@@ -5,7 +5,6 @@ import { Banner } from '@components/Banner';
 import AsyncButton from '@shell/components/AsyncButton';
 import UnitInput from '@shell/components/form/UnitInput';
 import { exceptionToErrorsArray } from '@shell/utils/error';
-import { _EDIT } from '@shell/config/query-params';
 
 export default {
   name: 'HarvesterVMQuotaDialog',
@@ -30,7 +29,6 @@ export default {
 
   data() {
     return {
-      _EDIT,
       totalSnapshotSize: '',
       errors:            []
     };
@@ -92,7 +90,6 @@ export default {
         v-int-number
         :label="t('harvester.snapshot.totalSnapshotSize')"
         :disabled="false"
-        :mode="_EDIT"
         :input-exponent="3"
         :increment="1024"
         :output-modifier="true"
