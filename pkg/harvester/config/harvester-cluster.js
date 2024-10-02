@@ -195,7 +195,8 @@ export function init($plugin, store) {
     },
     resource: PVC,
     resourceDetail: HCI.VOLUME,
-    resourceEdit: HCI.VOLUME
+    resourceEdit: HCI.VOLUME,
+    canYaml: false,
   });
   virtualType({
     labelKey: 'harvester.volume.label',
