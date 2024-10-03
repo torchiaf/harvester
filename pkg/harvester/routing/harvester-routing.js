@@ -23,14 +23,20 @@ const routes = [
     component: HarvesterSupport,
   },
   {
-    name:      `${ PRODUCT_NAME }-c-cluster-console-uid-serial`,
-    path:      `/:product/c/:cluster/console/:uid/serial`,
-    component: HarvesterConsoleSerial,
+    route: {
+      name:      `${ PRODUCT_NAME }-c-cluster-console-uid-serial`,
+      path:      `/:product/c/:cluster/console/:uid/serial`,
+      component: HarvesterConsoleSerial,
+    },
+    parent: 'blank'
   },
   {
-    name:      `${ PRODUCT_NAME }-c-cluster-console-uid-vnc`,
-    path:      `/:product/c/:cluster/console/:uid/vnc`,
-    component: HarvesterConsoleVnc,
+    route: {
+      name:      `${ PRODUCT_NAME }-c-cluster-console-uid-vnc`,
+      path:      `/:product/c/:cluster/console/:uid/vnc`,
+      component: HarvesterConsoleVnc,
+    },
+    parent: 'blank'
   },
   {
     name:      `${ PRODUCT_NAME }-c-cluster-airgapupgrade`,
