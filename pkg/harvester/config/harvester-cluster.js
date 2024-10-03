@@ -31,6 +31,7 @@ import {
   FINGERPRINT,
   IMAGE_PROGRESS,
   SNAPSHOT_TARGET_VOLUME,
+  IMAGE_VIRTUAL_SIZE
 } from './table-headers';
 
 const TEMPLATE = HCI.VM_VERSION;
@@ -219,8 +220,12 @@ export function init($plugin, store) {
     NAMESPACE_COL,
     IMAGE_PROGRESS,
     IMAGE_DOWNLOAD_SIZE,
+    IMAGE_VIRTUAL_SIZE,
     AGE
   ]);
+  configureType(HCI.IMAGE, {
+    canYaml: false,
+  });
   virtualType({
     labelKey: 'harvester.image.label',
     group: 'root',
