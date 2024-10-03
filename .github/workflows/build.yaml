@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   build-extension-charts:
-    uses: codyrancher/dashboard/.github/workflows/build-extension-charts.yml@workflow-update
+    uses: rancher/dashboard/.github/workflows/build-extension-charts.yml@workflow-update
     permissions:
       actions: write
       contents: write
