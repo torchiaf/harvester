@@ -25,6 +25,8 @@ export default {
     Checkbox, CruResource, LabeledSelect, LabeledInput, RadioGroup, UpgradeInfo
   },
 
+  inheritAttrs: false,
+
   async fetch() {
     await this.$store.dispatch('harvester/findAll', { type: HCI.IMAGE });
 

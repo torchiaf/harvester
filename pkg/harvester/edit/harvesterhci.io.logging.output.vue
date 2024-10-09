@@ -31,6 +31,8 @@ export default {
 
   mixins: [CreateEditView],
 
+  inheritAttrs: false,
+
   async fetch() {
     await this.$store.dispatch('harvester/findAll', { type: SECRET });
   },

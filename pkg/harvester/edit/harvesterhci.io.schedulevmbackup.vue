@@ -31,6 +31,8 @@ export default {
 
   mixins: [CreateEditView],
 
+  inheritAttrs: false,
+
   async fetch() {
     const hash = await allHash({
       settings: this.$store.dispatch('harvester/findAll', { type: HCI.SETTING }),

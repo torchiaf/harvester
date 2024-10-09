@@ -25,6 +25,8 @@ export default {
 
   mixins: [CreateEditView],
 
+  inheritAttrs: false,
+
   data() {
     return {
       config: this.value.data?.cloudInit || '',

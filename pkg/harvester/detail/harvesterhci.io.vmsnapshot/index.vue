@@ -36,6 +36,8 @@ export default {
 
   mixins: [CreateEditView, VM_MIXIN],
 
+  inheritAttrs: false,
+
   props: {
     value: {
       type:     Object,

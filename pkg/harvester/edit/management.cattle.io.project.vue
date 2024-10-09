@@ -27,6 +27,9 @@ export default {
   },
 
   mixins: [CreateEditView, FormValidation],
+
+  inheritAttrs: false,
+
   async fetch() {
     if ( this.$store.getters['management/canList'](MANAGEMENT.POD_SECURITY_POLICY_TEMPLATE) ) {
       this.allPSPs = await this.$store.dispatch('management/findAll', { type: MANAGEMENT.POD_SECURITY_POLICY_TEMPLATE });

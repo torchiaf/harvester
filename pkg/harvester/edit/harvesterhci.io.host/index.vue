@@ -55,6 +55,7 @@ export default {
     MessageLink,
   },
   mixins: [CreateEditView],
+  inheritAttrs: false,
   props:  {
     value: {
       type:     Object,

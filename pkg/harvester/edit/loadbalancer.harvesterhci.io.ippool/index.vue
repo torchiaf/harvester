@@ -26,6 +26,8 @@ export default {
 
   mixins: [CreateEditView],
 
+  inheritAttrs: false,
+
   async fetch() {
     const inStore = this.$store.getters['currentProduct'].inStore;
 

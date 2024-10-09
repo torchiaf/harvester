@@ -22,6 +22,8 @@ export default {
 
   mixins: [CreateEditView],
 
+  inheritAttrs: false,
+
   computed: {
     doneLocationOverride() {
       return this.value.doneOverride;

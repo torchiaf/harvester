@@ -41,6 +41,8 @@ export default {
 
   mixins: [CreateEditView],
 
+  inheritAttrs: false,
+
   data() {
     const reclaimPolicyOptions = [{
       label: this.t('storageClass.customize.reclaimPolicy.delete'),

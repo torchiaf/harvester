@@ -20,6 +20,8 @@ export default {
 
   mixins: [CreateEditView],
 
+  inheritAttrs: false,
+
   data() {
     const t = this.$store.getters['i18n/t'];
     const setting =

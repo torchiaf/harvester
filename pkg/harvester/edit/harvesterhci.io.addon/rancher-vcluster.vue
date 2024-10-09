@@ -14,6 +14,8 @@ export default {
   name:       'EditAddonVcluster',
   components: { LabeledInput, RadioGroup },
 
+  inheritAttrs: false,
+
   props: {
     value: {
       type:     Object,

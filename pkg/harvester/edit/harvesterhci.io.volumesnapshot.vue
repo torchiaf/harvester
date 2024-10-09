@@ -24,6 +24,8 @@ export default {
 
   mixins: [CreateEditView],
 
+  inheritAttrs: false,
+
   computed: {
     volume() {
       return this.volumes.find((V) => {

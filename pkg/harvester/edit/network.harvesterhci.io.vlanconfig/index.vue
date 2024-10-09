@@ -43,6 +43,8 @@ export default {
 
   mixins: [CreateEditView],
 
+  inheritAttrs: false,
+
   data() {
     const originNics = clone(this.value?.spec?.uplink?.nics || []);
 
