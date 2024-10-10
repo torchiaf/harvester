@@ -159,7 +159,6 @@ export default {
           ref="addTagInput"
           v-model="inputValue"
           type="text"
-          size="small"
           @blur="confirmAdd"
           @keydown.enter.prevent="confirmAdd"
         />
