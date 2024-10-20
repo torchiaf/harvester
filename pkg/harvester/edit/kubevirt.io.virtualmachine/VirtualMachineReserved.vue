@@ -41,8 +41,7 @@ export default {
 
 <template>
   <UnitInput
-    v-model:value="memory"
-    v-int-number
+    v-model:value.number="memory"
     :label="t('harvester.virtualMachine.input.reservedMemory')"
     :mode="mode"
     :input-exponent="2"

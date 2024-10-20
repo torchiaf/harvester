@@ -272,7 +272,6 @@ export default {
         />
         <LabeledInput
           v-model:value.number="value.spec.retain"
-          v-int-number
           class="mb-30"
           :min="2"
           :max="250"
@@ -284,7 +283,6 @@ export default {
         />
         <LabeledInput
           v-model:value.number="value.spec.maxFailure"
-          v-int-number
           class="mb-30"
           :min="2"
           type="number"

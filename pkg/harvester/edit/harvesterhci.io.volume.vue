@@ -329,8 +329,7 @@ export default {
         />
 
         <UnitInput
-          v-model:value="storage"
-          v-int-number
+          v-model:value.number="storage"
           :label="t('harvester.volume.size')"
           :input-exponent="3"
           :output-modifier="true"

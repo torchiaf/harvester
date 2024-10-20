@@ -62,7 +62,6 @@ export default {
       <LabeledInput
         v-if="parseDefaultValue.enable"
         v-model.number="parseDefaultValue.period"
-        v-int-number
         class="mb-20"
         :mode="mode"
         label-key="harvester.setting.vmForceDeletionPolicy.period"

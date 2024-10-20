@@ -60,8 +60,7 @@ export default {
       />
       <UnitInput
         v-if="parseDefaultValue.enable"
-        v-model:value="parseDefaultValue.expiringInHours"
-        v-int-number
+        v-model:value.number="parseDefaultValue.expiringInHours"
         class="mb-20"
         :min="1"
         :max="8759"

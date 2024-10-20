@@ -127,8 +127,7 @@ export default {
 
     <template v-if="showKsmt">
       <UnitInput
-        v-model:value="spec.thresCoef"
-        v-int-number
+        v-model:value.number="spec.thresCoef"
         :label="t('harvester.host.ksmtuned.thresCoef')"
         suffix="%"
         :delay="0"
