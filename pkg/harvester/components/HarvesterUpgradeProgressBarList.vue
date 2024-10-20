@@ -45,7 +45,7 @@ export default {
         <Collapse v-model:open="open">
           <template #title>
             <div class="total-bar">
-              <span class="bar"><PercentageBar :value="precent" preferred-direction="MORE" /></span>
+              <span class="bar"><PercentageBar :modelValue="precent" preferred-direction="MORE" /></span>
               <span class="on-off" @click="handleSwitch"> {{ open ? t('harvester.generic.close') : t('harvester.generic.open') }}</span>
             </div>
           </template>
@@ -54,7 +54,7 @@ export default {
             <div class="custom-content">
               <div  v-for="(item, i) in list" :key="i" >
                 <p>{{ item.name }} <span class="status" :class="{ [item.state]: true }">{{ item.state }}</span></p>
-                <PercentageBar :value="item.percent" preferred-direction="MORE" />
+                <PercentageBar :modelValue="item.percent" preferred-direction="MORE" />
                 <p class="warning">
                   {{ item.message }}
                 </p>

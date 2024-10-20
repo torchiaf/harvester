@@ -258,7 +258,7 @@ export default {
 
           <div v-if="showImage">
             <h4>{{ t('harvester.upgradePage.upgradeImage') }}<span class="float-r text-info">{{ imageProgress }}%</span></h4>
-            <PercentageBar :value="imageProgress" preferred-direction="MORE" />
+            <PercentageBar :modelValue="imageProgress" preferred-direction="MORE" />
             <p class="text-warning">
               {{ imageMessage }}
             </p>
