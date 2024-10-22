@@ -457,7 +457,7 @@ export default {
               :options="nicOptions"
               :array-list-props="{
                 addLabel: t('harvester.vlanConfig.uplink.nics.addLabel'),
-                initialEmptyRow: true,
+                initialEmptyRow: false,
                 title: t('harvester.vlanConfig.uplink.nics.label'),
                 required: true,
                 protip: false,
