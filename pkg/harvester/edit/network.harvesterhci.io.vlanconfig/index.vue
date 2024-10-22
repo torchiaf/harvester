@@ -361,21 +361,6 @@ export default {
 
       this.nicErrors = uniq(nicErrors);
     },
-
-    'value.spec.uplink.nics'(nics = []) {
-      const nicErrors = [];
-      const options = this.nicOptions || [];
-
-      nics.map((n) => {
-        const option = options.find(option => option.value === n);
-
-        if ((option && option?.disabled) || !option) {
-          nicErrors.push(this.t('harvester.vlanConfig.uplink.nics.validate.available', { nic: n }, true));
-        }
-      });
-
-      this.nicErrors = uniq(nicErrors);
-    }
   },
 };
 </script>
@@ -455,6 +440,7 @@ export default {
               v-model:value="value.spec.uplink.nics"
               :mode="mode"
               :options="nicOptions"
+              :enableDefaultAddValue="false"
               :array-list-props="{
                 addLabel: t('harvester.vlanConfig.uplink.nics.addLabel'),
                 initialEmptyRow: true,
