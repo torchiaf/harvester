@@ -29,7 +29,6 @@ export default {
 
   data() {
     let parseDefaultValue = {};
-
     try {
       parseDefaultValue = JSON.parse(this.value.value);
     } catch (error) {
@@ -64,7 +63,6 @@ export default {
   methods: {
     update() {
       const value = JSON.stringify(this.parseDefaultValue);
-
       this.value['value'] = value;
     },
 
@@ -103,32 +101,30 @@ export default {
 <template>
   <div class="row" @input="update">
     <div class="col span-12">
-      <template>
-        <LabeledInput
-          v-model:value="parseDefaultValue.repository"
-          class="mb-20"
-          :mode="mode"
-          required
-          label-key="harvester.setting.supportBundleImage.repo"
-        />
+      <LabeledInput
+        v-model:value="parseDefaultValue.repository"
+        class="mb-20"
+        :mode="mode"
+        required
+        label-key="harvester.setting.supportBundleImage.repo"
+      />
 
-        <LabeledInput
-          v-model:value="parseDefaultValue.tag"
-          class="mb-20"
-          :mode="mode"
-          required
-          label-key="harvester.setting.supportBundleImage.tag"
-        />
+      <LabeledInput
+        v-model:value="parseDefaultValue.tag"
+        class="mb-20"
+        :mode="mode"
+        required
+        label-key="harvester.setting.supportBundleImage.tag"
+      />
 
-        <LabeledSelect
-          v-model:value="parseDefaultValue.imagePullPolicy"
-          class="mb-20"
-          required
-          label-key="harvester.setting.supportBundleImage.imagePullPolicy"
-          :options="imagePolicyOptions"
-          @input="update"
-        />
-      </template>
+      <LabeledSelect
+        v-model:value="parseDefaultValue.imagePullPolicy"
+        class="mb-20"
+        required
+        label-key="harvester.setting.supportBundleImage.imagePullPolicy"
+        :options="imagePolicyOptions"
+        @update:value="update"
+      />
     </div>
   </div>
 </template>

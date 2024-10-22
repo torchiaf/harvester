@@ -80,7 +80,7 @@ export default {
     <div class="col span-6 mb-10">
       <InputOrDisplay name="CPU" :value="cupDisplay" :mode="mode">
         <UnitInput
-          v-model:value.number="localCpu"
+          v-model:value="localCpu"
           label="CPU"
           suffix="C"
           :delay="0"
@@ -96,7 +96,7 @@ export default {
     <div class="col span-6 mb-10">
       <InputOrDisplay :name="t('harvester.virtualMachine.input.memory')" :value="memoryDisplay" :mode="mode">
         <UnitInput
-          v-model:value.number="localMemory"
+          v-model:value="localMemory"
           :label="t('harvester.virtualMachine.input.memory')"
           :mode="mode"
           :input-exponent="3"
