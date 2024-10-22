@@ -86,7 +86,7 @@ export default {
         {{ t('harvester.modal.quota.bannerMessage') }}
       </Banner>
       <UnitInput
-        v-model:value.number="totalSnapshotSize"
+        v-model:value="totalSnapshotSize"
         :label="t('harvester.snapshot.totalSnapshotSize')"
         :disabled="false"
         :input-exponent="3"

@@ -514,7 +514,7 @@ export default {
       <template #type>
         <LabeledInput
           v-if="!isSingle"
-          v-model.number="count"
+          v-model:value.number="count"
           :min="2"
           type="number"
           :label="t('harvester.virtualMachine.instance.multiple.count')"

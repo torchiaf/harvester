@@ -52,40 +52,36 @@ export default {
 <template>
   <div class="row">
     <div class="col span-12">
-      <template>
-        <UnitInput
-          v-model:value.number="parseDefaultValue.cpu"
-          label-key="harvester.generic.cpu"
-          suffix="%"
-          :delay="0"
-          required
-          :mode="mode"
-          class="mb-20"
-          @update:value="update"
-        />
-
-        <UnitInput
-          v-model:value.number="parseDefaultValue.memory"
-          label-key="harvester.generic.memory"
-          suffix="%"
-          :delay="0"
-          required
-          :mode="mode"
-          class="mb-20"
-          @update:value="update"
-        />
-
-        <UnitInput
-          v-model:value.number="parseDefaultValue.storage"
-          label-key="harvester.generic.storage"
-          suffix="%"
-          :delay="0"
-          required
-          :mode="mode"
-          class="mb-20"
-          @update:value="update"
-        />
-      </template>
+      <UnitInput
+        v-model:value="parseDefaultValue.cpu"
+        label-key="harvester.generic.cpu"
+        suffix="%"
+        :delay="0"
+        required
+        :mode="mode"
+        class="mb-20"
+        @update:value="update"
+      />
+      <UnitInput
+        v-model:value="parseDefaultValue.memory"
+        label-key="harvester.generic.memory"
+        suffix="%"
+        :delay="0"
+        required
+        :mode="mode"
+        class="mb-20"
+        @update:value="update"
+      />
+      <UnitInput
+        v-model:value="parseDefaultValue.storage"
+        label-key="harvester.generic.storage"
+        suffix="%"
+        :delay="0"
+        required
+        :mode="mode"
+        class="mb-20"
+        @update:value="update"
+      />
     </div>
   </div>
 </template>

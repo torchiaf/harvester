@@ -207,7 +207,7 @@ export default {
 
         <LabeledInput
           v-if="!isUntaggedNetwork"
-          v-model.number="config.vlan"
+          v-model:value.number="config.vlan"
           class="mb-20"
           required
           type="number"
