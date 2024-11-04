@@ -69,6 +69,16 @@ export function init($plugin, store) {
 
   const isSingleVirtualCluster = process.env.rancherEnv === PRODUCT_NAME;
 
+  const sss = store.getters['harvester/all']('harvesterhci.io.setting');
+
+  console.log('CONFIG', sss);
+
+  // try {
+  //   await store.$axios.get('adwaw', { timeout: 5000 }); 
+  // } catch (error) {
+  //   console.log(error)
+  // }
+
   if (isSingleVirtualCluster) {
     const home = {
       name: `${PRODUCT_NAME}-c-cluster-resource`,

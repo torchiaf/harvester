@@ -79,6 +79,7 @@ export default {
       images:  this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.IMAGE }),
       restore: this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.RESTORE }),
       backups: this.$store.dispatch(`${ inStore }/findAll`, { type: HCI.BACKUP }),
+      // settings: this.$store.dispatch('harvester/findAll', { type: HCI.SETTING }),
     };
 
     if (this.$store.getters[`${ inStore }/schemaFor`](HCI.RESOURCE_QUOTA)) {
@@ -151,7 +152,11 @@ export default {
     rows() {
       const matchVMIs = this.allVMIs.filter(VMI => !this.allVMs.find(VM => VM.id === VMI.id));
 
-      return [...this.allVMs, ...matchVMIs];
+      const rows =  [...this.allVMs, ...matchVMIs];
+
+      console.log(rows[0]?.pippo)
+
+      return rows;
     },
 
     /**

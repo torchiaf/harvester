@@ -7,6 +7,9 @@ import {
 import { MANAGEMENT } from '@shell/config/types';
 import { sortBy } from '@shell/utils/sort';
 import { filterBy } from '@shell/utils/array';
+import Resource from '@shell/plugins/dashboard-store/resource-class';
+import { lookup } from '@shell/plugins/dashboard-store/model-loader';
+import { serverVersion } from '@pkg/harvester/utils/server';
 
 export default {
   namespaceFilterOptions: (state: any, getters: any, rootState: any, rootGetters: any) => ({
@@ -123,5 +126,19 @@ export default {
     const clusterId = currentCluster.id;
 
     return projectsInAllClusters.filter((project: any) => project.spec.clusterName === clusterId && project.nameDisplay !== 'System');
-  }
+  },
+
+  classify: (state, getters, rootState, rootGetters) => (obj) => {
+    const version = serverVersion(rootGetters);
+
+    const modelVersion = version ? `${ obj?.type }-${ version }` : obj?.type;
+
+    const model = lookup(state.config.namespace, modelVersion, obj?.metadata?.name, rootState);
+
+    if (model) {
+      return model;
+    }
+  
+    return lookup(state.config.namespace, obj?.type, obj?.metadata?.name, rootState) || Resource;
+  },
 };
